@@ -1,0 +1,31 @@
+[user]
+        name = Ales Nosek
+        email = ales.nosek@gmail.com
+[color]
+        ui = auto
+[merge]
+        tool = meld
+        stat = true
+[diff]
+        mnemonicprefix = true
+[alias]
+        l  = log --pretty=format:'%C(yellow)%h - %C(green)%an, %C(bold blue)%ar : %C(reset)%s'
+        l2 = log --pretty=format:'%C(yellow)%h - %C(green)%an, %C(bold blue)%ad : %C(reset)%s'
+        lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+        co = checkout
+        b  = branch
+        c  = commit
+        s  = status
+        st = status -sb
+        dc = diff --cached
+        dcw = diff --cached --color-words
+        d = diff
+        dw = diff --color-words
+        amend = commit -C HEAD -a --amend
+[git-p4]
+        skipsubmitedit = true
+        skipsubmiteditcheck = true
+[init]
+        templatedir = ~/.gittemplate
+[push]
+        default = current
