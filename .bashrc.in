@@ -3,8 +3,8 @@
 
 alias ..='cd ..'
 alias ...='cd ../..'
-alias ll='ls -l'
-alias la='ls -A'
+alias l='ls -l'
+alias la='ls -al'
 alias dquilt="quilt --quiltrc=$HOME/.quiltrc-dpkg"
 alias hyaml='highlight --out-format truecolor --syntax yaml'
 alias hjson='highlight --out-format truecolor --syntax json'
