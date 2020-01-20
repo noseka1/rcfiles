@@ -1,4 +1,6 @@
-# Setup Instructions
+# My personal configuration files
+
+## Setup Instructions
 
 ```
 cd $HOME
