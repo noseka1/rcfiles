@@ -20,7 +20,7 @@ set expandtab
 set wildmenu
 set wildmode=list:longest
 
-set background=light
+set background=dark
 
 "zvýrazňování syntaxe
 syntax on
