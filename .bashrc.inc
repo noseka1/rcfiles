@@ -1,11 +1,21 @@
-export PS1="$TITLEBAR"'\[\033[42;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
+# export PS1='\[\033[42;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
+# export PS1='\[\033[46;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 
-# ls command
-export LS_OPTIONS='-F -T 0 --color=auto'
-eval `dircolors`
-alias ls='ls $LS_OPTIONS'
-alias ll='ls $LS_OPTIONS -l'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias dquilt="quilt --quiltrc=$HOME/.quiltrc-dpkg"
+alias hyaml='highlight --out-format truecolor --syntax yaml'
+alias hjson='highlight --out-format truecolor --syntax json'
+alias  hxml='highlight --out-format truecolor --syntax xml'
+alias grep='grep --color'
 
-alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+export DEBFULLNAME="Ales Nosek"
+export DEBEMAIL="ales.nosek@gmail.com"
 
 export P4CONFIG=.p4config
+export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.ansible_vault.txt
+export GOPATH=$HOME/go
+
+export PATH=$HOME/bin:$PATH
+export PATH=$GOPATH/go/bin:$PATH
+export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
