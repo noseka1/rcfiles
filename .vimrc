@@ -5,8 +5,6 @@ set history=1000
 "zapne klasické použití backspace
 set backspace=2
 set nojoinspaces
-"zapne zobrazení informací v posledním řádku
-set ruler
 "zobrazuje zapnutý režim
 set showmode
 set showcmd
@@ -35,3 +33,6 @@ set fileencodings=utf-8,latin2
 
 "no indenting while pasting
 set paste
+
+"show the current line and column number
+set ruler
