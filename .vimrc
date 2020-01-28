@@ -36,3 +36,18 @@ set paste
 
 "show the current line and column number
 set ruler
+
+
+" vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
+" Specify a directory for plugins
+call plug#begin('~/.vim/plugged')
+Plug 'https://github.com/airblade/vim-gitgutter.git'
+Plug 'https://github.com/itchyny/lightline.vim.git'
+Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'https://github.com/junegunn/fzf.vim.git'
+Plug 'https://github.com/preservim/nerdtree.git'
+Plug 'https://github.com/Yggdroot/indentLine.git'
+call plug#end()
+
+map ; :Files<CR>
+map <C-n> :NERDTreeToggle<CR>

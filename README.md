@@ -14,3 +14,15 @@ git checkout master
 ```
 echo 'source $HOME/.bashrc.in' >> .bashrc
 ```
+
+Open Vim
+
+```
+vim
+```
+
+and install plugins:
+
+```
+:PlugInstall
+```
