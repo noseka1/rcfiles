@@ -1,0 +1,9 @@
+# Vim temp files
+.*.swp
+
+# Eclipse IDE project configuration
+/.autotools
+/.cproject
+/.project
+/.pydevproject
+/.settings/

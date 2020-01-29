@@ -31,3 +31,5 @@
         default = current
 [credential]
         helper = cache --timeout 43200
+[core]
+	excludesfile = ~/.gitignore.global
