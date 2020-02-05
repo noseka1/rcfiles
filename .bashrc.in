@@ -27,5 +27,5 @@ export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.ansible_vault.txt
 export GOPATH=$HOME/go
 
 export PATH=$HOME/bin:$PATH
-export PATH=$GOPATH/go/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
