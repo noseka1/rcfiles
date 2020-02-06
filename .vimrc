@@ -32,7 +32,7 @@ set fileencodings=utf-8,latin2
 "set spell
 
 "no indenting while pasting
-set paste
+set nopaste
 
 "show the current line and column number
 set ruler
