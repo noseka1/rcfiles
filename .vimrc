@@ -9,18 +9,11 @@ set nojoinspaces
 set showmode
 set showcmd
 set showmatch
-set hlsearch
-"set smartindent
-"set shiftwidth=4
-"set smarttab
-" convert tabs to spaces
-set expandtab
 set wildmenu
 set wildmode=list:longest
-
 set background=dark
 
-"zvýrazňování syntaxe
+"syntax highlighting
 syntax on
 
 "rozpoznání jednotlivých kódování
@@ -31,12 +24,24 @@ set fileencodings=utf-8,latin2
 "zapne slovník
 "set spell
 
-"no indenting while pasting
+"search
+set hlsearch
+set incsearch
+
+"indenting
 set nopaste
+set tabstop=2
+set expandtab
+set shiftwidth=2
+set autoindent
+set smarttab
+set smartindent
+
+"check the indent settings with:
+":verbose set autoindent? smartindent? cindent? cinkeys? indentexpr?
 
 "show the current line and column number
 set ruler
-
 
 " vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
 " Specify a directory for plugins
