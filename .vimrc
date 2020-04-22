@@ -31,11 +31,11 @@ set incsearch
 "indenting
 set nopaste
 set tabstop=2
-set expandtab
 set shiftwidth=2
 set autoindent
 set smarttab
 set smartindent
+set expandtab
 
 "check the indent settings with:
 ":verbose set autoindent? smartindent? cindent? cinkeys? indentexpr?
