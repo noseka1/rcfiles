@@ -48,8 +48,6 @@ set ruler
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/airblade/vim-gitgutter.git'
 Plug 'https://github.com/itchyny/lightline.vim.git'
-Plug 'https://github.com/junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'https://github.com/junegunn/fzf.vim.git'
 Plug 'https://github.com/preservim/nerdtree.git'
 Plug 'https://github.com/Yggdroot/indentLine.git'
 call plug#end()
