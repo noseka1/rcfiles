@@ -9,6 +9,15 @@ parse_git_branch() {
   git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' -e 's/(master)//'
 }
 
+source_if_exists() {
+  [ -f "$1" ] && source "$1"
+}
+# fzf on Debian
+source_if_exists /usr/share/doc/fzf/examples/key-bindings.bash
+# fzf on Fedora
+source_if_exists /usr/share/fzf/shell/key-bindings.bash
+unset -f source_if_exists
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias l='ls -l'
