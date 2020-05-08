@@ -27,6 +27,7 @@ alias hyaml='highlight --out-format truecolor --syntax yaml'
 alias hjson='highlight --out-format truecolor --syntax json'
 alias  hxml='highlight --out-format truecolor --syntax xml'
 alias grep='grep --color'
+alias lg=lazygit
 
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
