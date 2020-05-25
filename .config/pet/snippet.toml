@@ -1,0 +1,24 @@
+[[snippets]]
+  description = "Get the TLS certificate from a server"
+  command = "openssl s_client -showcerts -servername <server_fqdn> -connect <server_fqdn>:443 </dev/null"
+  output = ""
+
+[[snippets]]
+  description = "Sort installed RPMs by size"
+  command = "rpm -qa --queryformat '%{size} %{name}\\n' | sort -rn"
+  output = ""
+
+[[snippets]]
+  description = "List Kuberenets events sorted by time"
+  command = "oc get events --sort-by metadata.creationTimestamp"
+  output = ""
+
+[[snippets]]
+  description = "Fix file names"
+  command = "find . -maxdepth 1 -type f | while read F; do F2=$(echo $F | tr -d ',' | tr -d \"'\" | tr ' ' '.'); echo $F2; mv \"$F\" \"$F2\"; done"
+  output = ""
+
+[[snippets]]
+  description = "Remove terminal color sequences from the log file, https://superuser.com/a/380778"
+  command = "sed 's/\\x1b\\[[0-9;]*m//g'"
+  output = ""
