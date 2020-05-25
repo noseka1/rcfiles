@@ -29,9 +29,10 @@ alias ...='cd ../..'
 alias l='ls -l'
 alias la='ls -al'
 alias dquilt="quilt --quiltrc=$HOME/.quiltrc-dpkg"
-alias hyaml='highlight --out-format truecolor --syntax yaml'
-alias hjson='highlight --out-format truecolor --syntax json'
-alias  hxml='highlight --out-format truecolor --syntax xml'
+alias hyaml='pygmentize -l yaml -O style=emacs'
+alias hjson='pygmentize -l json -O style=emacs'
+alias  hxml='pygmentize -l xml -O style=emacs'
+alias   hsh='pygmentize -l sh -O style=emacs'
 alias grep='grep --color'
 alias lg=lazygit
 
