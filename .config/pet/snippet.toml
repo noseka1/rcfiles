@@ -22,3 +22,8 @@
   description = "Remove terminal color sequences from the log file, https://superuser.com/a/380778"
   command = "sed 's/\\x1b\\[[0-9;]*m//g'"
   output = ""
+
+[[snippets]]
+  description = "Removes all \"leaf\" packages from the system that were originally installed as dependencies of user-installed packages, but which are no longer required by any such package"
+  command = "dnf autoremove"
+  output = ""
