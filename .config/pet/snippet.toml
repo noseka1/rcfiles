@@ -9,7 +9,7 @@
   output = ""
 
 [[snippets]]
-  description = "List Kuberenets events sorted by time"
+  description = "List Kubernetes events sorted by time"
   command = "oc get events --sort-by metadata.creationTimestamp"
   output = ""
 
@@ -26,4 +26,9 @@
 [[snippets]]
   description = "Removes all \"leaf\" packages from the system that were originally installed as dependencies of user-installed packages, but which are no longer required by any such package"
   command = "dnf autoremove"
+  output = ""
+
+[[snippets]]
+  description = "Watch Kubernetes events in all namespaces"
+  command = "oc get events --all-namespaces --sort-by metadata.creationTimestamp --watch"
   output = ""
