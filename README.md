@@ -15,10 +15,17 @@ git checkout master
 echo 'source $HOME/.bashrc.in' >> .bashrc
 ```
 
-Install Vim plugins
+Install vim plugins
 
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/71c41fccf5ca42081d4d49aa1ea2f71c694bc4cf/plug.vim
 vim -c PlugInstall -c qall!
+```
+
+Install tmux plugins
+
+```
+git clone --branch v3.0.0 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
 ```
