@@ -15,14 +15,10 @@ git checkout master
 echo 'source $HOME/.bashrc.in' >> .bashrc
 ```
 
-Open Vim
+Install Vim plugins
 
 ```
-vim
-```
-
-and install plugins:
-
-```
-:PlugInstall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/71c41fccf5ca42081d4d49aa1ea2f71c694bc4cf/plug.vim
+vim -c PlugInstall -c qall!
 ```
