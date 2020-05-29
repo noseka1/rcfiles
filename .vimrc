@@ -54,3 +54,6 @@ call plug#end()
 
 map ; :Files<CR>
 map <C-n> :NERDTreeToggle<CR>
+
+"enable lightline
+set laststatus=2
