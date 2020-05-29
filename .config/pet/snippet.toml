@@ -32,3 +32,8 @@
   description = "Watch Kubernetes events in all namespaces"
   command = "oc get events --all-namespaces --sort-by metadata.creationTimestamp --watch"
   output = ""
+
+[[snippets]]
+  description = "Register the system to the Red Hat Customer Portal and attach subscriptions"
+  command = "subscription-manager register && subscription-manager attach --pool 8a85f98460bfb0470160c2ff22f13e47"
+  output = ""
