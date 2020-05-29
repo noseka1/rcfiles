@@ -37,3 +37,8 @@
   description = "Register the system to the Red Hat Customer Portal and attach subscriptions"
   command = "subscription-manager register && subscription-manager attach --pool 8a85f98460bfb0470160c2ff22f13e47"
   output = ""
+
+[[snippets]]
+  description = "Red Hat VPN"
+  command = "sudo openvpn --config /etc/openvpn/client/ovpn-rdu2-tcp.conf"
+  output = ""
