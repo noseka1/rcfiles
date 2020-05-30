@@ -51,3 +51,6 @@ export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 
 export VISUAL=vim
 export EDITOR=vi
+
+# Disable systemctl's auto-paging feature
+export SYSTEMD_PAGER=
