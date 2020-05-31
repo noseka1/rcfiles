@@ -37,6 +37,7 @@ alias grep='grep --color'
 alias lg=lazygit
 alias kns=kubens
 alias kctx=kubectx
+alias ag='ag --color-match "1;31"'
 
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
