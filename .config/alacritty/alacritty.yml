@@ -111,3 +111,6 @@ colors:
     magenta: '#650065'
     cyan:    '#006565'
     white:   '#656565'
+
+key_bindings:
+  - { key: Insert, mods: Shift, action: Paste }
