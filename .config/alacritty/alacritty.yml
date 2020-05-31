@@ -61,6 +61,8 @@ font:
     x: 0
     y: 0
 
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors: true
 
 # Color schemes:
 # https://github.com/alacritty/alacritty/wiki/Color-schemes
