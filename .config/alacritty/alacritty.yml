@@ -67,31 +67,47 @@ draw_bold_text_with_bright_colors: true
 # Color schemes:
 # https://github.com/alacritty/alacritty/wiki/Color-schemes
 
-# Colors (Terminal.app) customized
+# Colors (Konsole Linux Colors)
 colors:
   # Default colors
   primary:
+    foreground: '#b2b2b2'
+    dim_foreground: '#656565'
+    bright_foreground: '#ffffff'
+
     background: '#000000'
-    foreground: '#b6b6b6'
+    dim_background: '#000000'
+    bright_background: '#686868'
 
   # Normal colors
   normal:
     black:   '#000000'
-    red:     '#990000'
-    green:   '#00a600'
+    red:     '#b21818'
+    green:   '#18b218'
     yellow:  '#b26818'
-    blue:    '#196487'
-    magenta: '#b200b2'
-    cyan:    '#00a6b2'
-    white:   '#ffffff'
+    blue:    '#1818b2'
+    magenta: '#b218b2'
+    cyan:    '#18b2b2'
+    white:   '#b2b2b2'
 
   # Bright colors
   bright:
-    black:   '#666666'
-    red:     '#e50000'
-    green:   '#00d900'
+    black:   '#686868'
+    red:     '#ff5454'
+    green:   '#54ff54'
     yellow:  '#ffff54'
-    blue:    '#0000ff'
+    blue:    '#5454ff'
     magenta: '#ff54ff'
-    cyan:    '#00e5e5'
+    cyan:    '#54ffff'
     white:   '#ffffff'
+
+  # Dim colors
+  dim:
+    black:   '#181818'
+    red:     '#650000'
+    green:   '#006500'
+    yellow:  '#655e00'
+    blue:    '#000065'
+    magenta: '#650065'
+    cyan:    '#006565'
+    white:   '#656565'
