@@ -33,6 +33,7 @@ alias hyaml='pygmentize -l yaml -O style=emacs'
 alias hjson='pygmentize -l json -O style=emacs'
 alias  hxml='pygmentize -l xml -O style=emacs'
 alias   hsh='pygmentize -l sh -O style=emacs'
+alias hdiff='pygmentize -l diff -O style=emacs'
 alias grep='grep --color'
 alias lg=lazygit
 alias kns=kubens
