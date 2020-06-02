@@ -80,7 +80,7 @@ nnoremap <leader>c :nohl<CR>
 "toggle indent lines
 nnoremap <leader>i :IndentLinesToggle<CR>
 
-colorscheme default
+colorscheme ron
 
 "vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
 
