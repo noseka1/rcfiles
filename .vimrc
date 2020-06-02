@@ -1,47 +1,67 @@
-"vypne kompatibilitu s Vi
-set nocompatible
-set exrc
-set history=1000
-"zapne klasické použití backspace
-set backspace=2
-set nojoinspaces
-"zobrazuje zapnutý režim
-set showmode
-set showcmd
-set showmatch
-set wildmenu
-set wildmode=list:longest
-set background=dark
+"configuration based on:
+"https://www.shortcutfoo.com/blog/top-50-vim-configuration-options/
+"https://dougblack.io/words/a-good-vimrc.html
 
-"syntax highlighting
-syntax on
+"indention options
 
-"rozpoznání jednotlivých kódování
-set fileencodings=utf-8,latin2
+"copy indent from current line when starting a new line
+set autoindent
+"use the appropriate number of spaces to insert a <Tab>
+set expandtab
+"round indent to multiple of 'shiftwidth', applies to > and < commands
+set shiftround
+"number of spaces to use for each step of (auto)indent
+set shiftwidth=2
+"when on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'
+set smarttab
+"number of spaces that a <Tab> in the file counts for
+set tabstop=2
+"do smart autoindenting when starting a new line.  Works for C-like programs, but can also be used for other languages
+set smartindent
 
-"český slovník překlepů
-"set spelllang=cs
-"zapne slovník
-"set spell
+"search options
 
-"search
+"when there is a previous search pattern, highlight all its matches
 set hlsearch
+"while typing a search command, show where the pattern, as it was typed so far, matches.
 set incsearch
 
-"indenting
-set nopaste
-set tabstop=2
-set shiftwidth=2
-set autoindent
-set smarttab
-set smartindent
-set expandtab
+"user interface options
+
+"always show the status line
+set laststatus=2
+"always show the current line and column number
+set ruler
+"display command line's tab complete options as a menu
+set wildmenu
+"When more than one match, list all matches and complete till longest common string
+set wildmode=list:longest
+"show line numbers on the sidebar
+set number
+"use visual bell instead of beeping
+set visualbell
+"set the window's title, reflecting the file currently being edited
+set title
+"use colors that suit a dark background
+set background=dark
+
+"undo options
+set undodir=$HOME/.vim/undo
+set undofile
+
+"misc options
+
+"allow backspacing over indention, line breaks and insertion start
+set backspace=indent,eol,start
+"increase the undo limit
+set history=1000
+"automatically re-read files if unmodified inside Vim
+set autoread
+"when a bracket is inserted, briefly jump to the matching one
+set showmatch
 
 "check the indent settings with:
 ":verbose set autoindent? smartindent? cindent? cinkeys? indentexpr?
-
-"show the current line and column number
-set ruler
 
 " vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
 " Specify a directory for plugins
@@ -54,6 +74,3 @@ call plug#end()
 
 map ; :Files<CR>
 map <C-n> :NERDTreeToggle<CR>
-
-"enable lightline
-set laststatus=2
