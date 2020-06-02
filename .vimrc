@@ -82,8 +82,9 @@ nnoremap <leader>i :IndentLinesToggle<CR>
 
 colorscheme default
 
-" vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
-" Specify a directory for plugins
+"vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
+
+"cpecify a directory for plugins
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/airblade/vim-gitgutter.git', { 'commit': 'b356cc9a7da08ebeb919cd04b2831dad71a34d38' }
 Plug 'https://github.com/itchyny/lightline.vim.git', { 'commit': 'c172131e0369672bc1b9454a2aec6d532d350dcc' }
@@ -93,3 +94,6 @@ call plug#end()
 
 map ; :Files<CR>
 map <C-n> :NERDTreeToggle<CR>
+
+"use darker color for indent lines
+let g:indentLine_color_term = 236
