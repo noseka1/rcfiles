@@ -1,6 +1,7 @@
 "configuration based on:
 "https://www.shortcutfoo.com/blog/top-50-vim-configuration-options/
 "https://dougblack.io/words/a-good-vimrc.html
+"https://danielmiessler.com/blog/vim-configuration-update-2019-version/
 
 "indention options
 
@@ -55,6 +56,11 @@ set history=1000
 set undodir=$HOME/.vim/undo
 set undofile
 
+"use X clipboard
+set clipboard=unnamed
+"check that the clipboard is available with:
+":echo has('clipboard')
+
 "misc options
 
 "allow backspacing over indention, line breaks and insertion start
@@ -63,6 +69,16 @@ set backspace=indent,eol,start
 set autoread
 "when a bracket is inserted, briefly jump to the matching one
 set showmatch
+
+"remap the leader key
+let mapleader="'"
+
+"toggle paste mode
+set pastetoggle=<leader>p
+"clear highlighting
+nnoremap <leader>c :nohl<CR>
+"toggle indent lines
+nnoremap <leader>i :IndentLinesToggle<CR>
 
 " vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
 " Specify a directory for plugins
