@@ -80,6 +80,8 @@ nnoremap <leader>c :nohl<CR>
 "toggle indent lines
 nnoremap <leader>i :IndentLinesToggle<CR>
 
+colorscheme default
+
 " vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
