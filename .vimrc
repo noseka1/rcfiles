@@ -18,6 +18,8 @@ set smarttab
 set tabstop=2
 "do smart autoindenting when starting a new line.  Works for C-like programs, but can also be used for other languages
 set smartindent
+"check the indent settings with:
+":verbose set autoindent? smartindent? cindent? cinkeys? indentexpr?
 
 "search options
 
@@ -46,6 +48,10 @@ set title
 set background=dark
 
 "undo options
+
+"increase the undo limit
+set history=1000
+"persistent undo
 set undodir=$HOME/.vim/undo
 set undofile
 
@@ -53,15 +59,10 @@ set undofile
 
 "allow backspacing over indention, line breaks and insertion start
 set backspace=indent,eol,start
-"increase the undo limit
-set history=1000
 "automatically re-read files if unmodified inside Vim
 set autoread
 "when a bracket is inserted, briefly jump to the matching one
 set showmatch
-
-"check the indent settings with:
-":verbose set autoindent? smartindent? cindent? cinkeys? indentexpr?
 
 " vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
 " Specify a directory for plugins
