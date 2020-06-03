@@ -75,10 +75,10 @@ let mapleader="'"
 
 "toggle paste mode
 set pastetoggle=<leader>p
+"toggle visual aids
+nnoremap <leader>v :set number!<CR>:IndentLinesToggle<CR>:GitGutterSignsToggle<CR>
 "clear highlighting
 nnoremap <leader>c :nohl<CR>
-"toggle indent lines
-nnoremap <leader>i :IndentLinesToggle<CR>
 
 colorscheme ron
 
