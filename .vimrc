@@ -74,7 +74,7 @@ set showmatch
 let mapleader="'"
 
 "toggle paste mode
-set pastetoggle=<leader>p
+nnoremap <leader>p :set paste!<CR>
 "toggle visual aids
 nnoremap <leader>v :set number!<CR>:IndentLinesToggle<CR>:GitGutterSignsToggle<CR>
 "clear highlighting
