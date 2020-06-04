@@ -42,3 +42,8 @@
   description = "Red Hat VPN"
   command = "sudo openvpn --config /etc/openvpn/client/ovpn-rdu2-tcp.conf"
   output = ""
+
+[[snippets]]
+  description = "Flush firewall rules"
+  command = "sudo nft flush ruleset"
+  output = ""
