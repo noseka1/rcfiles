@@ -97,7 +97,7 @@ Plug 'https://github.com/junegunn/fzf', { 'commit': '5aa5977d744d1183806079d307f
 Plug 'https://github.com/junegunn/fzf.vim', { 'commit': 'f81feb1e69e5cb75797d50817752ddfe4933cd68' }
 call plug#end()
 
-map <C-n> :NERDTreeToggle<CR>
+nmap <C-n> :NERDTreeToggle<CR>
 
 "use darker color for indent lines
 let g:indentLine_color_term = 236
@@ -122,8 +122,8 @@ nmap <Leader>8 <Plug>lightline#bufferline#go(8)
 nmap <Leader>9 <Plug>lightline#bufferline#go(9)
 nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
-map <leader>f :Files<CR>
-map <leader>b :Buffers<CR>
+nmap <leader>f :Files<CR>
+nmap <leader>b :Buffers<CR>
 
 "mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
