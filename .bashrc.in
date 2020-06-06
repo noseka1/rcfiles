@@ -56,3 +56,8 @@ export EDITOR=vi
 
 # Disable systemctl's auto-paging feature
 export SYSTEMD_PAGER=
+
+# Colorful man pages
+if [ -x /usr/bin/vim ]; then
+  export MANPAGER="/bin/sh -c \"col -b | vim -c 'set ft=man ts=8 nomod nolist nonu noma' -\""
+fi
