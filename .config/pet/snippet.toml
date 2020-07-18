@@ -47,3 +47,8 @@
   description = "Flush firewall rules"
   command = "sudo nft flush ruleset"
   output = ""
+
+[[snippets]]
+  description = "Get all Kubernetes resources"
+  command = "kubectl api-resources --verbs=list --namespaced -o name | grep -v events.events.k8s.io | grep -v events | xargs -n 1 kubectl get --show-kind --ignore-not-found"
+  output = ""
