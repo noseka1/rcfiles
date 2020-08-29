@@ -52,3 +52,8 @@
   description = "Get all Kubernetes resources"
   command = "kubectl api-resources --verbs=list --namespaced -o name | grep -v events.events.k8s.io | grep -v events | xargs -n 1 kubectl get --show-kind --ignore-not-found"
   output = ""
+
+[[snippets]]
+  description = "Log in to the OpenShift integrated registry"
+  command = "podman login -u xyz -p $(oc whoami -t) default-route-openshift-image-registry.apps.mycluster.example.com"
+  output = ""
