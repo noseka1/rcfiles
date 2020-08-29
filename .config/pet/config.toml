@@ -2,7 +2,7 @@
   snippetfile = "~/.config/pet/snippet.toml"
   editor = "vi"
   column = 40
-  selectcmd = "fzf"
+  selectcmd = "fzf --ansi"
   backend = "gist"
   sortby = ""
 
