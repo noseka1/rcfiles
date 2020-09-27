@@ -57,3 +57,8 @@
   description = "Log in to the OpenShift integrated registry"
   command = "podman login -u xyz -p $(oc whoami -t) default-route-openshift-image-registry.apps.mycluster.example.com"
   output = ""
+
+[[snippets]]
+  description = "Convert YouTube video to mp3"
+  command = "youtube-dl --extract-audio --audio-format mp3 <youtube_url>"
+  output = ""
