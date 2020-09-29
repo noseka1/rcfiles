@@ -62,3 +62,8 @@
   description = "Convert YouTube video to mp3"
   command = "youtube-dl --extract-audio --audio-format mp3 <youtube_url>"
   output = ""
+
+[[snippets]]
+  description = "Update Debian packages"
+  command = "sudo apt update && sudo apt full-upgrade"
+  output = ""
