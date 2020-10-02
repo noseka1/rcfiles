@@ -67,3 +67,13 @@
   description = "Update Debian packages"
   command = "sudo apt update && sudo apt full-upgrade"
   output = ""
+
+[[snippets]]
+  description = "Dump Kubernetes secrets in the current namespace to stdout"
+  command = "oc get secret --output name | while read SECRET; do echo \"SECRET $SECRET\"; oc extract $SECRET --to -; done"
+  output = ""
+
+[[snippets]]
+  description = "Dump Kubernetes configmaps in the current namespace to stdout"
+  command = "oc get configmap --output name | while read CM; do echo \"CONFIGMAP $CM\"; oc extract $CM --to -; done"
+  output = ""
