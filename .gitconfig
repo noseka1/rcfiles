@@ -11,8 +11,8 @@
         mnemonicprefix = true
         tool = vimdiff
 [alias]
-        l  = log --pretty=format:'%C(yellow)%h - %C(green)%an, %C(bold blue)%ar : %C(reset)%s'
-        l2 = log --pretty=format:'%C(yellow)%h - %C(green)%an, %C(bold blue)%ad : %C(reset)%s'
+        l  = log --pretty=format:'%C(yellow)%h - %C(green)%an, %C(bold blue)%ad : %C(reset)%s'
+        l2 = log --pretty=format:'%C(yellow)%h - %C(green)%an, %C(bold blue)%ar : %C(reset)%s'
         lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
         co = checkout
         b  = branch
