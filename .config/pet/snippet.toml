@@ -77,3 +77,8 @@
   description = "Dump Kubernetes configmaps in the current namespace to stdout"
   command = "oc get configmap --output name | while read CM; do echo \"CONFIGMAP $CM\"; oc extract $CM --to -; done 2>&1"
   output = ""
+
+[[snippets]]
+  description = "Break the CA bundle into individual cert files"
+  command = "awk 'BEGIN {c=0;} /BEGIN CERT/{c++} { print > \"cert.\" c \".pem\"}' < '<chain.pem>'"
+  output = ""
