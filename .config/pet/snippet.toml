@@ -1,5 +1,5 @@
 [[snippets]]
-  description = "Get the TLS certificate from a server"
+  description = "Download the TLS certificate from the remote server"
   command = "openssl s_client -showcerts -servername <server_fqdn> -connect <server_fqdn>:443 </dev/null"
   output = ""
 
@@ -49,7 +49,7 @@
   output = ""
 
 [[snippets]]
-  description = "Get all Kubernetes resources"
+  description = "List ALL Kubernetes resources in the current namespace"
   command = "kubectl api-resources --verbs=list --namespaced -o name | grep -v events.events.k8s.io | grep -v events | xargs -n 1 kubectl get --show-kind --ignore-not-found"
   output = ""
 
