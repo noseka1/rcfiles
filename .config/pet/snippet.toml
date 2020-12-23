@@ -87,3 +87,8 @@
   description = "Decode JWT token"
   command = "echo <jwt_token> | jq -R 'gsub(\"-\";\"+\") | gsub(\"_\";\"/\") | split(\".\") | .[1] | @base64d | fromjson'"
   output = ""
+
+[[snippets]]
+  description = "Display X.509 certificate info"
+  command = "openssl x509 -text -in <cert.pem>"
+  output = ""
