@@ -15,6 +15,10 @@ parse_git_branch() {
   git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' -e 's/(master)//'
 }
 
+# Based on Navigating a filesystem quickly with fzf and fd, https://mike.place/2017/fzf-fd/
+# Faster search, ignore files in .gitignore
+FZF_CTRL_T_COMMAND="fd ."
+FZF_ALT_C_COMMAND="fd --type d ."
 source_if_exists() {
   [ -f "$1" ] && source "$1"
 }
