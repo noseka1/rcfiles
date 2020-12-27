@@ -1,0 +1,14 @@
+# Based on https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md
+
+# Don't let ripgrep vomit really long lines to my terminal, and show a preview.
+--max-columns=1000
+--max-columns-preview
+
+# Set the colors.
+--colors=path:fg:green
+--colors=path:style:bold
+--colors=line:fg:yellow
+--colors=line:style:bold
+
+# Searches case insensitively if the pattern is all lowercase. Search case sensitively otherwise.
+--smart-case

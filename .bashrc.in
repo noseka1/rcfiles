@@ -38,7 +38,6 @@ alias grep='grep --color'
 alias lg=lazygit
 alias kns=kubens
 alias kctx=kubectx
-alias ag='ag --color-match "1;31"'
 
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
@@ -65,6 +64,9 @@ fi
 # Workaround for manpager.vim - Color escape codes incorrectly displayed on Fedora
 # Link: https://github.com/vim/vim/issues/2823
 export GROFF_NO_SGR=1
+
+# ripgrep config file location
+RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # Search snippets and output on the shell
 function pet-select() {
