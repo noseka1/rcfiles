@@ -1,4 +1,4 @@
 # prevent checking in sensitive files
 /.ssh
 /.aws
-/.ansible_vault.txt
+/.mysecrets
