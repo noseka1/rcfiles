@@ -46,7 +46,6 @@ alias kctx=kubectx
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
 
-export P4CONFIG=.p4config
 export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.mysecrets/ansible_vault.txt
 export GOPATH=$HOME/go
 
