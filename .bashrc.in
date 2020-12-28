@@ -70,7 +70,7 @@ fi
 export GROFF_NO_SGR=1
 
 # ripgrep config file location
-RIPGREP_CONFIG_PATH=~/.ripgreprc
+export RIPGREP_CONFIG_PATH=~/.ripgreprc
 
 # Search snippets and output on the shell
 function pet-select() {
