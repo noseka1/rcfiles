@@ -97,3 +97,8 @@
   description = "Login to quay.io using OCP pull secret"
   command = "cat $HOME/.mysecrets/ocp-pull-secret.json | jq --raw-output '.auths.\"quay.io\".auth' | base64 --decode | ( IFS=: read USERNAME PASSWORD; podman login quay.io --username $USERNAME --password $PASSWORD)"
   output = ""
+
+[[snippets]]
+  description = "Clean up stopped containers and unused container images"
+  command = "podman container prune --force && podman image prune --force"
+  output = ""
