@@ -1,3 +1,4 @@
+# For avaialble options see https://github.com/tmcdonell/config-alacritty/blob/master/alacritty.yml
 font:
   # Normal (roman) font face
   normal:
@@ -120,3 +121,8 @@ colors:
 
 key_bindings:
   - { key: Insert, mods: Shift, action: Paste }
+
+# Need to hold down Shift to open the URL
+mouse:
+  url:
+    modifiers: Shift
