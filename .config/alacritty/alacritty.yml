@@ -122,6 +122,10 @@ colors:
 key_bindings:
   - { key: Insert, mods: Shift, action: Paste }
 
+# Include colon (:) into selection (it is exluded by default)
+selection:
+  semantic_escape_chars: ",│`|\"' ()[]{}<>"
+
 # Need to hold down Shift to open the URL
 mouse:
   url:
