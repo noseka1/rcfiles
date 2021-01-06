@@ -78,4 +78,11 @@ function pet-select() {
   READLINE_LINE=$BUFFER
   READLINE_POINT=${#BUFFER}
 }
-bind -x '"\C-x\C-r": pet-select'
+
+# Silence the "bind: warning: line editing not enabled" message when using scp
+# See also:
+# https://gurdiga.com/blog/2018/04/14/bind-warning-line-editing-not-enabled/
+# https://www.gnu.org/software/bash/manual/html_node/Is-this-Shell-Interactive_003f.html
+if [[ "$-" =~ "i" ]]; then
+  bind -x '"\C-x\C-r": pet-select'
+fi
