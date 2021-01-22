@@ -28,6 +28,12 @@ source_if_exists /usr/share/doc/fzf/examples/key-bindings.bash
 source_if_exists /usr/share/fzf/shell/key-bindings.bash
 unset -f source_if_exists
 
+# enable color support of ls and also add handy alias
+if [ -x /usr/bin/dircolors ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+fi
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias l='ls -l'
