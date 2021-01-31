@@ -135,3 +135,8 @@ omap <leader><tab> <plug>(fzf-maps-o)
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
+
+"span the entire screen
+let g:fzf_layout = {'left': '100%'}
+"toggle preview window using Ctrl-/
+let g:fzf_preview_window = ['right:70%', 'ctrl-/']
