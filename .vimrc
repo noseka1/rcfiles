@@ -31,8 +31,10 @@ set incsearch
 
 "user interface options
 
-"always show the status line
+"always show the status line (lightline plugin)
 set laststatus=2
+"-- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline (lightline plugin)
+set noshowmode
 "show vim tab line even if only one file is open, needed to display lightline-bufferline
 set showtabline=2
 "always show the current line and column number
@@ -86,13 +88,13 @@ colorscheme ron
 
 "vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
 
-"cpecify a directory for plugins
+"specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/airblade/vim-gitgutter.git', { 'commit': 'b356cc9a7da08ebeb919cd04b2831dad71a34d38' }
-Plug 'https://github.com/itchyny/lightline.vim.git', { 'commit': 'c172131e0369672bc1b9454a2aec6d532d350dcc' }
+Plug 'https://github.com/itchyny/lightline.vim.git', { 'commit': '8e013f32f524157bf14ccaa87d97be3d3a7201e2' }
 Plug 'https://github.com/preservim/nerdtree.git',  { 'tag': '6.7.15' }
 Plug 'https://github.com/Yggdroot/indentLine.git', { 'commit': '15aceda8c4eea621b66faa8673fca0b9fbe2f457' }
-Plug 'https://github.com/mengelbrecht/lightline-bufferline', { 'commit': 'ef674de5ca1c963ad12f04631ea58f90dbbc70da' }
+Plug 'https://github.com/mengelbrecht/lightline-bufferline', { 'commit': '936598633d19a2f171347494c3240e72da6db78a' }
 Plug 'https://github.com/junegunn/fzf', { 'commit': '5aa5977d744d1183806079d307f023b0c5ceaaef' }
 Plug 'https://github.com/junegunn/fzf.vim', { 'commit': 'f81feb1e69e5cb75797d50817752ddfe4933cd68' }
 call plug#end()
@@ -110,6 +112,7 @@ let g:lightline                  = {}
 let g:lightline.tabline          = {'left': [['buffers']], 'right': [['close']]}
 let g:lightline.component_expand = {'buffers': 'lightline#bufferline#buffers'}
 let g:lightline.component_type   = {'buffers': 'tabsel'}
+let g:lightline.colorscheme      = 'one'
 
 nmap <Leader>1 <Plug>lightline#bufferline#go(1)
 nmap <Leader>2 <Plug>lightline#bufferline#go(2)
