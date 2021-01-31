@@ -19,7 +19,7 @@ Install vim plugins
 
 ```
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/71c41fccf5ca42081d4d49aa1ea2f71c694bc4cf/plug.vim
+    https://raw.githubusercontent.com/junegunn/vim-plug/8b45742540f92ba902c97ad1d3d8862ba3305438/plug.vim
 vim -c PlugInstall -c qall!
 ```
 
