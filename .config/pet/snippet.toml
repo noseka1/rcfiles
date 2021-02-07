@@ -102,3 +102,8 @@
   description = "Clean up stopped containers and unused container images"
   command = "podman container prune --force && podman image prune --force"
   output = ""
+
+[[snippets]]
+  description = "Extract AWS cloud provider secrets from OCP"
+  command = "oc extract -n openshift-machine-api secret/aws-cloud-credentials --to -"
+  output = ""
