@@ -107,3 +107,8 @@
   description = "Extract AWS cloud provider secrets from OCP"
   command = "oc extract -n openshift-machine-api secret/aws-cloud-credentials --to -"
   output = ""
+
+[[snippets]]
+  description = "Decode Helm secret"
+  command = "oc extract -n <namespace> secret/<name> --to - 2>/dev/null  | base64 -d | gunzip | jq"
+  output = ""
