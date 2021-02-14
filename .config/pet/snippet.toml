@@ -112,3 +112,8 @@
   description = "Push to quay.io"
   command = "podman push --authfile ~/.mysecrets/docker/myquay.json"
   output = ""
+
+[[snippets]]
+  description = "Find executable files in the current directory + all subdirectories"
+  command = "find . -type f -print0 | xargs -0 -n 100 file | grep 'ELF.*executable'"
+  output = ""
