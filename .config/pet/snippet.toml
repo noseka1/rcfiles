@@ -107,3 +107,8 @@
   description = "Decode Helm secret"
   command = "oc extract -n <namespace> secret/<name> --to - 2>/dev/null  | base64 -d | gunzip | jq"
   output = ""
+
+[[snippets]]
+  description = "Push to quay.io"
+  command = "podman push --authfile ~/.mysecrets/docker/myquay.json"
+  output = ""
