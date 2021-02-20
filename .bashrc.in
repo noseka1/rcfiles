@@ -51,23 +51,23 @@ alias kctx=kubectl-ctx
 alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 # oc get
-function ocg() {
-  oc get "$@" --output yaml | hyaml
+function ocy() {
+  oc "$@" --output yaml | hyaml
 }
 
 # oc get less
-function ocgl() {
-  oc get "$@" --output yaml | hyaml | less -R
+function ocyl() {
+  oc "$@" --output yaml | hyaml | less -R
 }
 
 # oc export
 function oce() {
-  oc get "$@" --output yaml | kubectl-neat | hyaml
+  oc "$@" --output yaml | kubectl-neat | hyaml
 }
 
 # oc export less
 function ocel() {
-  oc get "$@" --output yaml | kubectl-neat | hyaml | less -R
+  oc "$@" --output yaml | kubectl-neat | hyaml | less -R
 }
 
 export DEBFULLNAME="Ales Nosek"
