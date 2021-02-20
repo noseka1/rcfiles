@@ -76,6 +76,13 @@ set autoread
 "when a bracket is inserted, briefly jump to the matching one
 set showmatch
 
+"jump to the last position when reopening a file
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"load indentation rules and plugins according to the detected filetype
+filetype plugin indent on
+
+
 "remap the leader key
 let mapleader=";"
 
