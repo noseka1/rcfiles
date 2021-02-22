@@ -53,6 +53,14 @@ set visualbell
 set title
 "use colors that suit a dark background
 set background=dark
+"enable mouse support
+set mouse=a
+"make the mouse selection highlighting work in Alacritty, see also: https://github.com/alacritty/alacritty/issues/803
+set ttymouse=sgr
+"use X clipboard, auto-copy selection to clipboard
+set clipboard=autoselect,autoselectplus
+"check that the clipboard is available with:
+":echo has('clipboard')
 
 "undo options
 
@@ -61,11 +69,6 @@ set history=1000
 "persistent undo
 set undodir=$HOME/.vim/undo
 set undofile
-
-"use X clipboard
-set clipboard=unnamed
-"check that the clipboard is available with:
-":echo has('clipboard')
 
 "misc options
 
