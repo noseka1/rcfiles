@@ -58,7 +58,7 @@ set mouse=a
 "make the mouse selection highlighting work in Alacritty, see also: https://github.com/alacritty/alacritty/issues/803
 set ttymouse=sgr
 "use X clipboard, auto-copy selection to clipboard
-set clipboard=autoselectplus
+set clipboard=unnamedplus,autoselectplus
 "check that the clipboard is available with:
 ":echo has('clipboard')
 
