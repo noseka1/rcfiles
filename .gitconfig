@@ -18,13 +18,13 @@
         co = checkout
         b  = branch
         c  = commit
+        ca = commit --amend
         s  = status
         st = status -sb
         dc = diff --cached
         dcw = diff --cached --color-words
         d = diff
         dw = diff --color-words
-        amend = commit -C HEAD -a --amend
 [git-p4]
         skipsubmitedit = true
         skipsubmiteditcheck = true
