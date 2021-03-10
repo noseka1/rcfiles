@@ -54,7 +54,7 @@ set title
 "use colors that suit a dark background
 set background=dark
 "enable mouse support
-set mouse=a
+set mouse=
 "make the mouse selection highlighting work in Alacritty, see also: https://github.com/alacritty/alacritty/issues/803
 set ttymouse=sgr
 "use X clipboard, auto-copy selection to clipboard
