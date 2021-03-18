@@ -52,22 +52,22 @@ alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 # oc get
 function ocy() {
-  oc "$@" --output yaml | hyaml
+  oc "$@" --output json | jq 'del(.metadata.managedFields)' | yq eval --prettyPrint --no-colors | hyaml
 }
 
 # oc get less
 function ocyl() {
-  oc "$@" --output yaml | hyaml | less -R
+  ocy "$@" | less -R
 }
 
-# oc export
-function oce() {
-  oc "$@" --output yaml | kubectl-neat | hyaml
+# oc get secret
+function ocys() {
+  oc "$@" --output json | jq 'del(.metadata.managedFields)' | yq eval --prettyPrint --no-colors | ksd | hyaml
 }
 
-# oc export less
-function ocel() {
-  oc "$@" --output yaml | kubectl-neat | hyaml | less -R
+# oc get secret less
+function ocysl() {
+  ocys "$@" | less -R
 }
 
 export DEBFULLNAME="Ales Nosek"
