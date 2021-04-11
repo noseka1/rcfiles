@@ -50,9 +50,13 @@ alias kns=kubectl-ns
 alias kctx=kubectl-ctx
 alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
+function oc_common_filter() {
+  jq 'del(.metadata.managedFields)' | jq 'del(.items[].metadata.managedFields)' | yq eval --prettyPrint --no-colors
+}
+
 # oc get
 function ocy() {
-  oc "$@" --output json | jq 'del(.metadata.managedFields)' | yq eval --prettyPrint --no-colors | hyaml
+  oc "$@" --output json | oc_common_filter | hyaml
 }
 
 # oc get less
@@ -62,7 +66,7 @@ function ocyl() {
 
 # oc get secret
 function ocys() {
-  oc "$@" --output json | jq 'del(.metadata.managedFields)' | yq eval --prettyPrint --no-colors | ksd | hyaml
+  oc "$@" --output json | oc_common_filter | ksd | hyaml
 }
 
 # oc get secret less
