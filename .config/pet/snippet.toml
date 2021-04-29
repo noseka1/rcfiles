@@ -117,3 +117,8 @@
   description = "Find executable files in the current directory + all subdirectories"
   command = "find . -type f -print0 | xargs -0 -n 100 file | grep 'ELF.*executable'"
   output = ""
+
+[[snippets]]
+  description = "Split full album flac into a flac per track"
+  command = "shnsplit -f <file.cue> -t '%n - %t' -o flac <file.flac>"
+  output = ""
