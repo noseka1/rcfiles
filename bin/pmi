@@ -1,0 +1,25 @@
+#!/bin/bash -x
+
+# pmi = podman mount image
+# Mount container image and change current directory to the root of the image
+
+if [ "$#" -gt 0 ]; then
+	IMAGE=$1
+else
+  echo Missing parameter IMAGE
+	exit 1
+fi
+
+# create a container using the image and mount the container root
+CONTAINER=$(podman create $IMAGE)
+ROOT_DIR=$(podman unshare podman mount $CONTAINER)
+
+echo Starting interactive shell for inspecting the image
+(
+  cd  $ROOT_DIR
+  exec podman unshare
+)
+
+# clean up
+podman unshare podman unmount $CONTAINER
+podman rm $CONTAINER
