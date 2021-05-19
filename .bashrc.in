@@ -74,6 +74,19 @@ function ocysl() {
   ocys "$@" | less -R
 }
 
+# Make Bash completion work for the above oc aliases. See also /etc/bash_completion.d/oc
+if [[ $(type -t compopt) = "builtin" ]]; then
+    complete -o default -F __start_oc ocy
+    complete -o default -F __start_oc ocyl
+    complete -o default -F __start_oc ocys
+    complete -o default -F __start_oc ocysl
+else
+    complete -o default -o nospace -F __start_oc ocy
+    complete -o default -o nospace -F __start_oc ocyl
+    complete -o default -o nospace -F __start_oc ocys
+    complete -o default -o nospace -F __start_oc ocysl
+fi
+
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
 
