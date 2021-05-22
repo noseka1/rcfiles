@@ -1,2 +1,5 @@
 # Colorful file autocomplete
-set colored-stats On
+set colored-stats on
+# Disable Bash highlight on Ctrl+R search or paste (this was introduced in Bash 5.1/Readline 8.1)
+# See also https://www.linuxquestions.org/questions/slackware-14/pasting-stuff-in-a-terminal-is-now-highlighted-but-by-what-4175686705/
+set enable-bracketed-paste off
