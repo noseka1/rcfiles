@@ -34,6 +34,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
+# back up a file
+bk() {
+  BACKUP_NAME="$1.backup.$(date --iso-8601=seconds)"
+  cp -a "$1" "$BACKUP_NAME"
+  echo $BACKUP_NAME written
+}
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias l='ls -l'
