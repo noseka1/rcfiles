@@ -1,0 +1,8 @@
+{
+  "consent-telemetry": "no",
+  "cpus": 10,
+  "disk-size": 120,
+  "enable-cluster-monitoring": false,
+  "memory": 22000,
+  "pull-secret-file": "/home/anosek/.mysecrets/ocp/pull-secret.json"
+}
