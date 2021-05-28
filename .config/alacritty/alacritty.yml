@@ -126,7 +126,9 @@ key_bindings:
 selection:
   semantic_escape_chars: ",│`|\"' ()[]{}<>"
 
-# Need to hold down Shift to open the URL
-mouse:
-  url:
-    modifiers: Shift
+# Regex hints (disabled)
+#
+# Terminal hints can be used to find text in the visible part of the terminal
+# and pipe it to other applications.
+hints:
+  enabled: []
