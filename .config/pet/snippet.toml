@@ -122,3 +122,8 @@
   description = "Split full album flac into a flac per track"
   command = "shnsplit -f <file.cue> -t '%n - %t' -o flac <file.flac>"
   output = ""
+
+[[snippets]]
+  description = "Get all extended attributes of filesystem object"
+  command = "getfattr -d -m - <file>"
+  output = ""
