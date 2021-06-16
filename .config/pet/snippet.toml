@@ -127,3 +127,8 @@
   description = "Get all extended attributes of filesystem object"
   command = "getfattr -d -m - <file>"
   output = ""
+
+[[snippets]]
+  description = "SSH into CodeReady Containers (CRC) virtual machine"
+  command = "ssh -i ~/.crc/machines/crc/id_ecdsa core@api.crc.testing"
+  output = ""
