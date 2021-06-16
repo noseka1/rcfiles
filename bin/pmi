@@ -10,7 +10,7 @@ else
 	exit 1
 fi
 
-# create a container using the image and mount the container root
+# Create a container using the image and mount the container root
 CONTAINER=$(podman create $IMAGE)
 ROOT_DIR=$(podman unshare podman mount $CONTAINER)
 
@@ -20,6 +20,6 @@ echo Starting interactive shell for inspecting the image
   exec podman unshare
 )
 
-# clean up
+# Clean up
 podman unshare podman unmount $CONTAINER
 podman rm $CONTAINER
