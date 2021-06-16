@@ -1,0 +1,57 @@
+#!/bin/bash
+
+confirm() {
+  # Code from https://stackoverflow.com/questions/3231804/in-bash-how-to-add-are-you-sure-y-n-to-any-command-or-alias/3232082#3232082
+	# Call with a prompt string or use a default
+	read -r -p "${1:-Are you sure? [y/N]} " response
+	case "$response" in
+    [yY][eE][sS]|[yY])
+      true
+      ;;
+    *)
+      false
+      ;;
+  esac
+}
+
+while [ $# -gt 0 ];
+do
+  case $1 in
+    --assumeyes|-y)
+      shift
+      assumeyes=true
+      ;;
+    *)
+      ;;
+  esac
+ shift
+done
+
+if [ "$assumeyes" != true ]; then
+  confirm "This script will set up rcfiles in directory $HOME. Are you sure you want to continue [y/N]?"
+  if [ $? -ne 0 ]; then
+    echo Aborting ...
+    exit
+  fi
+fi
+
+# Deploy rcfiles into $HOME
+cd $HOME
+git init .
+git config --local status.showUntrackedFiles no
+git remote add origin https://github.com/noseka1/rcfiles.git
+git fetch
+git checkout master
+
+if ! grep '^source .*bashrc\.in' .bashrc; then
+  echo 'source $HOME/.bashrc.in' >> .bashrc
+fi
+
+# Install vim plugins
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+  https://raw.githubusercontent.com/junegunn/vim-plug/8b45742540f92ba902c97ad1d3d8862ba3305438/plug.vim
+vim -c PlugInstall -c qall!
+
+# Install tmux plugins
+git clone --branch v3.0.0 https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+~/.tmux/plugins/tpm/bin/install_plugins
