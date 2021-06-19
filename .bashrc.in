@@ -97,7 +97,9 @@ fi
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
 
-export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.mysecrets/ansible_vault.txt
+if [ -r $HOME/.mysecrets/ansible_vault.txt ]; then
+  export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.mysecrets/ansible_vault.txt
+fi
 export GOPATH=$HOME/go
 
 export PATH=$HOME/.krew/bin:$PATH
