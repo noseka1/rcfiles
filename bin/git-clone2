@@ -1,0 +1,118 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Obtain the script directory, see also:
+# https://stackoverflow.com/questions/59895/how-to-get-the-source-directory-of-a-bash-script-from-within-the-script-itself/246128#246128
+source="${BASH_SOURCE[0]}"
+while [ -h "$source" ]; do # resolve $source until the file is no longer a symlink
+  dir="$( cd -P "$( dirname "$source" )" >/dev/null 2>&1 && pwd )"
+  source="$(readlink "$source")"
+  [[ $source != /* ]] && source="$dir/$source" # if $source was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+dir="$( cd -P "$( dirname "$source" )" >/dev/null 2>&1 && pwd )"
+
+if [ "$#" -lt 1 ]; then
+  echo $0: [-w WORKSPACE] \<GIT_URL\>...
+  exit 1
+fi
+
+workspace=""
+git_urls=()
+while [ $# -gt 0 ];
+do
+  case $1 in
+    --workspace|-w)
+      shift
+      workspace=$1
+      ;;
+    *)
+      git_urls=("${git_urls[@]}" "$1")
+      ;;
+  esac
+ shift
+done
+
+function git_name_from_url() {
+  # remove the https:// and git:// prefix, remove the .git suffix
+  # handle noseka1@github.com:noseka1/vault-kustomization
+  # handle ssh://git@gitlab.com:2222/repo
+  echo $1 | sed \
+    -e 's/^[[:alnum:]]\+@\([[:alnum:]\.]\+\):/\1\//' \
+    -e 's/^https:\/\///' \
+    -e 's/^git:\/\///' \
+    -e 's/^ssh:\/\/[[:alnum:]]\+@\([[:alnum:]\.]\+\):[[:digit:]]\+/\1/' \
+    -e 's/\(.*\)\.git$/\1/'
+}
+
+function fetch_git_repo() {
+  if [ "$#" -lt 1 ]; then
+    echo Missing parameters git_url >&2
+    return
+  fi
+
+  local git_url=$1
+  local git_name=$(git_name_from_url $git_url)
+  local git_root="$HOME/git"
+
+  if [ ! -d $git_root/$git_name ]; then
+    if [[ $git_url == https://* ]]; then
+      # check if the repository is accessible (not private)
+      if ! curl --fail --location $git_url 1>/dev/null 2>&1; then
+        echo Cannot to access $git_url >&2
+        return
+      fi
+    fi
+    mkdir -p $git_root/$git_name
+    git clone $git_url $git_root/$git_name
+  else
+    (
+      cd $git_root/$git_name
+      # fetch the latest HEAD
+      git fetch origin
+    )
+  fi
+
+  # return the location of the git repo in the cache
+  echo $git_root/$git_name
+}
+
+function add_to_workspace() {
+  local workspace=$1
+  local git_checkout=$2
+  workspace_root=$HOME/vscode
+  workspace_file=$workspace_root/$1.code-workspace
+
+  echo Workspace location is $workspace_file
+  if ! grep "\"$git_checkout\"" $workspace_file 1>/dev/null 2>&1; then
+    echo Adding $git_checkout to workspace $workspace_file
+    if [ -s $workspace_file ]; then
+      sed \
+        --in-place \
+        --expression "/folders/a \\
+		{\\
+			\"path\": \"$git_checkout\"\\
+		}," $workspace_file
+    else
+      # create new file
+      cat >$workspace_file <<EOF
+{
+	"folders": [
+		{
+			"path": "$git_checkout"
+		}
+	]
+}
+EOF
+    fi
+  fi
+}
+
+for git_url in "${git_urls[@]}"; do
+  echo Fetching $git_url
+  git_checkout=$(fetch_git_repo $git_url)
+  echo Repo location is $git_checkout
+  if [ -n "$workspace" ]; then
+    add_to_workspace $workspace $git_checkout
+  fi
+done
