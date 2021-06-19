@@ -4,22 +4,22 @@
 # Mount container image and change current directory to the root of the image
 
 if [ "$#" -gt 0 ]; then
-	IMAGE=$1
+	image=$1
 else
   echo Missing parameter IMAGE
 	exit 1
 fi
 
 # Create a container using the image and mount the container root
-CONTAINER=$(podman create $IMAGE)
-ROOT_DIR=$(podman unshare podman mount $CONTAINER)
+container=$(podman create $image)
+root_dir=$(podman unshare podman mount $container)
 
 echo Starting interactive shell for inspecting the image
 (
-  cd  $ROOT_DIR
+  cd  $root_dir
   exec podman unshare
 )
 
 # Clean up
-podman unshare podman unmount $CONTAINER
-podman rm $CONTAINER
+podman unshare podman unmount $container
+podman rm $container
