@@ -132,3 +132,8 @@
   description = "SSH into CodeReady Containers (CRC) virtual machine"
   command = "ssh -i ~/.crc/machines/crc/id_ecdsa core@api.crc.testing"
   output = ""
+
+[[snippets]]
+  description = "Check if SELinux is denying access"
+  command = "sealert -a /var/log/audit/audit.log"
+  output = ""
