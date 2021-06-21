@@ -137,3 +137,8 @@
   description = "Check if SELinux is denying access"
   command = "sealert -a /var/log/audit/audit.log"
   output = ""
+
+[[snippets]]
+  description = "Show nftables rules"
+  command = "nft -j list ruleset | jq"
+  output = ""
