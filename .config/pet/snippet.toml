@@ -140,5 +140,5 @@
 
 [[snippets]]
   description = "Show nftables rules"
-  command = "nft -j list ruleset | jq"
+  command = "sudo nft -j list ruleset | jq"
   output = ""
