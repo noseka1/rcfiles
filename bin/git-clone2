@@ -39,6 +39,7 @@ function git_name_from_url() {
   # handle ssh://git@gitlab.com:2222/repo
   echo $1 | sed \
     -e 's/^[[:alnum:]]\+@\([[:alnum:]\.]\+\):/\1\//' \
+    -e 's/^http:\/\///' \
     -e 's/^https:\/\///' \
     -e 's/^git:\/\///' \
     -e 's/^ssh:\/\/[[:alnum:]]\+@\([[:alnum:]\.]\+\):[[:digit:]]\+/\1/' \
