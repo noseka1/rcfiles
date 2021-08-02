@@ -50,7 +50,7 @@
 
 [[snippets]]
   description = "List ALL Kubernetes resources in the current namespace"
-  command = "kubectl api-resources --verbs=list --namespaced -o name | grep -v events.events.k8s.io | grep -v events | grep -v packagemanifests.packages.operators.coreos.com | xargs -n 1 kubectl get --show-kind --ignore-not-found"
+  command = "kubectl api-resources --verbs=list --namespaced -o name 2>/dev/null | grep -v events.events.k8s.io | grep -v events | grep -v packagemanifests.packages.operators.coreos.com | xargs -n 1 kubectl get --show-kind --ignore-not-found 2>/dev/null"
   output = ""
 
 [[snippets]]
