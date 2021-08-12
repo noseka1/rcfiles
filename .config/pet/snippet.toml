@@ -142,3 +142,8 @@
   description = "Show nftables rules"
   command = "sudo nft -j list ruleset | jq"
   output = ""
+
+[[snippets]]
+  description = "Display X.509 certificate fingerprint"
+  command = "openssl x509 -noout -sha256 -fingerprint -in <cert.pem>"
+  output = ""
