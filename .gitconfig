@@ -31,6 +31,7 @@
         skipsubmiteditcheck = true
 [init]
         templatedir = ~/.git.template
+        defaultBranch = master
 [push]
         default = current
 [credential]
