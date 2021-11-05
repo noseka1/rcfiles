@@ -147,3 +147,8 @@
   description = "Display X.509 certificate fingerprint"
   command = "openssl x509 -noout -sha256 -fingerprint -in <cert.pem>"
   output = ""
+
+[[snippets]]
+  description = "Delete all CSVs"
+  command = "oc get csv --all-namespaces --output custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name --no-headers | while read NS NAME; do oc delete csv --namespace $NS $NAME; done"
+  output = ""
