@@ -11,7 +11,7 @@ else
 fi
 
 # Create a container using the image and mount the container root
-container=$(podman create $image)
+container=$(podman create $image /dummy/command)
 root_dir=$(podman unshare podman mount $container)
 
 echo Starting interactive shell for inspecting the image
