@@ -4,5 +4,6 @@
 
 ```
 $ git clone https://github.com/noseka1/rcfiles
-$ ./rcfiles/bin/rcfiles_setup
+$ cd ./rcfiles
+$ ./bin/rcfiles_setup
 ```
