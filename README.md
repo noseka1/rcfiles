@@ -3,7 +3,7 @@
 ## Setup Instructions
 
 ```
-$ git clone https://github.com/noseka1/rcfiles
-$ cd ./rcfiles
-$ ./bin/rcfiles_setup
+$ cd ~
+$ git clone https://github.com/noseka1/rcfiles .
+$ $ ./bin/rcfiles_setup
 ```
