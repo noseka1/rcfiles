@@ -104,6 +104,7 @@ function! PackInit() abort
   call minpac#add('https://github.com/mengelbrecht/lightline-bufferline', {'commit':'61c7c8668b80537aefa69654a6e5a5e63095be61'})
   call minpac#add('https://github.com/junegunn/fzf',                      {'commit':'9cb7a364a31bdb882d873807774bdcf6fad0c9e4'})
   call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'d6aa21476b2854694e6aa7b0941b8992a906c5ec'})
+  call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
 endfunction
 
 "use darker color for indent lines
