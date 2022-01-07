@@ -90,16 +90,16 @@ colors:
   normal:
     black:   '#000000'
     red:     '#b21818'
-    green:   '#18b218'
-    yellow:  '#b26818'
-    blue:    '#0060a0'
+    green:   '#00cd00'
+    yellow:  '#cdcd00'
+    blue:    '#0000ee'
     magenta: '#b218b2'
     cyan:    '#18b2b2'
-    white:   '#b2b2b2'
+    white:   '#e5e5e5'
 
   # Bright colors
   bright:
-    black:   '#686868'
+    black:   '#7f7f7f'
     red:     '#ff5454'
     green:   '#54ff54'
     yellow:  '#ffff54'
