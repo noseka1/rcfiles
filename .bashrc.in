@@ -57,37 +57,40 @@ alias kns=kubectl-ns
 alias kctx=kubectl-ctx
 alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
-function oc_common_filter() {
-  yq eval --prettyPrint --no-colors
+# oc color
+function occ() {
+  KUBECTL_COMMAND=oc kubecolor "$@"
 }
 
-# oc get
+# oc get yaml
 function ocy() {
-  oc "$@" --output json | oc_common_filter | hyaml
+  KUBECTL_COMMAND=oc kubecolor "$@" --output yaml
 }
 
-# oc get less
+# oc get yaml less
 function ocyl() {
   ocy "$@" | less -R
 }
 
-# oc get secret
+# oc get yaml secret
 function ocys() {
-  oc "$@" --output json | oc_common_filter | ksd | hyaml
+  oc "$@" --output json | yq eval --prettyPrint --no-colors | ksd | hyaml
 }
 
-# oc get secret less
+# oc get yaml secret less
 function ocysl() {
   ocys "$@" | less -R
 }
 
 # Make Bash completion work for the above oc aliases. See also /etc/bash_completion.d/oc
 if [[ $(type -t compopt) = "builtin" ]]; then
+    complete -o default -F __start_oc occ
     complete -o default -F __start_oc ocy
     complete -o default -F __start_oc ocyl
     complete -o default -F __start_oc ocys
     complete -o default -F __start_oc ocysl
 else
+    complete -o default -o nospace -F __start_oc occ
     complete -o default -o nospace -F __start_oc ocy
     complete -o default -o nospace -F __start_oc ocyl
     complete -o default -o nospace -F __start_oc ocys
