@@ -58,7 +58,7 @@ alias kctx=kubectl-ctx
 alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 function oc_common_filter() {
-  jq 'del(.metadata.managedFields)' | jq 'del(.items[]?.metadata.managedFields)' | yq eval --prettyPrint --no-colors
+  yq eval --prettyPrint --no-colors
 }
 
 # oc get
