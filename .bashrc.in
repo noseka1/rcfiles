@@ -69,7 +69,7 @@ function ocy() {
 
 # oc get yaml less
 function ocyl() {
-  ocy "$@" | less -R
+  ocy --force-colors "$@" | less -R
 }
 
 # oc get yaml secret
