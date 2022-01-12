@@ -85,10 +85,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "load indentation rules and plugins according to the detected filetype
 filetype plugin indent on
 
-
-"remap the leader key
-let mapleader=";"
-
 "toggle paste mode
 nnoremap <leader>p :set paste!<CR>
 "toggle visual aids
