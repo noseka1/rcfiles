@@ -94,17 +94,17 @@ nnoremap <leader>c :nohl<CR>
 
 colorscheme ron
 
-"vim-plug - Minimalist Vim Plugin Manager - https://github.com/junegunn/vim-plug
-
-"specify a directory for plugins
-call plug#begin('~/.vim/plugged')
-Plug 'https://github.com/airblade/vim-gitgutter.git', { 'commit': 'ff9d134f0c69e25d391138036051b2c5e6bac864' }
-Plug 'https://github.com/itchyny/lightline.vim.git', { 'commit': '8e013f32f524157bf14ccaa87d97be3d3a7201e2' }
-Plug 'https://github.com/Yggdroot/indentLine.git', { 'commit': '5617a1cf7d315e6e6f84d825c85e3b669d220bfa' }
-Plug 'https://github.com/mengelbrecht/lightline-bufferline', { 'commit': '936598633d19a2f171347494c3240e72da6db78a' }
-Plug 'https://github.com/junegunn/fzf', { 'commit': '686528d6274f8952619e6b60097218d8cd00305f' }
-Plug 'https://github.com/junegunn/fzf.vim', { 'commit': '707f5b6269337ea5c19fc4054cd2574939f817f5' }
-call plug#end()
+"minpac: A minimal package manager for Vim 8, https://github.com/k-takata/minpac
+function! PackInit() abort
+  packadd minpac
+  call minpac#init({'verbose': 3})
+  call minpac#add('https://github.com/airblade/vim-gitgutter.git',        {'commit':'ff9d134f0c69e25d391138036051b2c5e6bac864'})
+  call minpac#add('https://github.com/itchyny/lightline.vim.git',         {'commit':'8e013f32f524157bf14ccaa87d97be3d3a7201e2'})
+  call minpac#add('https://github.com/Yggdroot/indentLine.git',           {'commit':'5617a1cf7d315e6e6f84d825c85e3b669d220bfa'})
+  call minpac#add('https://github.com/mengelbrecht/lightline-bufferline', {'commit':'936598633d19a2f171347494c3240e72da6db78a'})
+  call minpac#add('https://github.com/junegunn/fzf',                      {'commit':'686528d6274f8952619e6b60097218d8cd00305f'})
+  call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'707f5b6269337ea5c19fc4054cd2574939f817f5'})
+endfunction
 
 "use darker color for indent lines
 let g:indentLine_color_term = 236
