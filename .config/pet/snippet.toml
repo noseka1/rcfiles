@@ -152,3 +152,8 @@
   description = "Delete all CSVs"
   command = "oc get csv --all-namespaces --output custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name --no-headers | while read NS NAME; do oc delete csv --namespace $NS $NAME; done"
   output = ""
+
+[[snippets]]
+  description = "Edit matching lines using Vim QuickFix"
+  command = "vi -q <(rg -H --no-heading --vimgrep EXPRESSION)"
+  output = ""
