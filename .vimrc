@@ -31,6 +31,8 @@ set incsearch
 
 "user interface options
 
+"enable syntax highlighting
+syntax on
 "always show the status line (lightline plugin)
 set laststatus=2
 "-- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline (lightline plugin)
