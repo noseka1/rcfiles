@@ -11,10 +11,10 @@
         mnemonicprefix = true
         tool = vimdiff
 [alias]
-        l   = log --pretty=format:'%C(yellow)%h%C(reset)%C(bold yellow)%d%C(reset) %s %C(green)%ad %C(bold blue)%an%C(reset)'
-        l2  = log --pretty=format:'%C(yellow)%h%C(reset)%C(bold yellow)%d%C(reset) %s %C(green)%ar %C(bold blue)%an%C(reset)'
-        lg  = log --pretty=format:'%C(yellow)%h%C(reset)%C(bold yellow)%d%C(reset) %s %C(green)%ad %C(bold blue)%an%C(reset)' --graph
-        lg2 = log --pretty=format:'%C(yellow)%h%C(reset)%C(bold yellow)%d%C(reset) %s %C(green)%ar %C(bold blue)%an%C(reset)' --graph
+        l   = log --pretty=format:'%C(yellow)%h %C(green)%ad%C(bold yellow)%d%C(reset) %s %C(bold blue)%an%C(reset)'
+        l2  = log --pretty=format:'%C(yellow)%h %C(green)%ar%C(bold yellow)%d%C(reset) %s %C(bold blue)%an%C(reset)'
+        lg  = log --pretty=format:'%C(yellow)%h %C(green)%ad%C(bold yellow)%d%C(reset) %s %C(bold blue)%an%C(reset)' --graph
+        lg2 = log --pretty=format:'%C(yellow)%h %C(green)%ar%C(bold yellow)%d%C(reset) %s %C(bold blue)%an%C(reset)' --graph
         co = checkout
         b  = branch
         ba = branch --sort=creatordate --format '%(align:30) %(color:green) %(creatordate:relative) %(end) %(align:40) %(color:red) %(refname) %(end) %(color: yellow) %(objectname:short)  %(color: reset)%(subject)' --all
