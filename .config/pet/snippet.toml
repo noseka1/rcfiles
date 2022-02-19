@@ -150,7 +150,7 @@
 
 [[snippets]]
   description = "Delete all CSVs"
-  command = "oc get csv --all-namespaces --output custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name --no-headers | grep openshift-pipelines-operator-rh.v1.6.1 | while read NS NAME; do oc delete csv --namespace $NS $NAME; done"
+  command = "oc get csv --all-namespaces --output custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name --no-headers | grep 'openshift-pipelines-operator-rh.v1.6.1' | while read NS NAME; do oc delete csv --namespace $NS $NAME; done"
   output = ""
 
 [[snippets]]
