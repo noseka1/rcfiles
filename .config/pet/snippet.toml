@@ -157,3 +157,8 @@
   description = "Edit matching lines using Vim QuickFix"
   command = "vi -q <(rg -H --no-heading --vimgrep EXPRESSION)"
   output = ""
+
+[[snippets]]
+  description = "Print OLM operator versions"
+  command = "oc get packagemanifest -o jsonpath='{range .items[*]}{.metadata.name} {.status.defaultChannel}{\"\\n\"}{end}'"
+  output = ""
