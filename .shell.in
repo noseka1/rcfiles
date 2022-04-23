@@ -1,0 +1,105 @@
+# Enable color support for ls and also add handy alias
+if [ -x /usr/bin/dircolors ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+fi
+
+# Back up a file
+bk() {
+  local backup_name="$1.backup.$(date --iso-8601=seconds)"
+  cp -a "$1" "$backup_name"
+  echo $backup_name written
+}
+
+# Base64 encode string
+b64e() {
+  if [[ $# -eq 0 ]]; then
+      cat | base64 --wrap 0
+  else
+      printf '%s' "$1" | base64 --wrap 0
+  fi
+}
+
+# Base64 decode string
+b64d() {
+    if [[ $# -eq 0 ]]; then
+        cat | base64 --decode
+    else
+        printf '%s' "$1" | base64 --decode
+    fi
+}
+
+# Aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias l='ls -l'
+alias la='ls -al'
+alias dquilt="quilt --quiltrc=$HOME/.quiltrc-dpkg"
+alias hyaml='pygmentize -l yaml -O style=emacs'
+alias hjson='pygmentize -l json -O style=emacs'
+alias  hxml='pygmentize -l xml -O style=emacs'
+alias   hsh='pygmentize -l sh -O style=emacs'
+alias hdiff='pygmentize -l diff -O style=emacs'
+alias grep='grep --color'
+alias lg=lazygit
+alias kns=kubens
+alias kctx=kubectx
+alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias diff='diff --color'
+
+# oc color
+function occ() {
+  KUBECTL_COMMAND=oc kubecolor "$@"
+}
+
+# oc get yaml
+function ocy() {
+  KUBECTL_COMMAND=oc kubecolor "$@" --output yaml
+}
+
+# oc get yaml less
+function ocyl() {
+  ocy --force-colors "$@" | less -R
+}
+
+# oc get yaml secret
+function ocys() {
+  oc "$@" --output json | yq eval --prettyPrint --no-colors | ksd | hyaml
+}
+
+# oc get yaml secret less
+function ocysl() {
+  ocys "$@" | less -R
+}
+
+export DEBFULLNAME="Ales Nosek"
+export DEBEMAIL="ales.nosek@gmail.com"
+
+if [ -r $HOME/.mysecrets/ansible_vault.txt ]; then
+  export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.mysecrets/ansible_vault.txt
+fi
+
+export GOPATH=$HOME/go
+
+export PATH=$HOME/.krew/bin:$PATH
+export PATH=$GOPATH/bin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
+
+export VISUAL=vim
+export EDITOR=vi
+
+# Disable systemctl's auto-paging feature
+export SYSTEMD_PAGER=
+
+# Colorful man pages
+if [ -x /usr/bin/vim ]; then
+  export MANPAGER="vim -M +MANPAGER +'set nonumber' +IndentLinesDisable -"
+fi
+
+# Workaround for manpager.vim - Color escape codes incorrectly displayed on Fedora
+# Link: https://github.com/vim/vim/issues/2823
+export GROFF_NO_SGR=1
+
+# ripgrep config file location
+export RIPGREP_CONFIG_PATH=~/.ripgreprc

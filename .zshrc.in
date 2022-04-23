@@ -1,0 +1,103 @@
+# Various prompt colors. Choose a color and copy it to ~/.zshrc
+# PS1='%K{red}%B%F{white}[%n@%m %~%f]$%k%b'
+# PS1='%K{green}%B%F{white}[%n@%m %~%f]$%k%b'
+# PS1='%K{yellow}%B%F{white}[%n@%m %~%f]$%k%b'
+# PS1='%K{blue}%B%F{white}[%n@%m %~%f]$%k%b'
+# PS1='%K{magenta}%B%F{white}[%n@%m %~%f]$%k%b'
+# PS1='%K{cyan}%B%F{white}[%n@%m %~%f]$%k%b'
+
+# Include definitions that are applicable for both bash and zsh
+source $HOME/.shell.in
+
+# Set up the prompt
+autoload -Uz promptinit
+promptinit
+#prompt adam1
+
+# Use emacs keybindings even if our EDITOR is set to vi
+bindkey -e
+
+# Set up history
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+setopt histignorealldups sharehistory
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+# Load plugins
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit load zdharma-continuum/history-search-multi-word
+zinit light zsh-users/zsh-autosuggestions
+
+zinit ice as"completion"
+zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/ripgrep/_ripgrep
+
+# Never complete beyond ambiguous choices
+# See also https://stackoverflow.com/questions/37980851/never-complete-beyond-ambiguous-choices
+setopt noautomenu
+
+# Edit command line in full screen editor
+# See also https://unix.stackexchange.com/questions/6620/how-to-edit-command-line-in-full-screen-editor-in-zsh
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# Disable the highlighting of pasted text
+# See also https://unix.stackexchange.com/questions/331850/zsh-selects-a-pasted-text
+zle_highlight=('paste:none')
+
+# Remove _/- from WORDCHARS to restore a Bash-like behavior
+export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
+
+# Search snippets and output on the shell
+# See also https://github.com/knqyf263/pet#zsh
+function pet-select() {
+  BUFFER=$(pet search --query "$LBUFFER")
+  CURSOR=$#BUFFER
+  zle redisplay
+}
+zle -N pet-select
+stty -ixon
+bindkey '^x^r' pet-select
+
+# Add kubectl and oc completions
+function generate_kubectl_and_oc_completion() {
+  if (( $+commands[${1}] )); then
+    # If the completion file does not exist, generate it and then source it
+    # Otherwise, source it and regenerate in the background
+    if [[ ! -f "${fpath[1]}/_${1}" ]]; then
+      ${1} completion zsh | tee "${fpath[1]}/_${1}" >/dev/null
+      source "${fpath[1]}/_${1}"
+    else
+      source "${fpath[1]}/_${1}"
+      ${1} completion zsh | tee "${fpath[1]}/_${1}" >/dev/null &|
+    fi
+  fi
+}
+
+generate_kubectl_and_oc_completion kubectl
+generate_kubectl_and_oc_completion oc
+
+# Fix the oc completion
+compdef _oc oc

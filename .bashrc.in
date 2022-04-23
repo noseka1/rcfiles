@@ -1,137 +1,19 @@
+# Various prompt colors. Choose a color and copy it to ~/.bashrc
 # red background
-# export PS1='\[\033[41;1;37m\][\u@\h $PWD]$(parse_git_branch)\$\[\033[0m\]'
+# export PS1='\[\033[41;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 # green background
-# export PS1='\[\033[42;1;37m\][\u@\h $PWD]$(parse_git_branch)\$\[\033[0m\]'
+# export PS1='\[\033[42;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 # yellow background
-# export PS1='\[\033[43;1;37m\][\u@\h $PWD]$(parse_git_branch)\$\[\033[0m\]'
+# export PS1='\[\033[43;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 # blue background
-# export PS1='\[\033[44;1;37m\][\u@\h $PWD]$(parse_git_branch)\$\[\033[0m\]'
+# export PS1='\[\033[44;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 # purple background
-# export PS1='\[\033[45;1;37m\][\u@\h $PWD]$(parse_git_branch)\$\[\033[0m\]'
+# export PS1='\[\033[45;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 # cyan background
-# export PS1='\[\033[46;1;37m\][\u@\h $PWD]$(parse_git_branch)\$\[\033[0m\]'
+# export PS1='\[\033[46;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 
-parse_git_branch() {
-  git branch 2>/dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/' -e 's/(master)//'
-}
-
-# Based on Navigating a filesystem quickly with fzf and fd, https://mike.place/2017/fzf-fd/
-# Faster search, ignore files in .gitignore
-FZF_CTRL_T_COMMAND="fd ."
-FZF_ALT_C_COMMAND="fd --type d ."
-source_if_exists() {
-  [ -f "$1" ] && source "$1"
-}
-# fzf on Debian
-source_if_exists /usr/share/doc/fzf/examples/key-bindings.bash
-# fzf on Fedora
-source_if_exists /usr/share/fzf/shell/key-bindings.bash
-unset -f source_if_exists
-
-# enable color support of ls and also add handy alias
-if [ -x /usr/bin/dircolors ]; then
-    eval "`dircolors -b`"
-    alias ls='ls --color=auto'
-fi
-
-# back up a file
-bk() {
-  BACKUP_NAME="$1.backup.$(date --iso-8601=seconds)"
-  cp -a "$1" "$BACKUP_NAME"
-  echo $BACKUP_NAME written
-}
-
-# decode base64 string
-b64d() {
-  echo "$1" | base64 -d
-}
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias l='ls -l'
-alias la='ls -al'
-alias dquilt="quilt --quiltrc=$HOME/.quiltrc-dpkg"
-alias hyaml='pygmentize -l yaml -O style=emacs'
-alias hjson='pygmentize -l json -O style=emacs'
-alias  hxml='pygmentize -l xml -O style=emacs'
-alias   hsh='pygmentize -l sh -O style=emacs'
-alias hdiff='pygmentize -l diff -O style=emacs'
-alias grep='grep --color'
-alias lg=lazygit
-alias kns=kubens
-alias kctx=kubectx
-alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-
-# oc color
-function occ() {
-  KUBECTL_COMMAND=oc kubecolor "$@"
-}
-
-# oc get yaml
-function ocy() {
-  KUBECTL_COMMAND=oc kubecolor "$@" --output yaml
-}
-
-# oc get yaml less
-function ocyl() {
-  ocy --force-colors "$@" | less -R
-}
-
-# oc get yaml secret
-function ocys() {
-  oc "$@" --output json | yq eval --prettyPrint --no-colors | ksd | hyaml
-}
-
-# oc get yaml secret less
-function ocysl() {
-  ocys "$@" | less -R
-}
-
-# Make Bash completion work for the above oc aliases. See also /etc/bash_completion.d/oc
-if [[ $(type -t compopt) = "builtin" ]]; then
-    complete -o default -F __start_oc occ
-    complete -o default -F __start_oc ocy
-    complete -o default -F __start_oc ocyl
-    complete -o default -F __start_oc ocys
-    complete -o default -F __start_oc ocysl
-else
-    complete -o default -o nospace -F __start_oc occ
-    complete -o default -o nospace -F __start_oc ocy
-    complete -o default -o nospace -F __start_oc ocyl
-    complete -o default -o nospace -F __start_oc ocys
-    complete -o default -o nospace -F __start_oc ocysl
-fi
-
-export DEBFULLNAME="Ales Nosek"
-export DEBEMAIL="ales.nosek@gmail.com"
-
-if [ -r $HOME/.mysecrets/ansible_vault.txt ]; then
-  export ANSIBLE_VAULT_PASSWORD_FILE=$HOME/.mysecrets/ansible_vault.txt
-fi
-export GOPATH=$HOME/go
-
-export PATH=$HOME/.krew/bin:$PATH
-export PATH=$HOME/bin:$PATH
-export PATH=$GOPATH/bin:$PATH
-export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
-
-export VISUAL=vim
-export EDITOR=vi
-
-# Disable systemctl's auto-paging feature
-export SYSTEMD_PAGER=
-
-# Colorful man pages
-if [ -x /usr/bin/vim ]; then
-  export MANPAGER="vim -M +MANPAGER +'set nonumber' +IndentLinesDisable -"
-fi
-
-# Workaround for manpager.vim - Color escape codes incorrectly displayed on Fedora
-# Link: https://github.com/vim/vim/issues/2823
-export GROFF_NO_SGR=1
-
-# ripgrep config file location
-export RIPGREP_CONFIG_PATH=~/.ripgreprc
+# Include definitions that are applicable for both bash and zsh
+source $HOME/.shell.in
 
 # Search snippets and output on the shell
 function pet-select() {
