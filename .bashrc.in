@@ -7,7 +7,7 @@
 # export PS1='\[\033[43;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 # blue background
 # export PS1='\[\033[44;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
-# purple background
+# magenta background
 # export PS1='\[\033[45;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
 # cyan background
 # export PS1='\[\033[46;1;37m\][\u@\h $PWD]\$\[\033[0m\]'
