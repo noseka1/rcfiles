@@ -63,6 +63,10 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
+# Make Ctrl + Left/right arrow work
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 # Disable the highlighting of pasted text
 # See also https://unix.stackexchange.com/questions/331850/zsh-selects-a-pasted-text
 zle_highlight=('paste:none')
