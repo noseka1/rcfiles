@@ -107,6 +107,7 @@ function! PackInit() abort
   call minpac#add('https://github.com/junegunn/fzf',                      {'commit':'9cb7a364a31bdb882d873807774bdcf6fad0c9e4'})
   call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'d6aa21476b2854694e6aa7b0941b8992a906c5ec'})
   call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
+  call minpac#add('https://github.com/frazrepo/vim-rainbow',              {'commit':'a6c7fd5a2b0193b5dbd03f62ad820b521dea3290'})
 endfunction
 
 "use darker color for indent lines
@@ -149,3 +150,6 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 let g:fzf_layout = {'left': '100%'}
 "toggle preview window using Ctrl-/
 let g:fzf_preview_window = ['right:70%', 'ctrl-/']
+
+"enable rainbow-colored parenthesis
+let g:rainbow_active = 1
