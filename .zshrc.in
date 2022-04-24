@@ -53,6 +53,9 @@ zinit light zsh-users/zsh-autosuggestions
 zinit ice as"completion"
 zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/ripgrep/_ripgrep
 
+zinit ice as"completion" mv"git-completion.zsh -> _git"
+zinit snippet https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
+
 # Never complete beyond ambiguous choices
 # See also https://stackoverflow.com/questions/37980851/never-complete-beyond-ambiguous-choices
 setopt noautomenu
@@ -105,3 +108,9 @@ generate_kubectl_and_oc_completion oc
 
 # Fix the oc completion
 compdef _oc oc
+
+# Fix very slow completion on git add ..., git rm ...
+# See also https://superuser.com/questions/458906/zsh-tab-completion-of-git-commands-is-very-slow-how-can-i-turn-it-off
+__git_files () {
+  _wanted files expl 'local files' _files
+}
