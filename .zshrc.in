@@ -56,6 +56,8 @@ zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/ripgrep/_ri
 zinit ice as"completion" mv"git-completion.zsh -> _git"
 zinit snippet https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 
+zinit snippet OMZ::plugins/fasd/fasd.plugin.zsh
+
 # Never complete beyond ambiguous choices
 # See also https://stackoverflow.com/questions/37980851/never-complete-beyond-ambiguous-choices
 setopt noautomenu
@@ -69,6 +71,12 @@ bindkey "^X^E" edit-command-line
 # Make Ctrl + Left/right arrow work
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
+
+# Configure fasd completion
+# See also https://github.com/clvv/fasd
+bindkey '^X^A' fasd-complete    # C-x C-a to do fasd-complete (files and directories)
+bindkey '^X^F' fasd-complete-f  # C-x C-f to do fasd-complete-f (only files)
+bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directories)
 
 # Disable the highlighting of pasted text
 # See also https://unix.stackexchange.com/questions/331850/zsh-selects-a-pasted-text
