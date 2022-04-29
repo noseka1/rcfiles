@@ -82,8 +82,8 @@ bindkey '^X^D' fasd-complete-d  # C-x C-d to do fasd-complete-d (only directorie
 # See also https://unix.stackexchange.com/questions/331850/zsh-selects-a-pasted-text
 zle_highlight=('paste:none')
 
-# Remove _/- from WORDCHARS to restore a Bash-like behavior
-export WORDCHARS='*?.[]~=&;!#$%^(){}<>'
+# Remove _/-. from WORDCHARS to restore a Bash-like behavior
+export WORDCHARS='*?[]~=&;!#$%^(){}<>'
 
 # Search snippets and output on the shell
 # See also https://github.com/knqyf263/pet#zsh
