@@ -96,23 +96,24 @@ zle -N pet-select
 stty -ixon
 bindkey '^x^r' pet-select
 
-# Add kubectl and oc completions
-function generate_kubectl_and_oc_completion() {
+# Generate completions
+function generate_completion() {
   if (( $+commands[${1}] )); then
     # If the completion file does not exist, generate it and then source it
     # Otherwise, source it and regenerate in the background
     if [[ ! -f "${fpath[1]}/_${1}" ]]; then
-      ${1} completion zsh | tee "${fpath[1]}/_${1}" >/dev/null
+      ${1} ${2} zsh | tee "${fpath[1]}/_${1}" >/dev/null
       source "${fpath[1]}/_${1}"
     else
       source "${fpath[1]}/_${1}"
-      ${1} completion zsh | tee "${fpath[1]}/_${1}" >/dev/null &|
+      ${1} ${2} zsh | tee "${fpath[1]}/_${1}" >/dev/null &|
     fi
   fi
 }
 
-generate_kubectl_and_oc_completion kubectl
-generate_kubectl_and_oc_completion oc
+generate_completion kubectl completion
+generate_completion oc completion
+generate_completion stern --completion
 
 # Fix the oc completion
 compdef _oc oc
