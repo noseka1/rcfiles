@@ -16,7 +16,7 @@ root_dir=$(podman unshare podman mount $container)
 
 echo Starting interactive shell for inspecting the image
 (
-  cd  $root_dir
+  cd  "$root_dir"
   exec podman unshare
 )
 
