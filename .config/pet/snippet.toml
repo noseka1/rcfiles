@@ -162,3 +162,8 @@
   description = "Print OLM operator versions"
   command = "oc get packagemanifest -o jsonpath='{range .items[*]}{.metadata.name} {.status.defaultChannel}{\"\\n\"}{end}'"
   output = ""
+
+[[snippets]]
+  description = "Start Weylus"
+  command = "WEYLUS_LOG_LEVEL=INFO weylus --no-gui --access-code $(cat ~/.mysecrets/weylus/access_code.txt) --try-nvenc"
+  output = ""
