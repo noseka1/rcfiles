@@ -119,9 +119,6 @@ colors:
     cyan:    '#006565'
     white:   '#656565'
 
-key_bindings:
-  - { key: Insert, mods: Shift, action: Paste }
-
 # Include colon (:) into selection (it is exluded by default)
 selection:
   semantic_escape_chars: ",│`|\"' ()[]{}<>"
