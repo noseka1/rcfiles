@@ -87,7 +87,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 
-export VISUAL=vim
+export VISUAL=vi
 export EDITOR=vi
 
 # Disable systemctl's auto-paging feature
