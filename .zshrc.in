@@ -58,6 +58,15 @@ zle -N backward-kill-space-word backward-kill-word-match
 zstyle :zle:backward-kill-space-word word-style space
 bindkey '^W' backward-kill-space-word
 
+# Bash-like Ctrl-Alt-f and Ctrl-Alt-b
+zle -N forward-shell-word forward-word-match
+zstyle :zle:forward-shell-word word-style shell
+bindkey '^[^F' forward-shell-word
+
+zle -N backward-shell-word backward-word-match
+zstyle :zle:backward-shell-word word-style shell
+bindkey '^[^B' backward-shell-word
+
 # Load plugins
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit load zdharma-continuum/history-search-multi-word
