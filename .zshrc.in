@@ -52,7 +52,7 @@ zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 autoload -U select-word-style
 select-word-style bash
 
-# Bash-like Ctrl-w
+# Bash-like Ctrl-w (almost, zsh-autosuggestions seem to break the subsequent appending to the kill ring)
 # See also https://zsh.sourceforge.io/Doc/Release/User-Contributions.html#Widgets
 zle -N backward-kill-space-word backward-kill-word-match
 zstyle :zle:backward-kill-space-word word-style space
