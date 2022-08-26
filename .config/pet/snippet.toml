@@ -165,5 +165,5 @@
 
 [[snippets]]
   description = "Approve all pending CSRs in OpenShift"
-  command = "oc get csr -ojson | jq -r '.items[] | select(.status == {} ) | .metadata.name' | xargs oc adm certificate approve"
+  command = "oc get csr -o json | jq -r '.items[] | select(.status == {} ) | .metadata.name' | xargs --no-run-if-empty oc adm certificate approve"
   output = ""
