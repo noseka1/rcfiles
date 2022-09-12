@@ -3,6 +3,9 @@
 # pmi = podman mount image
 # Mount container image and change current directory to the root of the image
 
+# Set Bash safe options
+set -euo pipefail
+
 if [ "$#" -gt 0 ]; then
 	image=$1
 else
@@ -14,7 +17,7 @@ fi
 container=$(podman create $image /dummy/command)
 root_dir=$(podman unshare podman mount $container)
 
-echo Starting interactive shell for inspecting the image
+echo Starting an interactive shell for inspecting the image
 (
   cd  "$root_dir"
   exec podman unshare
