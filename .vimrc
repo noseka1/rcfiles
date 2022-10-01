@@ -153,3 +153,4 @@ let g:fzf_preview_window = ['right:70%', 'ctrl-/']
 
 "enable rainbow-colored parenthesis
 let g:rainbow_active = 1
+let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
