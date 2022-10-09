@@ -71,6 +71,7 @@ bindkey '^[^B' backward-shell-word
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit load zdharma-continuum/history-search-multi-word
 zinit light zsh-users/zsh-autosuggestions
+zinit light amyreese/zsh-titles
 
 zinit ice as"completion"
 zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/ripgrep/_ripgrep
