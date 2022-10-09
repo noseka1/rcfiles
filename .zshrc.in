@@ -1,10 +1,10 @@
 # Various prompt colors. Choose a color and copy it to ~/.zshrc
-# PS1='%K{red}%B%F{white}[%n@%m %~%f]$%k%b'
-# PS1='%K{green}%B%F{white}[%n@%m %~%f]$%k%b'
-# PS1='%K{yellow}%B%F{white}[%n@%m %~%f]$%k%b'
-# PS1='%K{blue}%B%F{white}[%n@%m %~%f]$%k%b'
-# PS1='%K{magenta}%B%F{white}[%n@%m %~%f]$%k%b'
-# PS1='%K{cyan}%B%F{white}[%n@%m %~%f]$%k%b'
+# PS1='%K{red}%B%F{white}[%n@%m %~%f]$%k%b '
+# PS1='%K{green}%B%F{white}[%n@%m %~%f]$%k%b '
+# PS1='%K{yellow}%B%F{white}[%n@%m %~%f]$%k%b '
+# PS1='%K{blue}%B%F{white}[%n@%m %~%f]$%k%b '
+# PS1='%K{magenta}%B%F{white}[%n@%m %~%f]$%k%b '
+# PS1='%K{cyan}%B%F{white}[%n@%m %~%f]$%k%b '
 
 # Include definitions that are applicable for both bash and zsh
 source $HOME/.shell.in
