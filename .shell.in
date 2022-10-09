@@ -104,3 +104,6 @@ export GROFF_NO_SGR=1
 
 # ripgrep config file location
 export RIPGREP_CONFIG_PATH=~/.ripgreprc
+
+# Store repository password in Gnome keyring
+export KOPIA_USE_KEYRING=1
