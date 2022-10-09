@@ -4,6 +4,7 @@
 "https://danielmiessler.com/blog/vim-configuration-update-2019-version/
 
 "indention options
+autocmd FileType go setlocal noexpandtab
 
 "copy indent from current line when starting a new line
 set autoindent
