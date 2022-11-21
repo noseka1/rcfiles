@@ -3,9 +3,6 @@
 "https://dougblack.io/words/a-good-vimrc.html
 "https://danielmiessler.com/blog/vim-configuration-update-2019-version/
 
-"indention options
-autocmd FileType go setlocal noexpandtab
-
 "copy indent from current line when starting a new line
 set autoindent
 "use the appropriate number of spaces to insert a <Tab>
@@ -155,3 +152,7 @@ let g:fzf_preview_window = ['right:70%', 'ctrl-/']
 "enable rainbow-colored parenthesis
 let g:rainbow_active = 1
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+"indention options
+autocmd FileType go setlocal noexpandtab
+autocmd FileType yaml setlocal indentkeys-=0#
