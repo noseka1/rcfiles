@@ -23,6 +23,10 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 setopt histignorealldups
 
+# Bash-like behavior for globbing.
+# If a pattern for filename generation has no matches, leave it unchanged in the argument list.
+setopt no_nomatch
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
