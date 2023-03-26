@@ -147,3 +147,9 @@ compdef _oc oc
 __git_files () {
   _wanted files expl 'local files' _files
 }
+
+# Unbind Windows+Alt+x key combination which is used to start/stop video recording in OBS
+# See also:
+# How to remove a zsh keybinding if I don't know what it does?
+# https://unix.stackexchange.com/questions/285208/how-to-remove-a-zsh-keybinding-if-i-dont-know-what-it-does
+bindkey -r "^[x"
