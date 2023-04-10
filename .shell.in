@@ -46,7 +46,8 @@ alias kns=kubens
 alias kctx=kubectx
 alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias diff='diff --color'
-alias rgni='rg --no-ignore'
+alias rgni='rg --no-ignore --hidden'
+alias fdni='fd --no-ignore --hidden'
 
 # oc color
 function occ() {
