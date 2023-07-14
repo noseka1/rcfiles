@@ -50,7 +50,12 @@
 
 [[snippets]]
   description = "List ALL Kubernetes resources in the current namespace"
-  command = "kubectl api-resources --verbs=list --namespaced -o name 2>/dev/null | grep -v events.events.k8s.io | grep -v events | grep -v packagemanifests.packages.operators.coreos.com | xargs -n 1 kubectl get --show-kind --ignore-not-found 2>/dev/null"
+  command = "kubectl api-resources --verbs=list --namespaced -o name 2>/dev/null | grep -v events.events.k8s.io | grep -v events | grep -v packagemanifests.packages.operators.coreos.com | xargs -n 1 kubectl get --show-kind --ignore-not-found --no-headers 2>/dev/null"
+  output = ""
+
+[[snippets]]
+  description = "Remove finalizers from ALL Kubernetes resources in the current namespace that were marked for deletion"
+  command = "kubectl api-resources --verbs=list --namespaced -o name 2>/dev/null | grep -v events.events.k8s.io | grep -v events | grep -v packagemanifests.packages.operators.coreos.com | xargs -n 1 kubectl get --show-kind --ignore-not-found --no-headers --output custom-columns=KIND:.kind,NAME:.metadata.name,TIMESTAMP=:.metadata.deletionTimestamp | grep -v 'none>$' | while read kind name timestamp; do kubectl patch $kind $name -p '{\"metadata\":{\"finalizers\":null}}' --type merge; done"
   output = ""
 
 [[snippets]]
