@@ -92,7 +92,7 @@ nnoremap <leader>v :set number!<CR>:IndentLinesToggle<CR>:GitGutterSignsToggle<C
 "clear highlighting
 nnoremap <leader>c :nohl<CR>
 
-colorscheme lunaperche
+"colorscheme lunaperche
 
 "minpac: A minimal package manager for Vim 8, https://github.com/k-takata/minpac
 function! PackInit() abort
