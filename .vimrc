@@ -97,7 +97,7 @@ nnoremap <leader>c :nohl<CR>
 "minpac: A minimal package manager for Vim 8, https://github.com/k-takata/minpac
 function! PackInit() abort
   packadd minpac
-  call minpac#init({'verbose': 3})
+  call minpac#init({'verbose': 3,'confirm':'FALSE','progress_open':'none'})
   call minpac#add('https://github.com/airblade/vim-gitgutter.git',        {'commit':'256702dd1432894b3607d3de6cd660863b331818'})
   call minpac#add('https://github.com/itchyny/lightline.vim.git',         {'commit':'a29b8331e1bb36b09bafa30c3aa77e89cdd832b2'})
   call minpac#add('https://github.com/Yggdroot/indentLine.git',           {'commit':'5617a1cf7d315e6e6f84d825c85e3b669d220bfa'})
