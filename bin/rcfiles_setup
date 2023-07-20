@@ -51,7 +51,7 @@ fi
 # Install Zinit plugin manager for zsh
 # See also https://github.com/zdharma-continuum/zinit
 if [ ! -d "$HOME/.local/share/zinit" ]; then
-  sh -c "$(curl -fsSL https://git.io/zinit-install)"
+  sh -c "NO_INPUT=y $(curl -fsSL https://git.io/zinit-install)"
 fi
 
 # Include rcfiles definitions in ~/.zshrc
