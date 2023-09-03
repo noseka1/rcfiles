@@ -25,5 +25,4 @@ set follow-exec-mode new
 
 # colorful prompt
 # keep trailing space on next line
-set prompt \033[0;32m(gdb)\033[0m
-
+set prompt \033[0;32m(gdb) \033[0m
