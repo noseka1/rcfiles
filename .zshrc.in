@@ -135,9 +135,11 @@ function generate_completion() {
   fi
 }
 
-generate_completion kubectl completion
-generate_completion oc completion
-generate_completion stern --completion
+generate_completion kubectl completion zsh
+generate_completion oc completion zsh
+generate_completion stern --completion zsh
+generate_completion virtctl completion zsh
+generate_completion velero completion zsh
 
 # Fix the oc completion
 compdef _oc oc
