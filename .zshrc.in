@@ -141,9 +141,6 @@ generate_completion stern --completion zsh
 generate_completion virtctl completion zsh
 generate_completion velero completion zsh
 
-# Fix the oc completion
-compdef _oc oc
-
 # Fix very slow completion on git add ..., git rm ...
 # See also https://superuser.com/questions/458906/zsh-tab-completion-of-git-commands-is-very-slow-how-can-i-turn-it-off
 __git_files () {
