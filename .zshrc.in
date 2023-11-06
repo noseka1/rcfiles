@@ -95,7 +95,7 @@ autoload -z edit-command-line
 zle -N edit-command-line
 bindkey "^X^E" edit-command-line
 
-# Make Ctrl + Left/right arrow work
+# Make Ctrl + Left/right arrow work the same way as in Bash
 bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
@@ -150,7 +150,7 @@ __git_files () {
   _wanted files expl 'local files' _files
 }
 
-# Unbind Windows+Alt+x key combination which is used to start/stop video recording in OBS
+# Unbind Windows+Alt+x key combination which I use to start/stop video recording in OBS
 # See also:
 # How to remove a zsh keybinding if I don't know what it does?
 # https://unix.stackexchange.com/questions/285208/how-to-remove-a-zsh-keybinding-if-i-dont-know-what-it-does
