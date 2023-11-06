@@ -141,6 +141,14 @@ generate_completion stern --completion zsh
 generate_completion virtctl completion zsh
 generate_completion velero completion zsh
 
+# Make oc completion work for wrapper functions occ, ocy, ocyl, ...
+# See also https://unix.stackexchange.com/questions/553940/how-to-write-zsh-completion-function-for-wrapper-commands
+_myoc() {
+  words="oc ${words[@]:1}"
+  _oc
+}
+compdef _myoc occ ocy ocyl ocys ocysl
+
 # Fix very slow completion on git add ..., git rm ...
 # See also https://superuser.com/questions/458906/zsh-tab-completion-of-git-commands-is-very-slow-how-can-i-turn-it-off
 __git_files () {
