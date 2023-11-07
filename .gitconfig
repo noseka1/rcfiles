@@ -10,6 +10,7 @@
 [diff]
         mnemonicprefix = true
         tool = vimdiff
+        colorMoved = default
 [alias]
         l   = log --pretty=format:'%C(yellow)%h %C(green)%ad%C(bold yellow)%d%C(reset) %s %C(bold blue)%an%C(reset)'
         l2  = log --pretty=format:'%C(yellow)%h %C(green)%ar%C(bold yellow)%d%C(reset) %s %C(bold blue)%an%C(reset)'
