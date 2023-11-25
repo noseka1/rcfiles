@@ -67,7 +67,7 @@ git clone \
   --branch v3.0.0 \
   https://github.com/k-takata/minpac \
   ~/.vim/pack/minpac/opt/minpac
-vim -c 'call PackInit() | call minpac#update("", {"do": "qall!"})'
+vim -e -c 'set t_te= | call PackInit() | call minpac#update("", {"do": "qall!"})'
 
 # Install tmux plugins
 git clone \
