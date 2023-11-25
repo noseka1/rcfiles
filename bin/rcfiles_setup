@@ -69,7 +69,7 @@ vim -c 'call PackInit() | call minpac#update("", {"do": "qall!"})'
 
 # Install tmux plugins
 git clone \
-  --branch v3.0.0 \
+  --branch v3.1.0 \
   https://github.com/tmux-plugins/tpm \
   ~/.tmux/plugins/tpm
 TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins" ~/.tmux/plugins/tpm/bin/install_plugins
