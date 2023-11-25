@@ -59,6 +59,9 @@ if ! grep '^source .*zshrc\.in' "$HOME/.zshrc"; then
   echo 'source $HOME/.zshrc.in' >> "$HOME/.zshrc"
 fi
 
+# Install zsh plugins
+zsh -i -c ''
+
 # Install vim plugins
 git clone \
   --branch v3.0.0 \
