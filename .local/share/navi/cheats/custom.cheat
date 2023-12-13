@@ -103,7 +103,7 @@ sudo openvpn --config /etc/openvpn/client/ovpn-rdu2-tcp.conf
 sudo nft flush ruleset
 
 # Log in to the OpenShift integrated registry
-podman login -u xyz -p $(oc whoami -t) $(oc get route -n openshift-image-registry)
+podman login -u xyz -p $(oc whoami -t) $(oc get route -n openshift-image-registry --no-headers --output custom-columns=HOSTNAME:.spec.host)
 
 # Convert YouTube video to mp3
 youtube-dl --extract-audio --audio-format mp3 <youtube_url>
