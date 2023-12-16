@@ -129,6 +129,9 @@ podman push --authfile ~/.mysecrets/docker/myquay.json
 # Find executable files in the current directory + all subdirectories
 find . -type f -print0 | xargs -0 -n 100 file | grep 'ELF.*executable'
 
+# Find and replace text recursively
+find . -type f -name '*' -print0 | xargs -0 sed -i 's#<foo>#<bar>#g'
+
 # Split full album flac into a flac per track
 shnsplit -f <file.cue> -t '%n - %t' -o flac <file.flac>
 
