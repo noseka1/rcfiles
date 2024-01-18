@@ -99,9 +99,6 @@ subscription-manager register && subscription-manager attach --pool 8a85f98460bf
 # Red Hat VPN
 sudo openvpn --config /etc/openvpn/client/ovpn-rdu2-tcp.conf
 
-# Flush firewall rules
-sudo nft flush ruleset
-
 # Log in to the OpenShift integrated registry
 podman login -u xyz -p $(oc whoami -t) $(oc get route -n openshift-image-registry --no-headers --output custom-columns=HOSTNAME:.spec.host)
 
@@ -143,6 +140,12 @@ sealert -a /var/log/audit/audit.log
 
 # Show nftables rules
 sudo nft -j list ruleset | jq
+
+# Flush firewall rules
+sudo nft flush ruleset
+
+# Show firewalld configuration
+sudo firewall-cmd --list-all-zones
 
 # Display X.509 certificate fingerprint
 openssl x509 -noout -sha256 -fingerprint -in <cert.pem>
