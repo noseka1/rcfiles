@@ -119,7 +119,7 @@ colors:
     cyan:    '#006565'
     white:   '#656565'
 
-# Include colon (:) into selection (it is exluded by default)
+# Include colon (:) into mouse selection (it is exluded by default)
 selection:
   semantic_escape_chars: ",│`|\"' ()[]{}<>"
 
