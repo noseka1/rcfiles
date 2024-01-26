@@ -74,6 +74,14 @@ style = "Regular"
 x = 0
 y = 0
 
+# Regex hints (disabled)
+# Terminal hints can be used to find text in the visible part of the terminal
+# and pipe it to other applications.
+[[hints.enabled]]
+regex = ""
+hyperlinks = false
+command = ""
+
 [[keyboard.bindings]]
 # Disable the Win-Alt-x combination which caused a character to be deleted in vim.
 # It conflicts with Win+Alt+x for starting the recording in OBS.
