@@ -42,18 +42,11 @@ yellow = "#cdcd00"
 
 [colors.primary]
 background = "#000000"
-bright_background = "#686868"
 bright_foreground = "#ffffff"
-dim_background = "#000000"
 dim_foreground = "#656565"
 foreground = "#b2b2b2"
 
 [font]
-# Scale the font size based on the monitor's DPI. This will lead to bigger text on HiDPI
-# screens and make reading text a little easier.
-# On X11 it is possible to change the DPI for each instance of alacritty by using
-# `WINIT_HIDPI_FACTOR=1.0 alacritty` to scale the font.
-scale_with_dpi = false
 # Point size
 size = 12.0
 
