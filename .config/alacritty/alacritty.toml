@@ -1,0 +1,93 @@
+# For available options see
+# https://github.com/alacritty/alacritty/blob/master/extra/man/alacritty.5.scd
+
+# Color schemes:
+# https://github.com/alacritty/alacritty/wiki/Color-schemes
+
+# Colors (Konsole Linux Colors)
+
+[colors]
+# If `true`, bold text is drawn using the bright color variants.
+draw_bold_text_with_bright_colors = true
+
+[colors.bright]
+black = "#7f7f7f"
+blue = "#5454ff"
+cyan = "#54ffff"
+green = "#54ff54"
+magenta = "#ff54ff"
+red = "#ff5454"
+white = "#ffffff"
+yellow = "#ffff54"
+
+[colors.dim]
+black = "#181818"
+blue = "#000065"
+cyan = "#006565"
+green = "#006500"
+magenta = "#650065"
+red = "#650000"
+white = "#656565"
+yellow = "#655e00"
+
+[colors.normal]
+black = "#000000"
+blue = "#0000ee"
+cyan = "#18b2b2"
+green = "#00cd00"
+magenta = "#b218b2"
+red = "#b21818"
+white = "#e5e5e5"
+yellow = "#cdcd00"
+
+[colors.primary]
+background = "#000000"
+bright_background = "#686868"
+bright_foreground = "#ffffff"
+dim_background = "#000000"
+dim_foreground = "#656565"
+foreground = "#b2b2b2"
+
+[font]
+# Scale the font size based on the monitor's DPI. This will lead to bigger text on HiDPI
+# screens and make reading text a little easier.
+# On X11 it is possible to change the DPI for each instance of alacritty by using
+# `WINIT_HIDPI_FACTOR=1.0 alacritty` to scale the font.
+scale_with_dpi = false
+# Point size
+size = 12.0
+
+[font.bold]
+family = "monospace"
+style = "Bold"
+
+[font.bold_italic]
+family = "monospace"
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "monospace"
+style = "Italic"
+
+[font.normal]
+family = "monospace"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+# Disable the Win-Alt-x combination which caused a character to be deleted in vim.
+# It conflicts with Win+Alt+x for starting the recording in OBS.
+chars = ""
+key = "X"
+mods = "Super|Alt"
+
+[selection]
+# Include colon (:) into mouse selection (it is exluded by default)
+semantic_escape_chars = ",│`|\"' ()[]{}<>"
