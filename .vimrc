@@ -59,7 +59,7 @@ set mouse=
 set ttymouse=sgr
 "use X clipboard, auto-copy selection to clipboard
 set clipboard=unnamedplus
-"check that the clipboard is available with:
+"check that the clipboard is available with (if the output is 0, it's not available, if it's 1, it is available):
 ":echo has('clipboard')
 
 "undo options
