@@ -73,6 +73,9 @@ oc get csr -o json | \
 
 % lin
 
+# Jump into ODF tools pod
+oc rsh --namespace openshift-storage deploy/rook-ceph-tools
+
 # Download the TLS certificate from the remote server
 openssl s_client -showcerts -servername <server_fqdn> -connect <server_fqdn>:443 </dev/null
 
