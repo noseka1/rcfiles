@@ -154,3 +154,9 @@ __git_files () {
 # How to remove a zsh keybinding if I don't know what it does?
 # https://unix.stackexchange.com/questions/285208/how-to-remove-a-zsh-keybinding-if-i-dont-know-what-it-does
 bindkey -r "^[x"
+
+# Initialize Kubernetes context switcher (https://github.com/danielfoehrKn/kubeswitch)
+source <(switcher init zsh)
+alias ksc='switch'
+alias ksn='switch namespace'
+alias ksh='switch history'
