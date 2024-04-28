@@ -58,9 +58,9 @@ oc get csv \
   --all-namespaces \
   --output custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name \
   --no-headers | \
-  grep '<csv_name>' | \
-  while read NS NAME; do
-    oc delete csv --namespace $NS $NAME
+  grep 'openshift-pipelines-operator-rh.v1.14.3' | \
+  while read ns name; do
+    oc delete csv --namespace $ns $name
   done
 
 # Print OLM operator versions
