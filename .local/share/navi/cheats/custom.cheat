@@ -153,5 +153,5 @@ sudo firewall-cmd --list-all-zones
 # Display X.509 certificate fingerprint
 openssl x509 -noout -sha256 -fingerprint -in <cert.pem>
 
-# Edit matching lines using Vim QuickFix
+# Edit matching lines using Vim QuickFix (use :cnext, :cprev)
 vi -q <(rg -H --no-heading --vimgrep EXPRESSION)
