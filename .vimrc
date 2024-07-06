@@ -104,7 +104,7 @@ function! PackInit() abort
   call minpac#init({'verbose': 3,'confirm':'FALSE','progress_open':'none'})
   call minpac#add('https://github.com/airblade/vim-gitgutter.git',        {'commit':'256702dd1432894b3607d3de6cd660863b331818'})
   call minpac#add('https://github.com/itchyny/lightline.vim.git',         {'commit':'a29b8331e1bb36b09bafa30c3aa77e89cdd832b2'})
-  call minpac#add('https://github.com/Yggdroot/indentLine.git',           {'commit':'5617a1cf7d315e6e6f84d825c85e3b669d220bfa'})
+  call minpac#add('https://github.com/preservim/vim-indent-guides',       {'commit':'a1e1390c0136e63e813d051de2003bf0ee18ae30'})
   call minpac#add('https://github.com/mengelbrecht/lightline-bufferline', {'commit':'61c7c8668b80537aefa69654a6e5a5e63095be61'})
   call minpac#add('https://github.com/junegunn/fzf',                      {'commit':'9cb7a364a31bdb882d873807774bdcf6fad0c9e4'})
   call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'d6aa21476b2854694e6aa7b0941b8992a906c5ec'})
@@ -156,6 +156,11 @@ let g:fzf_preview_window = ['right:70%', 'ctrl-/']
 "enable rainbow-colored parenthesis
 let g:rainbow_active = 1
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
+
+"indent guides colors
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=233
 
 "indention options
 autocmd FileType go setlocal noexpandtab
