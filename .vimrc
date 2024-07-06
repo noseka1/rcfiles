@@ -72,7 +72,7 @@ set undofile
 
 "highlight the current line
 set cursorline
-highlight CursorLine cterm=NONE ctermbg=234
+highlight CursorLine cterm=NONE ctermbg=233
 
 "misc options
 
