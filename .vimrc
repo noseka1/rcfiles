@@ -110,6 +110,7 @@ function! PackInit() abort
   call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'d6aa21476b2854694e6aa7b0941b8992a906c5ec'})
   call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
   call minpac#add('https://github.com/frazrepo/vim-rainbow',              {'commit':'a6c7fd5a2b0193b5dbd03f62ad820b521dea3290'})
+  call minpac#add('https://github.com/pedrohdz/vim-yaml-folds',           {'commit':'890ccd8e5370808d569e96dbb06cbeca2cf5993a'})
 endfunction
 
 "use darker color for indent lines
@@ -162,6 +163,28 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=233
 
+"define custom fold text for JSON files. Code copied from the vim-yaml-folds plugin, func YamlFoldText()
+function! JsonFoldText()
+  let lines = v:foldend - v:foldstart
+  return getline(v:foldstart) . '   (level ' . v:foldlevel . ', lines ' . lines . ')'
+endfunction
+
+"start editing a file with all folds open
+set foldlevelstart=99
+
+"unfold to a specific level
+nmap z0 :set foldlevel=0<CR>
+nmap z1 :set foldlevel=1<CR>
+nmap z2 :set foldlevel=2<CR>
+nmap z3 :set foldlevel=3<CR>
+nmap z4 :set foldlevel=4<CR>
+nmap z5 :set foldlevel=5<CR>
+nmap z6 :set foldlevel=6<CR>
+nmap z7 :set foldlevel=7<CR>
+nmap z8 :set foldlevel=7<CR>
+nmap z9 :set foldlevel=9<CR>
+
 "indention options
 autocmd FileType go setlocal noexpandtab
 autocmd FileType yaml setlocal indentkeys-=0#
+autocmd FileType json setlocal foldmethod=syntax foldtext=JsonFoldText()
