@@ -92,7 +92,7 @@ filetype plugin indent on
 "toggle paste mode
 nnoremap <leader>p :set paste!<CR>
 "toggle visual aids
-nnoremap <leader>v :set number!<CR>:IndentLinesToggle<CR>:GitGutterSignsToggle<CR>
+nnoremap <leader>v :set number!<CR>:IndentGuidesToggle<CR>:GitGutterSignsToggle<CR>
 "clear highlighting
 nnoremap <leader>c :nohl<CR>
 
