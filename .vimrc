@@ -70,6 +70,10 @@ set history=1000
 set undodir=$HOME/.vim/undo
 set undofile
 
+"highlight the current line
+set cursorline
+highlight CursorLine cterm=NONE ctermbg=234
+
 "misc options
 
 "allow backspacing over indention, line breaks and insertion start
