@@ -97,7 +97,7 @@ export SYSTEMD_PAGER=
 
 # Colorful man pages
 if [ -x /usr/bin/vim ]; then
-  export MANPAGER="vim -M +MANPAGER +'set nonumber' +IndentLinesDisable -"
+  export MANPAGER="vim -M +MANPAGER +'set nonumber' -"
 fi
 
 # Workaround for manpager.vim - Color escape codes incorrectly displayed on Fedora
