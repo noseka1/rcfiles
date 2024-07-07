@@ -84,7 +84,7 @@ set autoread
 set showmatch
 
 "jump to the last position when reopening a file
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "load indentation rules and plugins according to the detected filetype
 filetype plugin indent on
