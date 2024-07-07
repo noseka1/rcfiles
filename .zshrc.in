@@ -119,11 +119,11 @@ function generate_completion() {
     # If the completion file does not exist, generate it and then source it
     # Otherwise, source it and regenerate in the background
     if [[ ! -f "${fpath[1]}/_${1}" ]]; then
-      ${1} ${2} zsh | tee "${fpath[1]}/_${1}" >/dev/null
+      command ${1} ${2} ${3} | tee "${fpath[1]}/_${1}" >/dev/null
       source "${fpath[1]}/_${1}"
     else
       source "${fpath[1]}/_${1}"
-      ${1} ${2} zsh | tee "${fpath[1]}/_${1}" >/dev/null &|
+      command ${1} ${2} ${3} | tee "${fpath[1]}/_${1}" >/dev/null &|
     fi
   fi
 }
@@ -135,13 +135,13 @@ generate_completion virtctl completion zsh
 generate_completion velero completion zsh
 generate_completion oc-compliance completion zsh
 
-# Make oc completion work for wrapper functions occ, ocy, ocyl, ...
+# Make oc completion work for wrapper functions oc, ocy, ocyl, ...
 # See also https://unix.stackexchange.com/questions/553940/how-to-write-zsh-completion-function-for-wrapper-commands
 _myoc() {
   words="oc ${words[@]:1}"
   _oc
 }
-compdef _myoc occ ocy ocyl ocys ocysl
+compdef _myoc ocy ocyl ocys ocysl
 
 # Fix very slow completion on git add ..., git rm ...
 # See also https://superuser.com/questions/458906/zsh-tab-completion-of-git-commands-is-very-slow-how-can-i-turn-it-off

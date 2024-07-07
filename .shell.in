@@ -49,14 +49,19 @@ alias diff='diff --color'
 alias rgni='rg --no-ignore --hidden'
 alias fdni='fd --no-ignore --hidden'
 
-# oc color
-function occ() {
-  KUBECTL_COMMAND=oc kubecolor "$@"
-}
+# If kubecolor is available then alias oc -> kubecolor
+if command -v kubecolor >/dev/null 2>&1; then
+  function oc() {
+    KUBECOLOR_THEME_BASE_INFO=normal \
+    KUBECOLOR_THEME_DATA_STRING=normal \
+    KUBECTL_COMMAND=oc \
+    kubecolor "$@"
+  }
+fi
 
 # oc get yaml
 function ocy() {
-  KUBECTL_COMMAND=oc kubecolor "$@" --output yaml
+  oc "$@" --output yaml
 }
 
 # oc get yaml less
