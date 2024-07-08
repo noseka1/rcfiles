@@ -53,6 +53,7 @@ alias fdni='fd --no-ignore --hidden'
 if command -v kubecolor >/dev/null 2>&1; then
   function oc() {
     KUBECOLOR_THEME_BASE_INFO=normal \
+    KUBECOLOR_THEME_DEFAULT=normal \
     KUBECOLOR_THEME_DATA_STRING=normal \
     KUBECTL_COMMAND=oc \
     kubecolor "$@"
