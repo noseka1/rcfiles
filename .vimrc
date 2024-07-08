@@ -111,7 +111,7 @@ function! PackInit() abort
   call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
   call minpac#add('https://github.com/frazrepo/vim-rainbow',              {'commit':'a6c7fd5a2b0193b5dbd03f62ad820b521dea3290'})
   call minpac#add('https://github.com/pedrohdz/vim-yaml-folds',           {'commit':'890ccd8e5370808d569e96dbb06cbeca2cf5993a'})
-  call minpac#add('https://github.com/phamer/AnsiEsc',                    {'commit':'af1bd702934e2e555808c9b6e3a400087b4c774e'})
+  call minpac#add('https://github.com/chrisbra/Colorizer',                {'commit':'7db0e0dd8adfccab35655f5b6db805caa0fef49a'})
   call minpac#add('https://github.com/noseka1/vim-yaml-folds',            {'commit':'master'})
 endfunction
 
