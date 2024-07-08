@@ -59,6 +59,11 @@ if command -v kubecolor >/dev/null 2>&1; then
   }
 fi
 
+# Use vim as pager (less)
+function vim_yaml_pager() {
+  vim +'set buftype=nofile' +'noremap q :q<CR>' +'set foldlevel=99' +'set filetype=yaml' -
+}
+
 # oc get yaml
 function ocy() {
   oc "$@" --output yaml
@@ -66,7 +71,7 @@ function ocy() {
 
 # oc get yaml less
 function ocyl() {
-  ocy --force-colors "$@" | less -R
+  ocy "$@" | vim_yaml_pager
 }
 
 # oc get yaml secret
@@ -76,7 +81,7 @@ function ocys() {
 
 # oc get yaml secret less
 function ocysl() {
-  ocys "$@" | less -R
+  ocys "$@" | vim_yaml_pager
 }
 
 export DEBFULLNAME="Ales Nosek"
