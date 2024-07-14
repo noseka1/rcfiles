@@ -96,6 +96,10 @@ nnoremap <leader>v :set number!<CR>:IndentGuidesToggle<CR>:GitGutterSignsToggle<
 "clear highlighting
 nnoremap <leader>c :nohl<CR>
 
+"don't move the cursor after yanking in visual mode
+"see also https://stackoverflow.com/questions/3806629/yank-a-region-in-vim-without-the-cursor-moving-to-the-top-of-the-block
+vmap y ygv<Esc>
+
 "colorscheme lunaperche
 
 "minpac: A minimal package manager for Vim 8, https://github.com/k-takata/minpac
