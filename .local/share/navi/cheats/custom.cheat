@@ -58,18 +58,25 @@ oc get csv \
   --all-namespaces \
   --output custom-columns=NAMESPACE:.metadata.namespace,NAME:.metadata.name \
   --no-headers | \
-  grep 'openshift-pipelines-operator-rh.v1.14.3' | \
+  grep 'openshift-pipelines-operator-rh.vx.y.z' | \
   while read ns name; do
     oc delete csv --namespace $ns $name
   done
 
-# Print OLM operator versions
-oc get packagemanifest -o jsonpath='{range .items[*]}{.metadata.name} {.status.defaultChannel}{"\\n"}{end}'
+# Print installed operator versions
+oc get csv --all-namespaces --output custom-columns=NAME:.metadata.name --no-headers | sort | uniq
+
+# Print available OLM operator default channels
+oc get packagemanifest -o jsonpath='{range .items[*]}{.metadata.name} {.status.defaultChannel}{"\n"}{end}'
 
 # Approve all pending CSRs in OpenShift
 oc get csr -o json | \
   jq -r '.items[] | select(.status == {} ) | .metadata.name' | \
   xargs --no-run-if-empty oc adm certificate approve
+
+# List Rook Ceph labels on nodes
+oc get node -o json | \
+  jq '.items[] | { "name": .metadata.name, "labels": .metadata.labels | with_entries(select(.key | in({"topology.kubernetes.io/region":1, "topology.kubernetes.io/zone":1, "topology.rook.io/datacenter":1, "topology.rook.io/room":1, "topology.rook.io/pod":1, "topology.rook.io/pdu":1, "topology.rook.io/row":1, "topology.rook.io/rack":1, "topology.rook.io/chassis":1})))}'
 
 % lin
 
