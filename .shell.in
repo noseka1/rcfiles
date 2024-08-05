@@ -35,11 +35,6 @@ alias ...='cd ../..'
 alias l='ls -l'
 alias la='ls -al'
 alias dquilt="quilt --quiltrc=$HOME/.quiltrc-dpkg"
-alias hyaml='pygmentize -l yaml -O style=emacs'
-alias hjson='pygmentize -l json -O style=emacs'
-alias  hxml='pygmentize -l xml -O style=emacs'
-alias   hsh='pygmentize -l sh -O style=emacs'
-alias hdiff='pygmentize -l diff -O style=emacs'
 alias grep='grep --color'
 alias lg=lazygit
 alias kns=kubens
@@ -48,6 +43,15 @@ alias sshns='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias diff='diff --color'
 alias rgni='rg --no-ignore --hidden'
 alias fdni='fd --no-ignore --hidden'
+
+# If bat is available then define several syntax highlighting aliases
+if command -v bat >/dev/null 2>&1; then
+  alias hyaml='bat --language yaml'
+  alias hjson='bat --language json'
+  alias  hxml='bat --language xml'
+  alias   hsh='bat --language sh'
+  alias hdiff='bat --language diff'
+fi
 
 # If kubecolor is available then alias oc -> kubecolor
 if command -v kubecolor >/dev/null 2>&1; then
