@@ -6,7 +6,7 @@ oc get events --sort-by metadata.creationTimestamp
 # Watch Kubernetes events in all namespaces
 oc get events --all-namespaces --sort-by metadata.creationTimestamp --watch
 
-# List ALL Kubernetes resources in the current namespace
+# List ALL Kubernetes resources in the current namespace (unsorted)
 kubectl api-resources \
   --verbs=list \
   --namespaced \
@@ -21,6 +21,21 @@ kubectl api-resources \
       --ignore-not-found \
       --no-headers \
       2>/dev/null
+
+# List ALL Kubernetes resources in the current namespace (sorted by creationTimestamp)
+kubectl api-resources \
+  --verbs=list \
+  --namespaced \
+  -o name \
+  2>/dev/null | \
+  grep -v events.events.k8s.io | \
+  grep -v events | \
+  grep -v packagemanifests.packages.operators.coreos.com | \
+  grep -v pods.metrics.k8s.io | \
+  while read resource; do
+    echo "{\"resource\": \"$resource\"}"
+    kubectl get --output json $resource 2>/dev/null
+  done | jq --slurp --raw-output '. | to_entries | reduce .[] as $item (null; if $item.key % 2 == 0 then . + [ $item ] else .[-1].value += {"items": [ .[-1].value.resource as $res | $item.value.items[].metadata | { name: ($res + "/" + .name), ts: .creationTimestamp }]} end) | [ .[].value.items[] ] | sort_by(.ts) | .[] | .ts + " " + .name '
 
 # Remove finalizers from ALL Kubernetes resources in the current namespace that were marked for deletion
 kubectl api-resources --verbs=list --namespaced -o name 2>/dev/null | \
