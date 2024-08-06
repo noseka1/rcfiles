@@ -36,6 +36,7 @@ set laststatus=2
 "-- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline (lightline plugin)
 set noshowmode
 "prevent No write since last change (add ! to override) when switching from buffer with unsaved changes
+"apparently netrw does not play well with this setting, see also https://vi.stackexchange.com/a/9180
 set hidden
 "show vim tab line even if only one file is open, needed to display lightline-bufferline
 set showtabline=2
