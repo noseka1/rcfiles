@@ -70,6 +70,9 @@ set history=1000
 set undodir=$HOME/.vim/undo
 set undofile
 
+"put all swap files in the same place
+set directory^=$HOME/.vim/swap//
+
 "highlight the current line
 set cursorline
 highlight CursorLine cterm=NONE ctermbg=233
