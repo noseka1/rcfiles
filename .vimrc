@@ -104,8 +104,6 @@ nnoremap <leader>c :nohl<CR>
 "see also https://stackoverflow.com/questions/3806629/yank-a-region-in-vim-without-the-cursor-moving-to-the-top-of-the-block
 vmap y ygv<Esc>
 
-"colorscheme lunaperche
-
 "minpac: A minimal package manager for Vim 8, https://github.com/k-takata/minpac
 function! PackInit() abort
   packadd minpac
@@ -118,10 +116,12 @@ function! PackInit() abort
   call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'279e1ec068f526e985ee7e3f62a71f083bbe0196'})
   call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
   call minpac#add('https://github.com/frazrepo/vim-rainbow',              {'commit':'a6c7fd5a2b0193b5dbd03f62ad820b521dea3290'})
-  call minpac#add('https://github.com/pedrohdz/vim-yaml-folds',           {'commit':'890ccd8e5370808d569e96dbb06cbeca2cf5993a'})
   call minpac#add('https://github.com/chrisbra/Colorizer',                {'commit':'7db0e0dd8adfccab35655f5b6db805caa0fef49a'})
   call minpac#add('https://github.com/noseka1/vim-yaml-folds',            {'commit':'master'})
+  call minpac#add('https://github.com/tomasiser/vim-code-dark',           {'commit':'4624dc223bf574aa9a731c2383c579847303c380'})
 endfunction
+
+colorscheme codedark
 
 "use darker color for indent lines
 let g:indentLine_color_term = 236
@@ -172,7 +172,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 "indent guides colors
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=233
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=235
 
 "start editing a file with all folds open
 set foldlevelstart=99
