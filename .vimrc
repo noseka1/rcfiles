@@ -1,107 +1,107 @@
-"configuration based on:
+"Configuration based on:
 "https://www.shortcutfoo.com/blog/top-50-vim-configuration-options/
 "https://dougblack.io/words/a-good-vimrc.html
 "https://danielmiessler.com/blog/vim-configuration-update-2019-version/
 
-"copy indent from current line when starting a new line
+"Copy indent from current line when starting a new line
 set autoindent
-"use the appropriate number of spaces to insert a <Tab>
+"Use the appropriate number of spaces to insert a <Tab>
 set expandtab
-"round indent to multiple of 'shiftwidth', applies to > and < commands
+"Round indent to multiple of 'shiftwidth', applies to > and < commands
 set shiftround
-"number of spaces to use for each step of (auto)indent
+"Number of spaces to use for each step of (auto)indent
 set shiftwidth=2
-"when on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'
+"When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'
 set smarttab
-"number of spaces that a <Tab> in the file counts for
+"Number of spaces that a <Tab> in the file counts for
 set tabstop=2
-"do smart autoindenting when starting a new line.  Works for C-like programs, but can also be used for other languages
+"Do smart autoindenting when starting a new line.  Works for C-like programs, but can also be used for other languages
 set smartindent
-"check the indent settings with:
+"Check the indent settings with:
 ":verbose set autoindent? smartindent? cindent? cinkeys? indentexpr?
 
-"search options
+"Search options
 
-"when there is a previous search pattern, highlight all its matches
+"When there is a previous search pattern, highlight all its matches
 set hlsearch
-"while typing a search command, show where the pattern, as it was typed so far, matches.
+"While typing a search command, show where the pattern, as it was typed so far, matches.
 set incsearch
 
-"user interface options
+"User interface options
 
-"enable syntax highlighting
+"Enable syntax highlighting
 syntax on
-"always show the status line (lightline plugin)
+"Always show the status line (lightline plugin)
 set laststatus=2
 "-- INSERT -- is unnecessary anymore because the mode information is displayed in the statusline (lightline plugin)
 set noshowmode
-"prevent No write since last change (add ! to override) when switching from buffer with unsaved changes
-"apparently netrw does not play well with this setting, see also https://vi.stackexchange.com/a/9180
+"Prevent No write since last change (add ! to override) when switching from buffer with unsaved changes
+"Apparently netrw does not play well with this setting, see also https://vi.stackexchange.com/a/9180
 set hidden
-"show vim tab line even if only one file is open, needed to display lightline-bufferline
+"Show vim tab line even if only one file is open, needed to display lightline-bufferline
 set showtabline=2
-"always show the current line and column number
+"Always show the current line and column number
 set ruler
-"display command line's tab complete options as a menu
+"Display command line's tab complete options as a menu
 set wildmenu
 "When more than one match, list all matches and complete till longest common string
 set wildmode=list:longest
-"show line numbers on the sidebar
+"Show line numbers on the sidebar
 set number
-"use visual bell instead of beeping
+"Use visual bell instead of beeping
 set visualbell
-"set the window's title, reflecting the file currently being edited
+"Set the window's title, reflecting the file currently being edited
 set title
-"use colors that suit a dark background
+"Use colors that suit a dark background
 set background=dark
-"enable mouse support
+"Enable mouse support
 set mouse=
-"make the mouse selection highlighting work in Alacritty, see also: https://github.com/alacritty/alacritty/issues/803
+"Make the mouse selection highlighting work in Alacritty, see also: https://github.com/alacritty/alacritty/issues/803
 set ttymouse=sgr
-"use X clipboard, auto-copy selection to clipboard
+"Use X clipboard, auto-copy selection to clipboard
 set clipboard=unnamedplus
-"check that the clipboard is available with (if the output is 0, it's not available, if it's 1, it is available):
+"Check that the clipboard is available with (if the output is 0, it's not available, if it's 1, it is available):
 ":echo has('clipboard')
 
-"undo options
+"Undo options
 
-"increase the undo limit
+"Increase the undo limit
 set history=1000
-"persistent undo
+"Persistent undo
 set undodir=$HOME/.vim/undo
 set undofile
 
-"put all swap files in the same place
+"Put all swap files in the same place
 set directory^=$HOME/.vim/swap//
 
-"highlight the current line
+"Highlight the current line
 set cursorline
 highlight CursorLine cterm=NONE ctermbg=233
 
-"misc options
+"Misc options
 
-"allow backspacing over indention, line breaks and insertion start
+"Allow backspacing over indention, line breaks and insertion start
 set backspace=indent,eol,start
-"automatically re-read files if unmodified inside Vim
+"Automatically re-read files if unmodified inside Vim
 set autoread
-"when a bracket is inserted, briefly jump to the matching one
+"When a bracket is inserted, briefly jump to the matching one
 set showmatch
 
-"jump to the last position when reopening a file
+"Jump to the last position when reopening a file
 autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-"load indentation rules and plugins according to the detected filetype
+"Load indentation rules and plugins according to the detected filetype
 filetype plugin indent on
 
-"toggle paste mode
+"Toggle paste mode
 nnoremap <leader>p :set paste!<CR>
-"toggle visual aids
+"Toggle visual aids
 nnoremap <leader>v :set number!<CR>:IndentGuidesToggle<CR>:GitGutterSignsToggle<CR>
-"clear highlighting
+"Clear highlighting
 nnoremap <leader>c :nohl<CR>
 
-"don't move the cursor after yanking in visual mode
-"see also https://stackoverflow.com/questions/3806629/yank-a-region-in-vim-without-the-cursor-moving-to-the-top-of-the-block
+"Don't move the cursor after yanking in visual mode, see also:
+"https://stackoverflow.com/questions/3806629/yank-a-region-in-vim-without-the-cursor-moving-to-the-top-of-the-block
 vmap y ygv<Esc>
 
 "minpac: A minimal package manager for Vim 8, https://github.com/k-takata/minpac
@@ -123,7 +123,7 @@ endfunction
 
 colorscheme codedark
 
-"show the list of buffers
+"Show the list of buffers
 let g:lightline#bufferline#show_number  = 2
 let g:lightline#bufferline#shorten_path = 0
 let g:lightline#bufferline#unnamed      = '[No Name]'
@@ -147,34 +147,34 @@ nmap <leader>0 <Plug>lightline#bufferline#go(10)
 nmap <leader>f :Files<CR>
 nmap <leader>b :Buffers<CR>
 
-"mapping selecting mappings
+"Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
 omap <leader><tab> <plug>(fzf-maps-o)
 
-"insert mode completion
+"Insert mode completion
 imap <c-x><c-k> <plug>(fzf-complete-word)
 imap <c-x><c-f> <plug>(fzf-complete-path)
 imap <c-x><c-l> <plug>(fzf-complete-line)
 
-"span the entire screen
+"Span the entire screen
 let g:fzf_layout = {'left': '100%'}
-"toggle preview window using Ctrl-/
+"Toggle preview window using Ctrl-/
 let g:fzf_preview_window = ['right:70%', 'ctrl-/']
 
-"enable rainbow-colored parenthesis
+"Enable rainbow-colored parenthesis
 let g:rainbow_active = 1
 let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 
-"indent guides colors
+"Indent guides colors
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=235
 
-"start editing a file with all folds open
+"Start editing a file with all folds open
 set foldlevelstart=99
 
-"unfold to a specific level
+"Unfold to a specific level
 nmap z0 :set foldlevel=0<CR>
 nmap z1 :set foldlevel=1<CR>
 nmap z2 :set foldlevel=2<CR>
@@ -186,7 +186,7 @@ nmap z7 :set foldlevel=7<CR>
 nmap z8 :set foldlevel=7<CR>
 nmap z9 :set foldlevel=9<CR>
 
-"indention options
+"Indention options for varous languages
 autocmd FileType go setlocal noexpandtab
 autocmd FileType yaml setlocal indentkeys-=0#
 autocmd FileType json setlocal foldmethod=syntax foldtext=yamlfolds#JsonFoldText()
