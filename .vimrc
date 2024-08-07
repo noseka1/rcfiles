@@ -123,9 +123,6 @@ endfunction
 
 colorscheme codedark
 
-"use darker color for indent lines
-let g:indentLine_color_term = 236
-
 "show the list of buffers
 let g:lightline#bufferline#show_number  = 2
 let g:lightline#bufferline#shorten_path = 0
