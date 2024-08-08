@@ -121,7 +121,8 @@ function! PackInit() abort
   call minpac#add('https://github.com/tomasiser/vim-code-dark',           {'commit':'4624dc223bf574aa9a731c2383c579847303c380'})
 endfunction
 
-colorscheme codedark
+"Try to load colorscheme, ignore if it doesn't exist
+silent! colorscheme codedark
 
 "Show the list of buffers
 let g:lightline#bufferline#show_number  = 2
