@@ -66,11 +66,11 @@ fi
 
 # Use vim as pager (less)
 function vim_highlighted_yaml_pager() {
-  vim +'set buftype=nofile' +'noremap q :q<CR>' +'ColorHighlight' +'call ActivateYamlFolds()' +'set foldlevel=99' -
+  vim +'set buftype=nofile' +'noremap q :q<CR>' +'set foldlevel=99' +'ColorHighlight' +'call ActivateYamlFolds()' -
 }
 
 function vim_plain_yaml_pager() {
-  vim +'set buftype=nofile' +'noremap q :q<CR>' +'set filetype=yaml' +'set foldlevel=99' -
+  vim +'set buftype=nofile' +'noremap q :q<CR>' +'set foldlevel=99' +'set filetype=yaml' -
 }
 
 # oc get yaml
