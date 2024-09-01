@@ -93,6 +93,9 @@ oc get csr -o json | \
 oc get node -o json | \
   jq '[.items[] | { "name": .metadata.name, "labels": .metadata.labels | { "topology.kubernetes.io/region", "topology.kubernetes.io/zone", "topology.rook.io/datacenter", "topology.rook.io/room", "topology.rook.io/pod", "topology.rook.io/pdu", "topology.rook.io/row", "topology.rook.io/rack", "topology.rook.io/chassis" } | with_entries(select(.value)) }]'
 
+# Delete all PVs belonging to a localvolumeset
+oc delete pv -l storage.openshift.com/owner-kind=LocalVolumeSet,storage.openshift.com/owner-name=myvolumesetX
+
 % lin
 
 # Jump into ODF tools pod
