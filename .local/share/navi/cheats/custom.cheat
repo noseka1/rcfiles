@@ -121,6 +121,9 @@ sed 's/\\x1b\\[[0-9;]*m//g'
 # Removes all "leaf" packages from the system that were originally installed as dependencies of user-installed packages, but which are no longer required by any such package
 dnf autoremove
 
+# Find all available package versions
+dnf search --showduplicates <pkg_name>
+
 # Register the system to the Red Hat Customer Portal and attach subscriptions
 subscription-manager register && subscription-manager attach --pool 8a85f98460bfb0470160c2ff22f13e47
 
