@@ -108,8 +108,14 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 
-export VISUAL=vi
-export EDITOR=vi
+# If vim is available then use vim as a default editor
+if command -v vim >/dev/null 2>&1; then
+  export VISUAL=vim
+  export EDITOR=vim
+else
+  export VISUAL=vi
+  export EDITOR=vi
+fi
 
 # Disable systemctl's auto-paging feature
 export SYSTEMD_PAGER=
