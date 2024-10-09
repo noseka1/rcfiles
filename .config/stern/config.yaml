@@ -1,2 +1,4 @@
-tail: 10
+# A new --diff-container flag allows displaying different colors for different containers. This is useful when you want to debug logs for multiple containers in the same pod.
+diff-container: true
+tail: 0
 max-log-requests: 99999
