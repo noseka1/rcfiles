@@ -19,6 +19,8 @@ set tabstop=2
 set smartindent
 "Check the indent settings with:
 ":verbose set autoindent? smartindent? cindent? cinkeys? indentexpr?
+"Always let some lines after the cursor
+set scrolloff=10
 
 "Search options
 
