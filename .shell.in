@@ -4,6 +4,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
+# Enable colored output for the ip command
+alias ip='ip --color=auto'
+
 # Back up a file
 bk() {
   local backup_name="$1.backup.$(date --iso-8601=seconds)"
