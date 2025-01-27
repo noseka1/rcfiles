@@ -117,7 +117,7 @@ function! PackInit() abort
   call minpac#add('https://github.com/junegunn/fzf',                      {'commit':'c4a9ccd6afc3698a57a6b938ebba6d85238033e2'})
   call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'279e1ec068f526e985ee7e3f62a71f083bbe0196'})
   call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
-  call minpac#add('https://github.com/frazrepo/vim-rainbow',              {'commit':'a6c7fd5a2b0193b5dbd03f62ad820b521dea3290'})
+  call minpac#add('https://github.com/luochen1990/rainbow',               {'commit':'76ca1a20aa42edb5c65c19029968aad4625790dc'})
   call minpac#add('https://github.com/chrisbra/Colorizer',                {'commit':'7db0e0dd8adfccab35655f5b6db805caa0fef49a'})
   call minpac#add('https://github.com/noseka1/vim-yaml-folds',            {'commit':'master'})
   call minpac#add('https://github.com/tomasiser/vim-code-dark',           {'commit':'4624dc223bf574aa9a731c2383c579847303c380'})
