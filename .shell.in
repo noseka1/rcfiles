@@ -54,6 +54,7 @@ if command -v bat >/dev/null 2>&1; then
   alias  hxml='bat --language xml'
   alias   hsh='bat --language sh'
   alias hdiff='bat --language diff'
+  alias  hini='bat --language ini'
 fi
 
 # If kubecolor is available then alias oc -> kubecolor
