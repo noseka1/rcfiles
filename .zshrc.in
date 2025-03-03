@@ -77,9 +77,6 @@ zinit load zdharma-continuum/history-search-multi-word
 zinit light zsh-users/zsh-autosuggestions
 zinit light amyreese/zsh-titles
 
-zinit ice as"completion"
-zinit snippet https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/ripgrep/_ripgrep
-
 zinit ice as"completion" mv"git-completion.zsh -> _git"
 zinit snippet https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 
