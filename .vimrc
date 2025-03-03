@@ -124,6 +124,7 @@ function! PackInit() abort
 endfunction
 
 "Try to load colorscheme, ignore if it doesn't exist
+"If the colors seem to be wrong, make sure you have a terminal with 256 colors. E.g. set terminal to xterm-256color in MobaXterm
 silent! colorscheme codedark
 
 "Show the list of buffers
