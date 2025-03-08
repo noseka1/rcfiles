@@ -93,6 +93,23 @@ function ocysl() {
   oc "$@" --output yaml | ksd | vim_yaml_pager
 }
 
+# Execute command on OpenShift cluster node. Example usage:
+# oc_for_node master1.mycluster5.example.com journalctl -b > output.txt
+function oc_for_node() {
+  local node=$1
+  shift
+  command oc debug -n default node/$node -- chroot /host "$@"
+}
+
+# Execute command on each OpenShift cluster node. Example usage:
+# oc_foreach_node uptime
+function oc_foreach_node() {
+  oc get node -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | while read node; do
+    echo NODE $node
+    oc_for_node $node "$@"
+  done
+}
+
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
 
