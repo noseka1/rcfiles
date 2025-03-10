@@ -96,6 +96,9 @@ oc get node -o json | \
 # Delete all PVs belonging to a localvolumeset
 oc delete pv -l storage.openshift.com/owner-kind=LocalVolumeSet,storage.openshift.com/owner-name=myvolumesetX
 
+# Fix unexpected on-disk state by forcing machineconfig to overwrite the disk state
+touch /run/machine-config-daemon-force
+
 % lin
 
 # Jump into ODF tools pod
