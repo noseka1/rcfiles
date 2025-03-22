@@ -44,7 +44,7 @@ git fetch
 git checkout master
 
 # Include rcfiles definitions in ~/.bashrc
-if ! grep '^source .*bashrc\.in' "$HOME/.bashrc"; then
+if test -w "$HOME/.bashrc" && ! grep --quiet '^source .*bashrc\.in' "$HOME/.bashrc"; then
   echo 'source $HOME/.bashrc.in' >> "$HOME/.bashrc"
 fi
 
