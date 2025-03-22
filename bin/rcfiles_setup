@@ -56,7 +56,7 @@ fi
 
 # Configure colorful prompt
 cat >> "$HOME/.zshrc" <<EOF
-PS1='%K{green}%B%F{white}[%n@%m %~%f]$%k%b '
+PS1='%K{blue}%B%F{white}[%n@%m %~%f]$%k%b '
 EOF
 
 # Include rcfiles definitions in ~/.zshrc
