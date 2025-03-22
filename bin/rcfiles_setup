@@ -54,6 +54,11 @@ if [ ! -d "$HOME/.local/share/zinit" ]; then
   sh -c "NO_INPUT=y $(curl -fsSL https://git.io/zinit-install)"
 fi
 
+# Configure colorful prompt
+cat >> "$HOME/.zshrc" <<EOF
+PS1='%K{green}%B%F{white}[%n@%m %~%f]$%k%b '
+EOF
+
 # Include rcfiles definitions in ~/.zshrc
 if ! grep '^source .*zshrc\.in' "$HOME/.zshrc"; then
   echo 'source $HOME/.zshrc.in' >> "$HOME/.zshrc"
