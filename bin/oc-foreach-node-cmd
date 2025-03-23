@@ -3,6 +3,8 @@
 # Execute command on each OpenShift cluster node. Example usage:
 # oc_foreach_node_cmd uptime
 
+set -euo pipefail
+
 if [ "$#" -ne 1 ]; then
   echo Usage: $0 \<COMMAND\>...
   exit 1

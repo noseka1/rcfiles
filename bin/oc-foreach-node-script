@@ -3,6 +3,8 @@
 # Execute script on each OpenShift cluster node. Example usage:
 # oc_foreach_node_script myscript.sh
 
+set -euo pipefail
+
 if [ "$#" -ne 1 ]; then
   echo Usage: $0 \<SCRIPT\>
   exit 1

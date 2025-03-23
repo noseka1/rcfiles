@@ -3,6 +3,8 @@
 # Execute command on OpenShift cluster node. Example usage:
 # oc_for_node_cmd master1.mycluster5.example.com journalctl -b > output.txt
 
+set -euo pipefail
+
 if [ "$#" -ne 2 ]; then
   echo Usage: $0 \<NODE\> \<COMMAND\>...
   exit 1
