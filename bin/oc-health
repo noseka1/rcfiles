@@ -24,7 +24,9 @@ oc get machineconfigpools.machineconfiguration.openshift.io
 echo
 echo "### Cluster $cluster Prometheus alerts"
 echo
-oc rsh alertmanager-main-0 \
+oc rsh \
+  -n openshift-monitoring \
+  alertmanager-main-0 \
   amtool alert query --alertmanager.url http://localhost:9093 --active --output json | \
     jq -c | jq '[.[] |
       select(.labels.severity == "warning" or .labels.severity == "critical") |
