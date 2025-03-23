@@ -1,0 +1,32 @@
+#!/bin/bash
+
+cluster=$(oc whoami --show-server | sed 's/https:\/\/api.\(.*\):6443/\1/')
+
+echo
+echo "### Cluster $(oc whoami --show-server)"
+echo
+
+echo
+echo "### Cluster $cluster operators"
+echo
+oc get clusteroperators.config.openshift.io
+
+echo
+echo "### Cluster $cluster daemonsets"
+echo
+oc get daemonsets.apps --all-namespaces
+
+echo
+echo "### Cluster $cluster machineconfigpools"
+echo
+oc get machineconfigpools.machineconfiguration.openshift.io
+
+echo
+echo "### Cluster $cluster Prometheus alerts"
+echo
+oc rsh alertmanager-main-0 \
+  amtool alert query --alertmanager.url http://localhost:9093 --active --output json | \
+    jq -c | jq '[.[] |
+      select(.labels.severity == "warning" or .labels.severity == "critical") |
+      {alertname: .labels.alertname, severity: .labels.severity, summary: .annotations.summary, description: .annotations.description}] |
+      group_by(.alertname)'
