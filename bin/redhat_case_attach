@@ -1,0 +1,151 @@
+#!/bin/bash
+
+# This scripts uploads attachments (files) to a Red Hat Support case at access.redhat.com/support/cases.
+# It requires Red Hat customer portal credentials for authentication.
+
+# Documentation used to create this script:
+#
+# Customer Portal Integration Guide
+# https://docs.redhat.com/en/documentation/red_hat_customer_portal/1/html-single/customer_portal_integration_guide
+#
+# Getting started with Red Hat APIs
+# https://access.redhat.com/articles/3626371
+#
+# Case Management API
+# https://developers.redhat.com/api-catalog/api/case-management
+
+set -euo pipefail
+
+if [ "$#" -lt 2 ]; then
+  echo "Usage: $0 [options...] <CASE_NUMBER> <FILE>..."
+  echo "-c, --checksum                        Verify attachment checksum. Takes some time for very large attachments. Defaults to false"
+  echo "-d, --description <description>       Add description for the uploaded attachment"
+  echo "-p, --private                         Upload file as private attachment"
+  echo "-u, --user-confirmation <true, false  Require user to confirm the case summary. Defaults to true"
+  exit 1
+fi
+
+checksum=false
+description=""
+private=""
+confirm=true
+casenum=""
+files=()
+while [ $# -gt 0 ];
+do
+  case $1 in
+    --checksum|-c)
+      checksum=true
+      ;;
+    --description|-d)
+      shift
+      description=$1
+      ;;
+    --private|-p)
+      private="?private=true"
+      ;;
+    --user-confirmation|-u)
+      shift
+      confirm=$1
+      ;;
+    *)
+      if [ -z "$casenum" ]; then
+        casenum=$1
+      else
+        files=("${files[@]}" "$1")
+      fi
+      ;;
+  esac
+ shift
+done
+
+# Ask for user's offline token
+offline_token=${RHSM_API_TOKEN:-}
+if [ -z "$offline_token" ]; then
+  echo "Enter offline token (you can download it at https://access.redhat.com/management/api):"
+  read -s offline_token
+fi
+
+# Using the offline token, obtain access token as per documentation:
+# Getting started with Red Hat APIs, https://access.redhat.com/articles/3626371
+sso_response=$(
+  curl \
+    -X POST \
+    --data grant_type=refresh_token \
+    --data client_id=rhsm-api \
+    --data refresh_token="$offline_token" \
+    --write-out '%{json}' \
+    --silent \
+    https://sso.redhat.com/auth/realms/redhat-external/protocol/openid-connect/token
+)
+
+access_token=$(echo "$sso_response" | jq --slurp --raw-output '.[0].access_token')
+
+if [ "$access_token" = null ]; then
+  echo Response from https://sso.redhat.com:
+  echo "$sso_response" | jq --slurp '.[0]'
+  echo Error getting access token. Is the offline token you got from https://access.redhat.com/management/api still valid?
+  exit 1
+fi
+
+# Retrieve the support case
+case_details=$(
+  curl \
+    -H "Authorization: Bearer $access_token" \
+    --write-out '%{json}' \
+    --silent \
+    https://api.access.redhat.com/support/v1/cases/$casenum
+)
+
+case_summary=$(echo "$case_details" | jq --slurp --raw-output '.[0].summary')
+
+if [ "$case_summary" = null ]; then
+  echo Cannot lookup the case number $casenum. Response from https://api.access.redhat.com:
+  echo "$case_details" | jq --slurp '.[0]'
+  exit 1
+fi
+
+# Confirm with the user that the case summary looks good
+if [ "$confirm" = true ]; then
+  echo
+  echo Case $casenum summary: \"$case_summary\"
+  echo
+  read -p "Is the the correct case (y/n)? " yn
+  if [ "$yn" != y ]; then
+    echo Exiting ...
+    exit
+  fi
+fi
+
+# Upload file attachments in a loop
+for file in "${files[@]}"; do
+  echo
+  echo Uploading attachment "$file"
+  upload_response=$(
+    curl \
+      -X POST \
+      -H "Authorization: Bearer $access_token" \
+      --form-string description="$description" \
+      --form "file=@$file" \
+      --write-out '%{json}' \
+      https://api.access.redhat.com/support/v1/cases/$casenum/attachments$private
+  )
+  echo "$upload_response" | jq --slurp '.[0]'
+  upload_checksum=$(echo "$upload_response" | jq --slurp --raw-output '.[0][0].checksum')
+  if [ "$upload_checksum" = null ]; then
+    echo Unexpected response, cannot find a checksum in the response. Exiting ...
+    exit 1
+  fi
+  # Compare the file checksums
+  if [ "$checksum" = true ]; then
+    file_checksum=$(sha256sum "$file" | cut -d ' ' -f 1)
+    if [ "$file_checksum" = "$upload_checksum" ]; then
+      echo Checksum $file_checksum matches
+    else
+      echo "Checksum mismatch!"
+      echo "    File checksum: $file_checksum"
+      echo "Uploaded checksum: $upload_checksum"
+      exit 1
+    fi
+  fi
+done
