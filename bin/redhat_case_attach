@@ -97,9 +97,9 @@ case_details=$(
     https://api.access.redhat.com/support/v1/cases/$casenum
 )
 
-case_summary=$(echo "$case_details" | jq --slurp --raw-output '.[0].summary')
+case_summary=$(echo "$case_details" | jq --slurp --raw-output '.[0].summary' 2>/dev/null)
 
-if [ "$case_summary" = null ]; then
+if [ $? != 0 ]; then
   echo Cannot lookup the case number $casenum. Response from https://api.access.redhat.com:
   echo "$case_details" | jq --slurp '.[0]'
   exit 1
@@ -131,8 +131,8 @@ for file in "${files[@]}"; do
       https://api.access.redhat.com/support/v1/cases/$casenum/attachments$private
   )
   echo "$upload_response" | jq --slurp '.[0]'
-  upload_checksum=$(echo "$upload_response" | jq --slurp --raw-output '.[0][0].checksum')
-  if [ "$upload_checksum" = null ]; then
+  upload_checksum=$(echo "$upload_response" | jq --slurp --raw-output '.[0][0].checksum' 2>/dev/null)
+  if [ $? != 0 ]; then
     echo Unexpected response, cannot find a checksum in the response. Exiting ...
     exit 1
   fi
