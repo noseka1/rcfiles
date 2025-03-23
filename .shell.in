@@ -93,61 +93,6 @@ function ocysl() {
   oc "$@" --output yaml | ksd | vim_yaml_pager
 }
 
-# Execute command on OpenShift cluster node. Example usage:
-# oc_for_node_cmd master1.mycluster5.example.com journalctl -b > output.txt
-function oc_for_node_cmd() {
-  if [ "$#" -ne 2 ]; then
-    echo Usage: $0 \<NODE\> \<COMMAND\>...
-    return 1
-  fi
-  local node=$1
-  shift
-  command oc debug -n default node/$node -- chroot /host "$@"
-}
-
-# Execute a script on OpenShift cluster node. Example usage:
-# oc_for_node_script master1.mycluster5.example.com myscript.sh
-function oc_for_node_script() {
-  if [ "$#" -ne 2 ]; then
-    echo Usage: $0 \<NODE\> \<SCRIPT\>
-    return 1
-  fi
-  local node=$1
-  local script=$2
-  command oc adm copy-to-node --copy "$script"=/tmp/"$script" node/$node
-  command oc debug -n default node/$node -- chroot /host /bin/sh -c "
-    chmod 755 /tmp/"$script"
-    /tmp/"$script"
-    rm /tmp/"$script"
-  "
-}
-
-# Execute command on each OpenShift cluster node. Example usage:
-# oc_foreach_node_cmd uptime
-function oc_foreach_node_cmd() {
-  if [ "$#" -ne 1 ]; then
-    echo Usage: $0 \<COMMAND\>...
-    return 1
-  fi
-  oc get node -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | while read node; do
-    echo NODE $node
-    oc_for_node_cmd $node "$@"
-  done
-}
-
-# Execute script on each OpenShift cluster node. Example usage:
-# oc_foreach_node_script myscript.sh
-function oc_foreach_node_script() {
-  if [ "$#" -ne 1 ]; then
-    echo Usage: $0 \<SCRIPT\>
-    return 1
-  fi
-  oc get node -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | while read node; do
-    echo NODE $node
-    oc_for_node_script $node "$@"
-  done
-}
-
 export DEBFULLNAME="Ales Nosek"
 export DEBEMAIL="ales.nosek@gmail.com"
 

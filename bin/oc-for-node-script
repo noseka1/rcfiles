@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Execute a script on OpenShift cluster node. Example usage:
+# oc_for_node_script master1.mycluster5.example.com myscript.sh
+
+if [ "$#" -ne 2 ]; then
+  echo Usage: $0 \<NODE\> \<SCRIPT\>
+  exit 1
+fi
+node=$1
+script=$2
+command oc adm copy-to-node --copy "$script"=/tmp/"$script" node/$node
+command oc debug -n default node/$node -- chroot /host /bin/sh -c "
+  chmod 755 /tmp/"$script"
+  /tmp/"$script"
+  rm /tmp/"$script"
+"

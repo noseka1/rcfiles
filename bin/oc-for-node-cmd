@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Execute command on OpenShift cluster node. Example usage:
+# oc_for_node_cmd master1.mycluster5.example.com journalctl -b > output.txt
+
+if [ "$#" -ne 2 ]; then
+  echo Usage: $0 \<NODE\> \<COMMAND\>...
+  exit 1
+fi
+node=$1
+shift
+command oc debug -n default node/$node -- chroot /host "$@"

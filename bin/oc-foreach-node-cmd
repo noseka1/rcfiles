@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Execute command on each OpenShift cluster node. Example usage:
+# oc_foreach_node_cmd uptime
+
+if [ "$#" -ne 1 ]; then
+  echo Usage: $0 \<COMMAND\>...
+  exit 1
+fi
+oc get node -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}' | while read node; do
+  echo NODE $node
+  oc-for-node-cmd $node "$@"
+done
