@@ -32,6 +32,11 @@ echo
 oc get virtualmachines.kubevirt.io --all-namespaces | grep -vE '( Running | Stopped )'
 
 echo
+echo "### Cluster $cluster unbound persistent volumes"
+echo
+oc get persistentvolumeclaims --all-namespaces | grep -v ' Bound '
+
+echo
 echo "### Cluster $cluster Prometheus alerts"
 echo
 
