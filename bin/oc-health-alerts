@@ -1,0 +1,15 @@
+#!/bin/bash
+
+cluster=$(oc whoami --show-server | sed 's/https:\/\/api.\(.*\):6443/\1/')
+
+echo
+echo "### Cluster $cluster Prometheus alerts"
+echo
+oc rsh \
+  -n openshift-monitoring \
+  alertmanager-main-0 \
+  amtool alert query --alertmanager.url http://localhost:9093 --active --output json | \
+    jq -c | jq '[.[] |
+      select(.labels.severity == "warning" or .labels.severity == "critical") |
+      {alertname: .labels.alertname, severity: .labels.severity, summary: .annotations.summary, description: .annotations.description}] |
+      group_by(.alertname)'

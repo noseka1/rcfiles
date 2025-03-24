@@ -24,11 +24,17 @@ oc get machineconfigpools.machineconfiguration.openshift.io
 echo
 echo "### Cluster $cluster Prometheus alerts"
 echo
-oc rsh \
-  -n openshift-monitoring \
-  alertmanager-main-0 \
-  amtool alert query --alertmanager.url http://localhost:9093 --active --output json | \
-    jq -c | jq '[.[] |
-      select(.labels.severity == "warning" or .labels.severity == "critical") |
-      {alertname: .labels.alertname, severity: .labels.severity, summary: .annotations.summary, description: .annotations.description}] |
-      group_by(.alertname)'
+
+alert_count=$(
+  oc rsh \
+    -n openshift-monitoring \
+    alertmanager-main-0 \
+    amtool alert query --alertmanager.url http://localhost:9093 --active --output json | \
+      jq -c | jq '[.[] | select(.labels.severity == "warning" or .labels.severity == "critical")] | length'
+)
+
+if [ $alert_count -gt 0 ]; then
+  echo There are $alert_count alerts firing with severity warning or critical. Type \'oc health alerts\' for details.
+else
+  echo There are no warning or critical alerts firing.
+fi
