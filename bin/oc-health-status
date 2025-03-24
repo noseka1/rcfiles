@@ -24,7 +24,12 @@ oc get machineconfigpools.machineconfiguration.openshift.io
 echo
 echo "### Cluster $cluster pods in bad state"
 echo
-oc get po --all-namespaces  | grep -v ' Running ' | grep -v ' Completed '
+oc get pod --all-namespaces  | grep -vE '( Running | Completed )'
+
+echo
+echo "### Cluster $cluster virtual machines in bad state"
+echo
+oc get virtualmachines.kubevirt.io --all-namespaces | grep -vE '( Running | Stopped )'
 
 echo
 echo "### Cluster $cluster Prometheus alerts"
