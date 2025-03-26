@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Display basic info on OpenShift cluster resources
+# oc-health_status
+
+set -euo pipefail
+
 cluster=$(oc whoami --show-server | sed 's/https:\/\/api.\(.*\):6443/\1/')
 
 echo
@@ -29,7 +34,7 @@ oc get pod --all-namespaces  | grep -vE '( Running | Completed )'
 echo
 echo "### Cluster $cluster virtual machines in bad state"
 echo
-oc get virtualmachines.kubevirt.io --all-namespaces | grep -vE '( Running | Stopped )'
+oc get virtualmachines.kubevirt.io --all-namespaces | grep -vE '( Running | Stopped )' || true
 
 echo
 echo "### Cluster $cluster unbound persistent volumes"

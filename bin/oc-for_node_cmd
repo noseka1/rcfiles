@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Execute command on OpenShift cluster node. Example usage:
-# oc_for_node_cmd master1.mycluster5.example.com journalctl -b > output.txt
+# oc-for_node_cmd master1.mycluster5.example.com journalctl -b > output.txt
 
 set -euo pipefail
 

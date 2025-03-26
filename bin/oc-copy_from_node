@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Copy file(s) from OpenShift cluster node to local file system
-# oc-copy-from-node master1.mycluster5.example.com /root/sosreport.tar.gz
+# oc-copy_from_node master1.mycluster5.example.com /root/sosreport.tar.gz
 
 set -euo pipefail
 

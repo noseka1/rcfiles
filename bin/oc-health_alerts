@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Displays Prometheus alerts firing on OpenShift cluster. Example usage:
+# oc-health_alerts
+
+set -euo pipefail
+
 cluster=$(oc whoami --show-server | sed 's/https:\/\/api.\(.*\):6443/\1/')
 
 echo
