@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Copy file(s) from OpenShift cluster node to local file system
+# oc-copy-from-node master1.mycluster5.example.com /root/sosreport.tar.gz
+
+set -euo pipefail
+
+if [ "$#" -lt 3 ]; then
+  echo Usage: $0 \<NODE\> \<FILE\>... \<TARGET_DIR\>
+  exit 1
+fi
+targetdir=${@: -1}
+set -- "${@: 1: $#-1}"
+node=$1
+shift
+files=("$@")
+
+if [ ! -d "$targetdir" ]; then
+  echo $targetdir is not a directory
+  exit 1
+fi
+
+for file in "${files[@]}"; do
+  echo
+  echo Copying file "$file"
+  checksum_remote=$(command oc debug -n default node/$node -- chroot /host sha256sum "$file" | cut -d ' ' -f 1)
+  command oc debug -n default node/$node -- chroot /host gzip --stdout "$file" | zcat > "$targetdir/$(basename "$file")"
+  checksum_local=$(sha256sum "$targetdir/$(basename "$file")" | cut -d ' ' -f 1)
+  if [ "$checksum_remote" != "$checksum_local" ]; then
+    echo "Checksum mismatch!"
+    echo "Remote file checksum: $checksum_remote"
+    echo " Local file checksum: $checksum_local"
+    exit 1
+  fi
+done
