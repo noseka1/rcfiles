@@ -120,7 +120,12 @@ fi
 # Upload file attachments in a loop
 for file in "${files[@]}"; do
   echo
-  echo Uploading attachment "$file"
+  echo Processing attachment "$file"
+  size=$(stat --printf="%s" "$file")
+  if [ "$size" -gt $(( 1024 * 1024 * 1024 )) ]; then
+    echo File "$file" is larger than 1024 MiB \(maximum allowed upload size\). Skipping ...
+    continue
+  fi
   upload_response=$(
     curl \
       -X POST \
