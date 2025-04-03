@@ -21,7 +21,9 @@ bindkey -e
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
-setopt histignorealldups
+# If a new command line being added to the history list duplicates an older one,
+# the older command is removed from the list (even if it is not the previous event).
+setopt hist_ignore_all_dups
 
 # Bash-like behavior for globbing.
 # If a pattern for filename generation has no matches, leave it unchanged in the argument list.
