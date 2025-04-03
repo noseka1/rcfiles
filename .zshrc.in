@@ -131,6 +131,10 @@ generate_completion stern --completion zsh
 generate_completion virtctl completion zsh
 generate_completion velero completion zsh
 generate_completion oc-compliance completion zsh
+generate_completion helm completion zsh
+generate_completion kn completion zsh
+generate_completion tkn completion zsh
+generate_completion subctl completion zsh
 
 # Make oc completion work for wrapper functions oc, ocy, ocyl, ...
 # See also https://unix.stackexchange.com/questions/553940/how-to-write-zsh-completion-function-for-wrapper-commands
