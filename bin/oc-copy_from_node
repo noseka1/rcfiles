@@ -26,7 +26,9 @@ for file in "${files[@]}"; do
   checksum_remote=$(command oc debug -n default node/$node -- chroot /host sha256sum "$file" | cut -d ' ' -f 1)
   command oc debug -n default node/$node -- chroot /host gzip --stdout "$file" | zcat > "$targetdir/$(basename "$file")"
   checksum_local=$(sha256sum "$targetdir/$(basename "$file")" | cut -d ' ' -f 1)
-  if [ "$checksum_remote" != "$checksum_local" ]; then
+  if [ "$checksum_remote" = "$checksum_local" ]; then
+      echo Checksum $checksum_remote matches
+  else
     echo "Checksum mismatch!"
     echo "Remote file checksum: $checksum_remote"
     echo " Local file checksum: $checksum_local"
