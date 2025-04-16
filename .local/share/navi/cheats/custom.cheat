@@ -99,6 +99,9 @@ oc delete pv -l storage.openshift.com/owner-kind=LocalVolumeSet,storage.openshif
 # Fix unexpected on-disk state by forcing machineconfig to overwrite the disk state
 touch /run/machine-config-daemon-force
 
+# Clean up non-running pods
+oc get po -A | grep -E '(CrashLoopBackOff|Error|ContainerStatusUnknown|Init:ContainerStatusUnknown|Completed)' | while read ns pod unused; do oc delete pod -n $ns $pod; done
+
 % lin
 
 # Jump into ODF tools pod
