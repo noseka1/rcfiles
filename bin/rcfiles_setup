@@ -80,3 +80,8 @@ git clone \
   https://github.com/tmux-plugins/tpm \
   ~/.tmux/plugins/tpm
 TMUX_PLUGIN_MANAGER_PATH="$HOME/.tmux/plugins" ~/.tmux/plugins/tpm/bin/install_plugins
+
+# Rebuild bat cache
+if command -v bat >/dev/null 2>&1; then
+  bat cache --build
+fi
