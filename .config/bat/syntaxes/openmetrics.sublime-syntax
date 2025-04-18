@@ -1,0 +1,135 @@
+%YAML 1.2
+---
+# https://github.com/OpenObservability/OpenMetrics/blob/main/specification/OpenMetrics.md
+# http://www.sublimetext.com/docs/3/syntax.html
+name: OpenMetrics
+file_extensions: []
+first_line_match: "^# (?:HELP (?:[a-zA-Z_][a-zA-Z0-9_]*) .*|(?:TYPE|UNIT) (?:[a-zA-Z_][a-zA-Z0-9_]*)[ \t].*)$"
+scope: source.openmetrics
+
+contexts:
+
+  main:
+    - match: '^# (HELP)'
+      scope: comment.line.documentation
+      push: meta.help.name
+      captures:
+        1: keyword.operator.word
+      comment: MetricFamily HELP metadata
+    - match: '^# (TYPE)'
+      scope: comment.line.documentation
+      push: meta.type.name
+      captures:
+        1: keyword.operator.word
+      comment: MetricFamily TYPE metadata
+    - match: '^# (UNIT)'
+      scope: comment.line.documentation
+      push: meta.unit.name
+      captures:
+        1: keyword.operator.word
+      comment: MetricFamily UNIT metadata
+    - match: '^#(.*)$'
+      scope: comment.line
+      comment: Comments
+    - match: '^$'
+      scope: comment.line
+      comment: Empty line
+    - match: '(?=[a-zA-Z_])'
+      push: metric
+      comment: Metric line
+
+  meta.help.name:
+    - match: '([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*'
+      set: string.raw
+      captures:
+        1: variable.parameter
+      comment: A metric name
+
+  meta.unit.name:
+    - match: '([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*'
+      set: string.raw
+      captures:
+        1: variable.parameter
+      comment: A metric name
+
+  meta.type.name:
+    - match: '([a-zA-Z_][a-zA-Z0-9_]*)[ \t]*'
+      set: meta.type.type
+      captures:
+        1: variable.parameter
+      comment: A metric name
+  meta.type.type:
+    - match: '(unknown|gauge|counter|stateset|info|histogram|gaugehistogram|summary)$'
+      scope: constant.language
+      pop: true
+    - match: '.*$'
+      scope: invalid.illegal.unknown-value
+      pop: true
+
+  string.raw:
+   - match: '.*$'
+     scope: string.quoted.other
+     pop: true
+
+  string.quoted:
+   - match: '[ \t]*(")'
+     captures:
+       1: string.quoted
+     set: string.quoted.text
+  string.quoted.text:
+   - match: '[^\\"]+'
+     scope: string.quoted
+   - match: '\\"'
+     scope: constant.character.escape
+   - match: '\\.'
+     scope: constant.character.escape
+   - match: '"'
+     scope: string.quoted
+     pop: true
+
+  metric:
+   - match: '[a-zA-Z_][a-zA-Z0-9_]*'
+     scope: variable
+     push: metric.labels
+     comment: A metric name
+   - match: '.*$'
+     scope: invalid.illegal.unexpected
+     pop: true
+  metric.labels:
+   - match: '{'
+     scope: keyword.operator
+     set: metric.labels.inner
+   - match: '[ \t]'
+     set: metric.value
+   - match: '$'
+     pop: true
+  metric.labels.inner:
+   - match: '[\t ]*}'
+     scope: keyword.operator
+     set: metric.value
+   - match: '[ \t]*,[ \t]*'
+     scope: keyword.other
+   - match: '(?=.)'
+     push: label
+   - match: '$'
+     pop: true
+  metric.value:
+   - match: '[ \t]*([0-9\.e]*)$'
+     captures:
+       1: constant.numeric
+     pop: true
+   - match: '[ \t]*(.*)$'
+     captures:
+       1: constant.language
+     pop: true
+
+  label:
+   - match: '[a-zA-Z_][a-zA-Z9-9_]*'
+     scope: entity.name.type
+     set: label.def
+     comment: A label name
+  label.def:
+   - match: ' *= *'
+     scope: keyword.operator
+     set: string.quoted
+
