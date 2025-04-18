@@ -32,6 +32,11 @@ b64d() {
     fi
 }
 
+# Highlighted help
+hh() {
+  "$@" --help 2>&1 | bat --plain --language help
+}
+
 # Aliases
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -55,6 +60,7 @@ if command -v bat >/dev/null 2>&1; then
   alias   hsh='bat --language sh'
   alias hdiff='bat --language diff'
   alias  hini='bat --language ini'
+  alias hhelp='bat --language help'
 fi
 
 # If kubecolor is available then alias oc -> kubecolor
