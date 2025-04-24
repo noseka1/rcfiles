@@ -34,7 +34,7 @@ b64d() {
 
 # Highlighted help
 hh() {
-  "$@" --help 2>&1 | bat --plain --language help
+  "$@" --help 2>&1 | bat --language help --style plain
 }
 
 # Aliases

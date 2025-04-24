@@ -164,3 +164,7 @@ source <(switcher init zsh)
 alias ksc='switch'
 alias ksn='switch namespace'
 alias ksh='switch history'
+
+# Colorize command help output
+# See also https://github.com/sharkdp/bat?tab=readme-ov-file#highlighting---help-messages
+alias -g -- --help='--help 2>&1 | bat --language help --style plain'
