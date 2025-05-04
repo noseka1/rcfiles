@@ -55,9 +55,11 @@ if [ ! -d "$HOME/.local/share/zinit" ]; then
 fi
 
 # Configure colorful prompt
-cat >> "$HOME/.zshrc" <<EOF
+if ! grep ^PS1= "$HOME/.zshrc"; then
+  cat >> "$HOME/.zshrc" <<EOF
 PS1='%K{blue}%B%F{white}[%n@%m %~%f]$%k%b '
 EOF
+fi
 
 # Include rcfiles definitions in ~/.zshrc
 if ! grep '^source .*zshrc\.in' "$HOME/.zshrc"; then
