@@ -197,7 +197,7 @@ ss -tiepm
 find . ! -empty -type f -exec md5sum {} + | sort | uniq -w32 -dD
 
 # Show volume (LUN) parameters
-lsblk -po KNAME,TYPE,SIZE,MODEL,WWN
+lsblk -po KNAME,TYPE,SIZE,VENDOR,MODEL,WWN
 
 % tcpdump
 
