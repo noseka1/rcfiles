@@ -1,0 +1,9 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# Code by Bryan Croft. Thank you :-)
+join \
+  <(oc get nodes -o custom-columns='NAME:.metadata.name,Ready:.status.conditions[3].status,UNSched:.spec.unschedulable,MemPres:.status.conditions[0].status,DiskPres:.status.conditions[1].status,PIDPres:.status.conditions[2].status') \
+  <(oc adm top node) | \
+  column -t
