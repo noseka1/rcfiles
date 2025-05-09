@@ -102,6 +102,9 @@ touch /run/machine-config-daemon-force
 # Clean up non-running pods
 oc get po -A | grep -E '(CrashLoopBackOff|Error|ContainerStatusUnknown|Init:ContainerStatusUnknown|Completed)' | while read ns pod unused; do oc delete pod -n $ns $pod; done
 
+# List BMC addresses
+oc get baremetalhosts.metal3.io -n openshift-machine-api -o custom-columns='NAME:.metadata.name,BMC Address:.spec.bmc.address'
+
 % lin
 
 # Jump into ODF tools pod
