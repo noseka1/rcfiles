@@ -108,6 +108,9 @@ oc get baremetalhosts.metal3.io -n openshift-machine-api -o custom-columns='NAME
 # For each pod list attached configMaps, secrets, and volumes
 oc get pods -o json | jq '.items[] | { name: (.metadata.name), configMaps: [ .spec.volumes[] | select(has("configMap")) | .configMap.name ], secrets: [ .spec.volumes[] | select(has("secret")) | .secret.secretName ], volumes: [ .spec.volumes[] | select(has("persistentVolumeClaim")) | .persistentVolumeClaim.claimName ]} | del(.. | select(. == []))'
 
+# Drain OpenShift node
+oc adm drain <node> --force --ignore-daemonsets --delete-emptydir-data false --disable-eviction false --skip-wait-for-delete-timeout 0
+
 % lin
 
 # Jump into ODF tools pod
