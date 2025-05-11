@@ -111,6 +111,9 @@ oc get pods -o json | jq '.items[] | { name: (.metadata.name), configMaps: [ .sp
 # Drain OpenShift node
 oc adm drain <node> --force --ignore-daemonsets --delete-emptydir-data false --disable-eviction false --skip-wait-for-delete-timeout 0
 
+# Display install-config.yaml of the running cluster
+oc get cm -n kube-system cluster-config-v1 -o jsonpath='{.data.install-config}'
+
 % lin
 
 # Jump into ODF tools pod
