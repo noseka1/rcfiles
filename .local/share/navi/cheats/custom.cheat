@@ -167,7 +167,7 @@ echo <jwt_token> | jq -R 'gsub("-";"+") | gsub("_";"/") | split(".") | .[1] | @b
 openssl x509 -text -in <cert.pem>
 
 # Clean up stopped containers and unused container images
-podman container prune --force && podman image prune --force
+podman container prune --force && podman image prune --all --force
 
 # Push to quay.io
 podman push --authfile ~/.mysecrets/docker/myquay.json
