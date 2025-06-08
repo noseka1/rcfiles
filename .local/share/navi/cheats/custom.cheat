@@ -215,7 +215,7 @@ lsblk -po KNAME,TYPE,SIZE,VENDOR,MODEL,WWN
 pvscan --cache --activate ay
 
 # Grep through source code
-rg -g '!/vendor/' '<regular_expression>'
+rg -g '!vendor/' '<regular_expression>'
 
 % tcpdump
 
