@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Extract files embedded in the CoreOS ignition file to the local directory
+# Extract files embedded in the CoreOS ignition file and MachineConfig file to the local directory
 
 set -euo pipefail
 
@@ -20,7 +20,7 @@ function urldecode() {
     printf '%b' "${url_encoded//%/\\x}"
 }
 
-cat $ignition_file | jq -r '.storage.files[] | .path, .contents.source' | while read name; do
+cat $ignition_file | jq -r '.storage.files[]?, .spec.config.storage.files[]?| .path, .contents.source' | while read name; do
   read content
   mkdir -p $(dirname ${storage_dir}${name})
   encoding=$(echo "$content" | cut -d ',' -f 1)
@@ -42,7 +42,7 @@ enabled_units_dir=$units_dir/multi-user.target.wants
 
 mkdir -p $enabled_units_dir
 
-cat $ignition_file | jq '.systemd.units[] | .contents, .enabled, .name' | while read -r contents; do
+cat $ignition_file | jq '.systemd.units[]?, .spec.config.systemd.units[]? | .contents, .enabled, .name' | while read -r contents; do
   read enabled
   read name
   unit_name=$(echo $name | jq -r)
