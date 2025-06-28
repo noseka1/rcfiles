@@ -233,3 +233,6 @@ sudo tcpdump -i any -nn -vvv -A
 
 # Search for git commit content i.e. actual lines of source code as opposed to commit messages
 git rev-list --all | xargs git grep <regexp>
+
+# More verbose lspci
+lspci -nnk
