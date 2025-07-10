@@ -208,7 +208,7 @@ vi -q <(rg -H --no-heading --vimgrep EXPRESSION)
 # Display detailed information on TCP connections
 ss -tiepm
 
-# Find duplicate files
+# Find duplicate files (https://unix.stackexchange.com/questions/277697/whats-the-quickest-way-to-find-duplicated-files)
 find . ! -empty -type f -exec md5sum {} + | sort | uniq -w32 -dD
 
 # Show volume (LUN) parameters
