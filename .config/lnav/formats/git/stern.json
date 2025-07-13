@@ -1,0 +1,32 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "stern": {
+        "description": "Format file generated from regex101 entry -- https://regex101.com/r/Cl1CqJ/1",
+        "timestamp-format": ["%m-%d %H:%M:%S"],
+        "regex": {
+            "std": {
+                "pattern": "(?<pod>\\S+) (?<container>\\S+) (?<timestamp>\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) (?<body>.*)"
+            }
+        },
+        "value": {
+            "container": {
+                "kind": "string",
+                "identifier": true,
+                "description": "Container name"
+            },
+            "pod": {
+                "kind": "string",
+                "identifier": true,
+                "description": "Pod name"
+            },
+            "timestamp": {
+                "kind": "string"
+            }
+        },
+        "sample": [
+            {
+                "line": "machine-config-server-c5kvj machine-config-server 07-13 08:03:57 I0713 15:03:57.551601       1 log.go:245] http: TLS handshak"
+            }
+        ]
+    }
+}
