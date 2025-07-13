@@ -46,9 +46,8 @@
                     },
                     "cursor-line": {
                         "color": "$cyan",
-                        "background-color": "$red",
-                        "bold": true,
-                        "underline": true
+                        "background-color": "#28505d",
+                        "bold": false
                     },
                     "adjusted-time": {
                         "color": "$magenta"
