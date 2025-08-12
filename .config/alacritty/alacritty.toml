@@ -41,10 +41,10 @@ white = "#e5e5e5"
 yellow = "#cdcd00"
 
 [colors.primary]
-background = "#1e1e1e"
+background = "#000000"
 bright_foreground = "#ffffff"
 dim_foreground = "#656565"
-foreground = "#cccccc"
+foreground = "#b2b2b2"
 
 [font]
 # Point size
