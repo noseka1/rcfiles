@@ -123,8 +123,8 @@ else
   export EDITOR=vi
 fi
 
-# Disable systemctl's auto-paging feature
-export SYSTEMD_PAGER=
+# Don't truncate long lines in journalctl output, wrap them instead
+export SYSTEMD_LESS=FRXMK
 
 # Colorful man pages
 if [ -x /usr/bin/vim ]; then
