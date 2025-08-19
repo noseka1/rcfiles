@@ -89,6 +89,13 @@ chars = ""
 key = "X"
 mods = "Super|Alt"
 
+[[keyboard.bindings]]
+# Fix numpad Enter interfering with tmux binding for CTRL+J, see also:
+# https://github.com/alacritty/alacritty/issues/3720#issuecomment-2100104150
+key = "NumpadEnter"
+mods = "None"
+action = "ReceiveChar"
+
 [selection]
 # Include colon (:) into mouse selection (it is exluded by default)
 semantic_escape_chars = ",│`|\"' ()[]{}<>"
