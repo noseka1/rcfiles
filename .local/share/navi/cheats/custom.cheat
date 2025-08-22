@@ -99,8 +99,11 @@ oc delete pv -l storage.openshift.com/owner-kind=LocalVolumeSet,storage.openshif
 # Fix unexpected on-disk state by forcing machineconfig to overwrite the disk state
 touch /run/machine-config-daemon-force
 
-# Clean up non-running pods
+# Clean up non-running pods in Kubernetes
 oc get po -A | grep -E '(CrashLoopBackOff|Error|ContainerStatusUnknown|ImagePullBackOff|Init:ContainerStatusUnknown|Completed)' | while read ns pod unused; do oc delete pod -n $ns $pod; done
+
+# Clean up Kubernetes webhooks whose service has been removed
+oc get validatingwebhookconfigurations.admissionregistration.k8s.io,mutatingwebhookconfigurations.admissionregistration.k8s.io -o json | jq --raw-output '.items[] | select(.webhooks[0].clientConfig.service != null) | "\(.kind) \(.metadata.name) \(.webhooks[0].clientConfig.service.namespace) \(.webhooks[0].clientConfig.service.name)"' | while read kind webhook namespace name; do oc get service -n $namespace $name 1>/dev/null 2>&1 || oc delete $kind $webhook; done
 
 # List BMC addresses
 oc get baremetalhosts.metal3.io -n openshift-machine-api -o custom-columns='NAME:.metadata.name,BMC Address:.spec.bmc.address'
@@ -172,7 +175,7 @@ echo <jwt_token> | jq -R 'gsub("-";"+") | gsub("_";"/") | split(".") | .[1] | @b
 # Display X.509 certificate info
 openssl x509 -text -in <cert.pem>
 
-# Clean up stopped containers and unused container images
+# Clean up stopped Podman containers and unused container images
 podman container prune --force && podman image prune --all --force
 
 # Push to quay.io
