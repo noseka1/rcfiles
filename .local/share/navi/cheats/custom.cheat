@@ -1,5 +1,5 @@
 % kub
-#
+
 # List Kubernetes events sorted by time
 oc get events --sort-by metadata.creationTimestamp
 
