@@ -164,7 +164,7 @@ podman login -u xyz -p $(oc whoami -t) $(oc get route -n openshift-image-registr
 youtube-dl --extract-audio --audio-format mp3 <youtube_url>
 
 # Update Debian packages
-sudo apt update && sudo apt full-upgrade
+sudo apt update && sudo apt full-upgrade && sudo apt autoremove
 
 # Break the CA bundle into individual cert files
 awk 'BEGIN {c=0;} /BEGIN CERT/{c++} { print > "cert." c ".pem"}' < '<chain.pem>'
