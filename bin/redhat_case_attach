@@ -18,7 +18,7 @@ set -euo pipefail
 
 if [ "$#" -lt 2 ]; then
   echo "Usage: $0 [options...] <CASE_NUMBER> <FILE>..."
-  echo "-c, --checksum                        Verify attachment checksum. Takes some time for very large attachments. Defaults to false"
+  echo "-c, --checksum                        Verify attachment checksum. Takes some time for very large attachments. Defaults to true"
   echo "-d, --description <description>       Add description for the uploaded attachment"
   echo "-p, --private                         Upload file as private attachment"
   echo "-u, --user-confirmation <true, false  Require user to confirm the case summary. Defaults to true"
