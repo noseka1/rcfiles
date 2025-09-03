@@ -244,4 +244,4 @@ git rev-list --all | xargs git grep <regexp>
 lspci -nnk
 
 # Drop caches, as well as reclaimable slab objects like dentries and inodes
-free -h && echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null && free -h
+free -h && sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null && free -h
