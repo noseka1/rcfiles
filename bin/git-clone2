@@ -26,12 +26,14 @@ done
 function git_name_from_url() {
   # remove the https:// and git:// prefix, remove the .git suffix
   # handle noseka1@github.com:noseka1/vault-kustomization
-  # handle ssh://git@gitlab.com:2222/repo
+  # handle ssh://git@gitlab.com:2222/path/to/repo
+  # handle https://x:token@gitlab.consulting.redhat.com/path/to/repo
   echo $1 | sed \
     -e 's/^[[:alnum:]]\+@\([[:alnum:]\.]\+\):/\1\//' \
     -e 's/^http:\/\///' \
     -e 's/^https:\/\///' \
     -e 's/^git:\/\///' \
+    -e 's/^[[:alnum:]:-]\+@//' \
     -e 's/^ssh:\/\/[[:alnum:]]\+@\([[:alnum:]\.]\+\):[[:digit:]]\+/\1/' \
     -e 's/\(.*\)\.git$/\1/'
 }
