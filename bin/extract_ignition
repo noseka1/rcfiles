@@ -25,15 +25,19 @@ cat $ignition_file | jq -r '.storage.files[]?, .spec.config.storage.files[]?| .p
   mkdir -p $(dirname ${storage_dir}${name})
   encoding=$(echo "$content" | cut -d ',' -f 1)
   encoded_content=$(echo "$content" | cut -d ',' -f 2)
-  if [ "$encoding" = "data:text/plain;charset=utf-8;base64" ]; then
-    # base64 encoded content
-    echo $encoded_content | base64 -d > ${storage_dir}${name}
-  elif [ "$encoding" = "data:" ]; then
-    # url-encoded content
-    urldecode "$encoded_content" > ${storage_dir}${name}
-  else
-    echo Error, don\'t know how to decode the content: "$content"
-  fi
+  case "$encoding" in
+    "data:text/plain;charset=utf-8;base64" | "data:text/plain;base64")
+      # base64 encoded content
+      echo $encoded_content | base64 -d > ${storage_dir}${name}
+      ;;
+    "data:" | "data:text/plain")
+      # url-encoded content
+      urldecode "$encoded_content" > ${storage_dir}${name}
+      ;;
+    *)
+      echo Error, don\'t know how to decode the content: "$content"
+      ;;
+  esac
 done
 
 systemd_dir=$target_dir/systemd
