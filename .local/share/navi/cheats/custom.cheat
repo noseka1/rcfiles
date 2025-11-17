@@ -123,6 +123,9 @@ oc logs -n openshift-machine-config-operator deploy/machine-config-controller
 # Display install-config.yaml of the running cluster
 oc get cm -n kube-system cluster-config-v1 -o jsonpath='{.data.install-config}'
 
+# Generate OpenShift installation image for agent-based installation
+openshift-install agent create image --log-level debug --dir conf
+
 % lin
 
 # Jump into ODF tools pod
