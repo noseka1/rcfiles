@@ -5,7 +5,7 @@
 --max-columns-preview
 
 # Set the colors.
---colors=path:fg:green
+--colors=path:fg:white
 --colors=path:style:bold
 --colors=line:fg:yellow
 --colors=line:style:bold
