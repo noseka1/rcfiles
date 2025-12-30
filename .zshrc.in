@@ -73,6 +73,10 @@ zle -N backward-shell-word backward-word-match
 zstyle :zle:backward-shell-word word-style shell
 bindkey '^[^B' backward-shell-word
 
+# Bash-like autocompletion when in the middle of a word
+# See also https://unix.stackexchange.com/questions/736901/configure-zsh-to-use-tab-autocompletion-when-in-the-middle-of-a-word-ignore-cha
+bindkey '^I' expand-or-complete-prefix
+
 # Load plugins
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit load zdharma-continuum/history-search-multi-word
