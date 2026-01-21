@@ -126,6 +126,9 @@ oc get cm -n kube-system cluster-config-v1 -o jsonpath='{.data.install-config}'
 # Generate OpenShift installation image for agent-based installation
 openshift-install agent create image --log-level debug --dir conf
 
+# Test Prometheus alert routing from alertmanager-main-0 pod
+amtool alert add --alertmanager.url http://localhost:9093 --start "$(date -Iseconds)" --end "$(date -Iseconds -d 'now +1 minutes')" --annotation 'summary="Test summary"' --annotation 'description="Test description"' "alert-$(date +%s)" severity=warning
+
 % lin
 
 # Jump into ODF tools pod
