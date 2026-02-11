@@ -28,6 +28,10 @@ set scrolloff=10
 set hlsearch
 "While typing a search command, show where the pattern, as it was typed so far, matches.
 set incsearch
+"Enable smartcase in Vim for searching. This will allow case-insensitive searches unless an uppercase letter is
+"included in the search pattern, which will then make it case-sensitive
+set ignorecase
+set smartcase
 
 "User interface options
 
