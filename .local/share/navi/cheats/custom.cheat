@@ -129,10 +129,10 @@ openshift-install agent create image --log-level debug --dir conf
 # Test Prometheus alert routing from alertmanager-main-0 pod
 amtool alert add --alertmanager.url http://localhost:9093 --start "$(date -Iseconds)" --end "$(date -Iseconds -d 'now +1 minutes')" --annotation 'summary="Test summary"' --annotation 'description="Test description"' "alert-$(date +%s)" severity=warning
 
-% lin
-
 # Jump into ODF tools pod
 oc rsh --namespace openshift-storage deploy/rook-ceph-tools
+
+% lin
 
 # Download the TLS certificate from the remote server
 openssl s_client -showcerts -servername <server_fqdn> -connect <server_fqdn>:443 </dev/null
@@ -263,3 +263,6 @@ lspci -nnk
 
 # Drop caches, as well as reclaimable slab objects like dentries and inodes
 free -h && sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null && free -h
+
+# Display the current time in Unix timestamp format
+date +%s
