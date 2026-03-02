@@ -60,6 +60,7 @@ if command -v bat >/dev/null 2>&1; then
   alias   hsh='bat --language sh'
   alias hdiff='bat --language diff'
   alias  hini='bat --language ini'
+  alias htoml='bat --language toml'
   alias hhelp='bat --language help'
 fi
 
