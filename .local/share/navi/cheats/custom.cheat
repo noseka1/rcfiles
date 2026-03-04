@@ -244,6 +244,9 @@ ethtool -k <ethX>
 # Validate if secureboot is enabled or disabled
 mokutil --sb-state
 
+# Sort out high system load (show runnable processes and processes in uninterruptable sleep)
+ps -eo pid,user,state,comm | awk '$3 ~ /^(R|D)$/'
+
 % tcpdump
 
 # List the network interfaces available on the system and on which tcpdump can capture packets
