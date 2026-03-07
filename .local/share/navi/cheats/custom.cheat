@@ -132,6 +132,9 @@ amtool alert add --alertmanager.url http://localhost:9093 --start "$(date -Iseco
 # Jump into ODF tools pod
 oc rsh --namespace openshift-storage deploy/rook-ceph-tools
 
+# Clean up Kubernetes apiservices that are no longer available. This fixes the error condition: "Discovery failed for some groups ..."
+oc get apiservices.apiregistration.k8s.io --output json | jq --raw-output '.items[] | select(.status.conditions[]? | select(.type=="Available" and .status=="False")) | .metadata.name' | xargs --no-run-if-empty oc delete apiservices.apiregistration.k8s.io
+
 % lin
 
 # Download the TLS certificate from the remote server
