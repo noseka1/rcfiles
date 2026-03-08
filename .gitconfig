@@ -24,8 +24,12 @@
         s  = status
         st = status -sb
         dc = diff --cached
+        dcr = diff --cached --relative
+        dcrw = diff --cached --relative --color-words
         dcw = diff --cached --color-words
         d = diff
+        dr = diff --relative
+        drw = diff --relative --color-words
         dw = diff --color-words
 [git-p4]
         skipsubmitedit = true
