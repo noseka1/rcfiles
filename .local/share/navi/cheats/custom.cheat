@@ -138,6 +138,9 @@ oc get apiservices.apiregistration.k8s.io --output json | jq --raw-output '.item
 # Find pods younger than 24 hours
 kubectl get pods -A -o json | jq -r '.items[] | select((now - (.metadata.creationTimestamp | fromdateiso8601)) < 3600) | "\(.metadata.namespace)/\(.metadata.name)"'
 
+# Find pods created after certain date
+target_date="2026-01-01T12:00:00Z"; target_unix=$(date -d "$target_date" +%s); kubectl get pods -A -o json | jq -r --arg target "$target_unix" '.items[] | select((.metadata.creationTimestamp | fromdateiso8601) > ($target | tonumber)) | "\(.metadata.namespace)/\(.metadata.name) created at \(.metadata.creationTimestamp)"'
+
 % lin
 
 # Download the TLS certificate from the remote server
