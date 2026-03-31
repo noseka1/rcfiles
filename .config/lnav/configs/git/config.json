@@ -1,5 +1,10 @@
 {
     "ui": {
         "theme": "night-owl"
-    }
+    },
+    "log": {
+        "date-time": {
+            "convert-zoned-to-local": true
+        }
+		}
 }
