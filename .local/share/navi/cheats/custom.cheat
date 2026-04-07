@@ -141,6 +141,9 @@ kubectl get pods -A -o json | jq -r '.items[] | select((now - (.metadata.creatio
 # Find pods created after certain date
 target_date="2026-01-01T12:00:00Z"; target_unix=$(date -d "$target_date" +%s); kubectl get pods -A -o json | jq -r --arg target "$target_unix" '.items[] | select((.metadata.creationTimestamp | fromdateiso8601) > ($target | tonumber)) | "\(.metadata.namespace)/\(.metadata.name) created at \(.metadata.creationTimestamp)"'
 
+# Extract ignition from the OpenShift agent iso image
+isoinfo -R -x /images/ignition.img -i agent.x86_64.iso | zcat | cpio -i
+
 % lin
 
 # Download the TLS certificate from the remote server
