@@ -123,7 +123,6 @@ function! PackInit() abort
   call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
   call minpac#add('https://github.com/luochen1990/rainbow',               {'commit':'76ca1a20aa42edb5c65c19029968aad4625790dc'})
   call minpac#add('https://github.com/chrisbra/Colorizer',                {'commit':'7db0e0dd8adfccab35655f5b6db805caa0fef49a'})
-  call minpac#add('https://github.com/noseka1/vim-yaml-folds',            {'commit':'master'})
   call minpac#add('https://github.com/tomasiser/vim-code-dark',           {'commit':'4624dc223bf574aa9a731c2383c579847303c380'})
 endfunction
 
@@ -194,7 +193,43 @@ nmap z7 :set foldlevel=7<CR>
 nmap z8 :set foldlevel=7<CR>
 nmap z9 :set foldlevel=9<CR>
 
-"Indention options for varous languages
+"Custom options for various languages
 autocmd FileType go setlocal noexpandtab
 autocmd FileType yaml setlocal indentkeys-=0#
-autocmd FileType json setlocal foldmethod=syntax foldtext=yamlfolds#JsonFoldText()
+autocmd FileType json setlocal foldtext=JsonYamlFoldText() foldmethod=syntax
+autocmd FileType yaml setlocal foldtext=JsonYamlFoldText() foldmethod=expr foldexpr=YamlArrayFold()
+
+"Fold yaml files with non-intended (flush) arrays correctly
+function! YamlArrayFold()
+  let line = getline(v:lnum)
+
+  "Ignore comments and empty lines
+  if line =~? '\v^\s*$' || line =~? '\v^\s*#'
+    return '-1'
+  endif
+
+  let indent = indent(v:lnum)
+  let level = indent / &shiftwidth
+
+  "Fix for non-indented arrays:
+  "If line starts with a hyphen, treat it as one level deeper
+  if line =~? '\v^\s*-\s+'
+    let level = level + 1
+  endif
+
+  "Lookahead to determine if we start a new block
+  let next_line = getline(nextnonblank(v:lnum + 1))
+  let next_indent = indent(nextnonblank(v:lnum + 1))
+
+  "If the next line is an array item or more indented, start the fold
+  if next_indent > indent || next_line =~? '\v^\s*-\s+'
+    return '>' . (level + 1)
+  endif
+
+  return level
+endfunction
+
+function! JsonYamlFoldText()
+  let lines = v:foldend - v:foldstart
+  return getline(v:foldstart) . '   (level ' . v:foldlevel . ', lines ' . lines . ')'
+endfunction
