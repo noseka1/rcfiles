@@ -97,7 +97,7 @@ function ocys() {
 
 # oc get yaml secret less
 function ocysl() {
-  oc "$@" --output json | jq '.data[] |= @base64d' | yq eval --prettyPrint | hyaml | vim_yaml_pager
+  oc "$@" --output json | jq '.data[] |= @base64d' | yq eval --prettyPrint | vim_yaml_pager
 }
 
 export DEBFULLNAME="Ales Nosek"
