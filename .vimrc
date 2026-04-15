@@ -129,8 +129,11 @@ function! PackInit() abort
 endfunction
 
 "Try to load colorscheme, ignore if it doesn't exist
-"If the colors seem to be wrong, make sure you have a terminal with 256 colors. E.g. set terminal to xterm-256color in MobaXterm
+"If the colors seem to be wrong, make sure your terminal supports 256 colors.
+"For example, to enable 256 colors in MobaXterm, set terminal in MobaXterm
+"settings to xterm-256color.
 silent! colorscheme codedark
+
 
 "Show the list of buffers
 let g:lightline#bufferline#show_number  = 2
