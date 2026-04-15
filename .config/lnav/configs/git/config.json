@@ -4,7 +4,7 @@
     },
     "log": {
         "date-time": {
-            "convert-zoned-to-local": true
+            "convert-zoned-to-local": false
         }
 		}
 }
