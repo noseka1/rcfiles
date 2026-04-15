@@ -75,9 +75,22 @@ set clipboard=unnamedplus
 
 "Increase the undo limit
 set history=1000
-"Persistent undo
-set undodir=$HOME/.vim/undo
-set undofile
+
+"Check if persistent_undo feature is available and enabled it
+if has('persistent_undo')
+  if has("nvim")
+    set undodir=$HOME/.cache/nvim/undo//
+    let undo_dir=expand('~/.cache/nvim_undo')
+  else
+    set undodir=$HOME/.cache/vim/undo//
+    let undo_dir=expand('~/.cache/vim_undo')
+  endif
+  " Create the undo directory if it doesn't exist
+  if !isdirectory(undo_dir)
+    call mkdir(undo_dir, '', 0700)
+  endif
+  set undofile
+endif
 
 "Put all swap files in the same place
 set directory^=$HOME/.vim/swap//
