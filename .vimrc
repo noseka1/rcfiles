@@ -63,7 +63,9 @@ set background=dark
 "Enable mouse support
 set mouse=
 "Make the mouse selection highlighting work in Alacritty, see also: https://github.com/alacritty/alacritty/issues/803
-set ttymouse=sgr
+if !has('nvim')
+  set ttymouse=sgr
+endif
 "Use X clipboard, auto-copy selection to clipboard
 set clipboard=unnamedplus
 "Check that the clipboard is available with (if the output is 0, it's not available, if it's 1, it is available):
