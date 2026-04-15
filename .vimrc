@@ -181,7 +181,7 @@ let g:rainbow_ctermfgs = ['lightblue', 'lightgreen', 'yellow', 'red', 'magenta']
 "Indent guides colors
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=235
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=gray15 ctermbg=235
 
 "Start editing a file with all folds open
 set foldlevelstart=99
