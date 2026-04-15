@@ -1,0 +1,52 @@
+{
+    "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+    "web_robot_log": {
+        "title": "kubevirt_log",
+        "description": "",
+        "file-type": "json",
+        "line-format": [
+            {
+                "field": "__timestamp__"
+            },
+            " ",
+            {
+                "field": "component"
+            },
+            {
+                "prefix": "/",
+                "field": "subcomponent",
+                "default-value": ""
+            },
+            {
+                "prefix": "[",
+                "field": "thread",
+                "suffix": "]",
+                "default-value": ""
+            },
+            " ",
+            {
+                "field": "pos"
+            }
+        ],
+        "value": {
+            "level": {
+                "kind": "string",
+                "hidden": true
+            },
+            "component": {
+                "kind": "string"
+            },
+            "subcomponent": {
+                "kind": "string"
+            },
+            "thread": {
+                "kind": "integer",
+                "identifier": true
+            },
+            "pos": {
+                "kind": "string",
+                "identifier": true
+            }
+        }
+    }
+}
