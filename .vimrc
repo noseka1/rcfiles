@@ -80,14 +80,14 @@ set history=1000
 if has('persistent_undo')
   if has("nvim")
     set undodir=$HOME/.cache/nvim/undo//
-    let undo_dir=expand('~/.cache/nvim_undo')
+    let undo_dir=expand('~/.cache/nvim/undo')
   else
     set undodir=$HOME/.cache/vim/undo//
-    let undo_dir=expand('~/.cache/vim_undo')
+    let undo_dir=expand('~/.cache/vim/undo')
   endif
   " Create the undo directory if it doesn't exist
   if !isdirectory(undo_dir)
-    call mkdir(undo_dir, '', 0700)
+    call mkdir(undo_dir, 'p', 0700)
   endif
   set undofile
 endif
