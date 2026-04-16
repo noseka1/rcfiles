@@ -30,6 +30,9 @@ return {
     config = function()
       local cmp = require("cmp")
       cmp.setup({
+        completion = {
+          autocomplete = false,
+        },
         sources = {
           { name = "nvim_lsp" }, -- Enables LSP completion
           { name = "buffer" },
