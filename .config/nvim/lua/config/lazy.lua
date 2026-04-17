@@ -33,4 +33,11 @@ require("lazy").setup({
 
   -- Don't check for plugin updates
   checker = { enabled = false },
+
+  performance = {
+    rtp = {
+      -- Don't remove minpack plugins from runtimepath
+      reset = false,
+    }
+  }
 })
