@@ -35,8 +35,6 @@ return {
         },
         sources = {
           { name = "nvim_lsp" }, -- Enables LSP completion
-          { name = "buffer" },
-          { name = "path" },
         },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item(),
