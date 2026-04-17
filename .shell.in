@@ -115,8 +115,11 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 
-# If vim is available then use vim as a default editor
-if command -v vim >/dev/null 2>&1; then
+# Prefer nvim to vim to vi if available
+if command -v nvim >/dev/null 2>&1; then
+  export VISUAL=nvim
+  export EDITOR=nvim
+elif command -v vim >/dev/null 2>&1; then
   export VISUAL=vim
   export EDITOR=vim
 else
