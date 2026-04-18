@@ -88,6 +88,9 @@ zinit snippet https://raw.githubusercontent.com/git/git/master/contrib/completio
 
 zinit snippet OMZ::plugins/fasd/fasd.plugin.zsh
 
+# Replace zsh's default completion selection menu with fzf
+zinit light Aloxaf/fzf-tab
+
 # Never complete beyond ambiguous choices
 # See also https://stackoverflow.com/questions/37980851/never-complete-beyond-ambiguous-choices
 setopt noautomenu
