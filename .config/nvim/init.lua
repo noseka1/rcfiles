@@ -1,6 +1,10 @@
 -- Disable terminal GUI colors
 vim.opt.termguicolors = false
 
+-- Disable netrw in favor of nvim-tree
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Force-enable the optimized loader for v0.12
 if vim.loader then vim.loader.enable() end
 
@@ -29,6 +33,10 @@ local vimrc = vim.fn.expand("~/.vimrc")
 if vim.fn.filereadable(vimrc) == 1 then
     vim.cmd("source " .. vimrc)
 end
+
+-- Keyboard shortcuts
+vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { desc = "Toggle nvim-tree" })
+vim.keymap.set('n', '<leader>tf', ':NvimTreeFocus<CR>', { desc = "Focus nvim-tree" })
 
 -- Install lazy.nvim package manager
 require("config.lazy")
