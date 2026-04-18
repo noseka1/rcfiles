@@ -58,7 +58,6 @@ return {
           "vim",
           "vimdoc",
           "xml",
-          "yaml",
           "zsh",
         },
         -- Enable highlighting
