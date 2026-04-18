@@ -34,6 +34,10 @@ if vim.fn.filereadable(vimrc) == 1 then
     vim.cmd("source " .. vimrc)
 end
 
+-- Revert back to vim behavior of Y
+-- See  https://www.reddit.com/r/neovim/comments/petq61/neovim_060_y_not_yanking_line_but_to_end_of_line/
+vim.cmd("nnoremap Y Y")
+
 -- Keyboard shortcuts
 vim.keymap.set('n', '<leader>tt', ':NvimTreeToggle<CR>', { desc = "Toggle nvim-tree" })
 vim.keymap.set('n', '<leader>tf', ':NvimTreeFocus<CR>', { desc = "Focus nvim-tree" })
