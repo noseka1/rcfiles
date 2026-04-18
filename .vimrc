@@ -136,8 +136,8 @@ function! PackInit() abort
   call minpac#add('https://github.com/itchyny/lightline.vim.git',         {'commit':'a29b8331e1bb36b09bafa30c3aa77e89cdd832b2'})
   call minpac#add('https://github.com/preservim/vim-indent-guides',       {'commit':'a1e1390c0136e63e813d051de2003bf0ee18ae30'})
   call minpac#add('https://github.com/mengelbrecht/lightline-bufferline', {'commit':'61c7c8668b80537aefa69654a6e5a5e63095be61'})
-  call minpac#add('https://github.com/junegunn/fzf',                      {'commit':'c4a9ccd6afc3698a57a6b938ebba6d85238033e2'})
-  call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'279e1ec068f526e985ee7e3f62a71f083bbe0196'})
+  call minpac#add('https://github.com/junegunn/fzf',                      {'commit':'06e70570e2088605d61f18b127356e5680f7f599'})
+  call minpac#add('https://github.com/junegunn/fzf.vim',                  {'commit':'b9624aa012ddcbae9e79964bfd30cc1fbe3cf263'})
   call minpac#add('https://github.com/google/vim-jsonnet',                {'commit':'b7459b36e5465515f7cf81d0bb0e66e42a7c2eb5'})
   call minpac#add('https://github.com/luochen1990/rainbow',               {'commit':'76ca1a20aa42edb5c65c19029968aad4625790dc'})
   call minpac#add('https://github.com/chrisbra/Colorizer',                {'commit':'7db0e0dd8adfccab35655f5b6db805caa0fef49a'})
@@ -172,8 +172,8 @@ nmap <leader>8 <Plug>lightline#bufferline#go(8)
 nmap <leader>9 <Plug>lightline#bufferline#go(9)
 nmap <leader>0 <Plug>lightline#bufferline#go(10)
 
-nmap <leader>f :Files<CR>
-nmap <leader>b :Buffers<CR>
+nmap <leader>ff :Files<CR>
+nmap <leader>fb :Buffers<CR>
 
 "Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -187,8 +187,9 @@ imap <c-x><c-l> <plug>(fzf-complete-line)
 
 "Span the entire screen
 let g:fzf_layout = {'left': '100%'}
-"Toggle preview window using Ctrl-/
-let g:fzf_preview_window = ['right:70%', 'ctrl-/']
+" Preview window. It will show on the right with 50% width, but if the width is smaller
+" than 70 columns, it will show above the candidate list
+let g:fzf_preview_window = ['right,50%,<70(up,50%)', 'ctrl-/']
 
 "Enable rainbow-colored parenthesis
 let g:rainbow_active = 1
