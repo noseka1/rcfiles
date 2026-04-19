@@ -114,8 +114,8 @@ autocmd BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "norm
 "Load indentation rules and plugins according to the detected filetype
 filetype plugin indent on
 
-"Set the leader key (default is "\")
-let mapleader = ","
+"Set leader key (default is "\"). Must be in sync with ~/.config/nvim/init.lua
+let mapleader = " "
 
 "Toggle paste mode
 nnoremap <leader>p :set paste!<CR>
