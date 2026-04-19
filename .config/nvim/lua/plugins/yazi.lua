@@ -10,18 +10,7 @@ return {
     keys = {
       -- Key mappings
       {
-        "<leader>yo",
-        mode = { "n", "v" },
-        "<cmd>Yazi<cr>",
-        desc = "Open yazi at the current file",
-      },
-      {
-        "<leader>yc",
-        "<cmd>Yazi cwd<cr>",
-        desc = "Open the file manager in nvim's working directory",
-      },
-      {
-        "<leader>yt",
+        "<leader>y",
         "<cmd>Yazi toggle<cr>",
         desc = "Resume the last yazi session",
       },
