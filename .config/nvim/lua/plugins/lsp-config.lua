@@ -12,7 +12,11 @@ return {
     config = function()
       require("mason").setup()
       require("mason-lspconfig").setup({
-        ensure_installed = { "yamlls@1.22.0" },
+        ensure_installed = {
+          "gopls@v0.21.1",
+          "lua_ls@3.18.2",
+          "yamlls@1.22.0",
+        },
         automatic_installation = true,
       })
     end,
