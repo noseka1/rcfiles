@@ -22,42 +22,69 @@ return {
     end,
   },
   {
-    "hrsh7th/nvim-cmp",
-    commit = "a1d504892f2bc56c2e79b65c6faded2fd21f3eca",
+    'saghen/blink.cmp',
+    tag = "v1.10.2",
     pin = true,
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp", -- LSP source for nvim-cmp
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-cmdline",
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+      keymap = {
+        -- Similar to built-in, C-y to accept completion
+        preset = 'default',
+        -- Insert first item in completion list
+        ['<C-n>'] = { 'show_and_insert', 'select_next', 'fallback' },
+        ['<C-p>'] = { 'show_and_insert', 'select_prev', 'fallback' },
+        ['<C-space>'] = { 'show_and_insert', 'select_next', 'fallback' },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
+      },
+      -- Show completion documentation
+      completion = {
+        accept = {
+          auto_brackets = {
+            enabled = true
+          },
+        },
+        documentation = {
+          auto_show = true,
+          window = {
+            border = "rounded",
+          },
+        },
+        ghost_text = {
+          -- Shows a preview of the currently selected item as virtual text inline
+          enabled = true,
+        },
+        list = { selection = { preselect = true, auto_insert = true } },
+        menu = {
+          -- Don't automatically show the completion menu
+          auto_show = false,
+          border = "rounded",
+        },
+      },
+      -- Default list of enabled providers
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      -- Enable signature help (replacement for cmp-nvim-lsp-signature-help)
+      signature = { enabled = true },
+      -- See the fuzzy documentation for more information
+      fuzzy = { implementation = "prefer_rust_with_warning" },
     },
-    config = function()
-      local cmp = require("cmp")
-      cmp.setup({
-        completion = {
-          autocomplete = false,
-        },
-        sources = {
-          { name = "nvim_lsp" }, -- Enables LSP completion
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-n>"] = cmp.mapping.select_next_item(),
-          ["<C-p>"] = cmp.mapping.select_prev_item(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<C-Space>"] = cmp.mapping.complete(),
-        }),
-      })
-    end,
+    opts_extend = { "sources.default" }
   },
   {
     "neovim/nvim-lspconfig",
     tag = 'v2.8.0',
     pin = true,
-    dependencies = { "mason-org/mason-lspconfig.nvim", "hrsh7th/cmp-nvim-lsp" },
+    dependencies = { "mason-org/mason-lspconfig.nvim", "saghen/blink.cmp" },
     config = function()
       vim.lsp.config('yamlls', {
         -- This tells the server that Neovim supports snippets and fancy completion items
-        capabilities = require("cmp_nvim_lsp").default_capabilities(),
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
         settings = {
           yaml = {
             schemaStore = {
