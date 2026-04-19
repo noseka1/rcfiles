@@ -39,5 +39,5 @@ end
 -- See  https://www.reddit.com/r/neovim/comments/petq61/neovim_060_y_not_yanking_line_but_to_end_of_line/
 vim.cmd("nnoremap Y Y")
 
--- Install lazy.nvim package manager
+-- Install lazy.nvim package manager and plugins
 require("config.lazy")
