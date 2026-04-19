@@ -93,6 +93,10 @@ return {
           },
         },
       })
+      vim.lsp.config("lua_ls", {
+        -- Fix: Lua language server refused to load this directory ...
+        root_markers = { "init.lua", ".git" },
+      })
     end,
   },
   {
