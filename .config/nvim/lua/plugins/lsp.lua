@@ -50,9 +50,6 @@ return {
         },
         documentation = {
           auto_show = true,
-          window = {
-            border = "rounded",
-          },
         },
         ghost_text = {
           -- Shows a preview of the currently selected item as virtual text inline
@@ -62,7 +59,6 @@ return {
         menu = {
           -- Don't automatically show the completion menu
           auto_show = false,
-          border = "rounded",
         },
       },
       -- Default list of enabled providers
