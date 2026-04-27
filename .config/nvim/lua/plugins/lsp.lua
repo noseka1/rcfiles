@@ -100,6 +100,18 @@ return {
       vim.lsp.config("lua_ls", {
         -- This tells the server that Neovim supports snippets and fancy completion items
         capabilities = capabilities,
+        on_init = function(client)
+          client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
+            -- Make the server aware of Neovim runtime files
+            workspace = {
+              library = {
+                vim.env.VIMRUNTIME,
+                -- For LSP Settings Type Annotations: https://github.com/neovim/nvim-lspconfig#lsp-settings-type-annotations
+                vim.api.nvim_get_runtime_file("lua/lspconfig", false)[1],
+              },
+            },
+          })
+        end,
       })
     end,
   },
