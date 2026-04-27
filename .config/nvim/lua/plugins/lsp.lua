@@ -78,9 +78,10 @@ return {
     pin = true,
     dependencies = { "mason-org/mason-lspconfig.nvim", "saghen/blink.cmp" },
     config = function()
+      local capabilities = require("blink.cmp").get_lsp_capabilities(),
       vim.lsp.config('yamlls', {
         -- This tells the server that Neovim supports snippets and fancy completion items
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
+        capabilities = capabilities,
         settings = {
           yaml = {
             schemaStore = {
@@ -90,8 +91,8 @@ return {
         },
       })
       vim.lsp.config("lua_ls", {
-        -- Fix: Lua language server refused to load this directory ...
-        root_markers = { "init.lua", ".git" },
+        -- This tells the server that Neovim supports snippets and fancy completion items
+        capabilities = capabilities,
       })
     end,
   },
