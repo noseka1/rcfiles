@@ -8,6 +8,7 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     enabled = true,
+    event = "LspAttach",
     config = function()
       require("lspsaga").setup({
         lightbulb = {
