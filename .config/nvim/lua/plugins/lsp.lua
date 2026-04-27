@@ -13,8 +13,15 @@ return {
       require("mason").setup()
       require("mason-lspconfig").setup({
         ensure_installed = {
+          "bashls@5.6.0",
+          "clangd@22.1.0",
           "gopls@v0.21.1",
+          "html@4.10.0",
+          "jdtls@v1.58.0",
           "lua_ls@3.18.2",
+          "pylsp@1.14.0",
+          "rust_analyzer@2026-04-27",
+          "ts_ls@5.1.3",
           "yamlls@1.22.0",
         },
         automatic_installation = true,
