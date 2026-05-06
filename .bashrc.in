@@ -17,4 +17,6 @@ source $HOME/.shell.in
 
 # Search snippets and output on the shell
 # See also https://github.com/denisidoro/navi/blob/master/docs/installation.md#installing-the-shell-widget
-eval "$(navi widget bash | sed "s/\"\\\C-g\"/\"\\\C-x\\\C-r\"/")"
+if command -v navi >/dev/null 2>&1; then
+  eval "$(navi widget bash | sed "s/\"\\\C-g\"/\"\\\C-x\\\C-r\"/")"
+fi
