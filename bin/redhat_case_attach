@@ -110,7 +110,7 @@ if [ "$confirm" = true ]; then
   echo
   echo Case $casenum summary: \"$case_summary\"
   echo
-  read -p "Is the the correct case (y/n)? " yn
+  read -p "Is this the correct case (y/n)? " yn
   if [ "$yn" != y ]; then
     echo Exiting ...
     exit
