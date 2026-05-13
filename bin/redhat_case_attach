@@ -2,6 +2,9 @@
 
 # This scripts uploads attachments (files) to a Red Hat Support case at access.redhat.com/support/cases.
 # It requires Red Hat customer portal credentials for authentication.
+# The firwall/proxy must allow access to the following hosts for the script to work:
+# api.access.redhat.com
+# sso.redhat.com
 
 # Documentation used to create this script:
 #
