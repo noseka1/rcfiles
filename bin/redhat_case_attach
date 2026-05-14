@@ -66,6 +66,27 @@ do
  shift
 done
 
+# Function to check for dependencies
+check_dependencies() {
+  local dependencies=("curl" "jq")
+  local missing=()
+
+  for cmd in "${dependencies[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        missing+=("$cmd")
+    fi
+  done
+
+  if [ ${#missing[@]} -ne 0 ]; then
+    echo "Error: Missing required tools: ${missing[*]}"
+    echo "Please install them before running this script."
+    exit 1
+  fi
+}
+
+# Run the check
+check_dependencies
+
 # Ask for user's offline token
 offline_token=${RHSM_API_TOKEN:-}
 if [ -z "$offline_token" ]; then
