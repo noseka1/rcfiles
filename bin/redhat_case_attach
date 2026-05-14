@@ -2,10 +2,14 @@
 
 # This scripts uploads attachments (files) to a Red Hat Support case at access.redhat.com/support/cases.
 # It requires Red Hat customer portal credentials for authentication.
-# The firwall/proxy must allow access to the following hosts for the script to work:
-# api.access.redhat.com
-# sso.redhat.com
-
+#
+# The firewall/proxy must allow access to the following hosts for the script to work:
+# * api.access.redhat.com
+# * sso.redhat.com
+#
+# The split command can be used to break a large file into smaller chunks for upload, for example:
+# $ split -b 1024M -a 3 -d myfile.tar.gz myfile.tar.gz.part
+#
 # Documentation used to create this script:
 #
 # Customer Portal Integration Guide
