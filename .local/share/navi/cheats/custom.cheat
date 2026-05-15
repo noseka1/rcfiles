@@ -81,8 +81,8 @@ oc get csv \
 # Print installed operator versions
 oc get csv --all-namespaces --output custom-columns=NAME:.metadata.name --no-headers | sort | uniq
 
-# Print available OLM operator default channels
-oc get packagemanifest -o jsonpath='{range .items[*]}{.metadata.name} {.status.defaultChannel}{"\n"}{end}'
+# Print available OLM operator versions
+oc get packagemanifest -o jsonpath='{range .items[*]}packagemanifest={.metadata.labels.catalog}/{.metadata.name}, default_channel={.status.defaultChannel}{"\n"}{range .status.channels[*]}{.currentCSV} ({.name}){"\n"}{end}{"\n"}{end}'
 
 # Approve all pending CSRs in OpenShift
 oc get csr -o json | \
