@@ -142,6 +142,7 @@ function! PackInit() abort
   call minpac#add('https://github.com/luochen1990/rainbow',               {'commit':'76ca1a20aa42edb5c65c19029968aad4625790dc'})
   call minpac#add('https://github.com/chrisbra/Colorizer',                {'commit':'7db0e0dd8adfccab35655f5b6db805caa0fef49a'})
   call minpac#add('https://github.com/tomasiser/vim-code-dark',           {'commit':'4624dc223bf574aa9a731c2383c579847303c380'})
+  call minpac#add('https://github.com/rampxxxx/frr-syntax',               {'commit':'0add77ea604a3257ec16b1143c36c40cdbf9da79'})
 endfunction
 
 "Try to load colorscheme, ignore if it doesn't exist
