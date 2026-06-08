@@ -9,6 +9,9 @@
             }
         },
         "value": {
+            "body": {
+                "kind": "json"
+            },
             "container": {
                 "kind": "string",
                 "identifier": true,
