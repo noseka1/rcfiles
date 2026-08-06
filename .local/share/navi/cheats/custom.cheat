@@ -173,7 +173,7 @@ dnf search --showduplicates <pkg_name>
 subscription-manager register && subscription-manager attach --pool 8a85f98460bfb0470160c2ff22f13e47
 
 # Red Hat VPN
-sudo openvpn --config /etc/openvpn/client/ovpn-rdu2-tcp.conf
+netbird up --management-url https://wgvpn.redhat.com:8080 --disable-dns
 
 # Log in to the OpenShift integrated registry
 podman login -u xyz -p $(oc whoami -t) $(oc get route -n openshift-image-registry --no-headers --output custom-columns=HOSTNAME:.spec.host)
