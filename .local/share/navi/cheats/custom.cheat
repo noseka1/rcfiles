@@ -284,3 +284,6 @@ free -h && sudo sync && echo 3 | sudo tee /proc/sys/vm/drop_caches >/dev/null &&
 
 # Display the current time in Unix timestamp format
 date +%s
+
+# Display the current UTC time in 24-hour format
+date -u +"%Y-%m-%d %H:%M:%S UTC"
